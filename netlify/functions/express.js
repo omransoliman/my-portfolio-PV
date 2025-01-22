@@ -1,14 +1,17 @@
-// netlify/functions/express.js
 const express = require('express');
 const app = express();
+const axios = require('axios');  // for making HTTP requests
 
-app.get('/hello', (req, res) => {
-  res.json({ message: 'Hello from Express on Netlify!' });
+app.get('/proxy', async (req, res) => {
+  const { imageUrl } = req.query;
+
+  try {
+    const response = await axios.get(decodeURIComponent(imageUrl), { responseType: 'arraybuffer' });
+    res.set('Content-Type', 'image/jpeg');  // or the appropriate image MIME type
+    res.send(response.data);
+  } catch (error) {
+    res.status(500).send('Error fetching image');
+  }
 });
 
-exports.handler = async (event, context) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: 'Express function works!' })
-  };
-};
+module.exports.handler = app;
