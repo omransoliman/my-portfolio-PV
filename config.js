@@ -17,8 +17,8 @@ const config = {
             "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6"
         ],
         portrait: [
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6",
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6"
+            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6&export=download",
+            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6&export=download"
         ]
     },
     // Translations
