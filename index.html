@@ -180,6 +180,40 @@
             padding: 5rem 2rem;
             text-align: center;
         }
+        .about-section {
+            background-image: url('https://images.pexels.com/photos/30358106/pexels-photo-30358106.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5rem 2rem;
+            text-align: left;
+        }
+
+        .about-title {
+            flex: 1;
+            font-size: 2rem;
+            margin-right: 2rem;
+        }
+
+        .about-text {
+            flex: 2;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-title, .about-text {
+                margin: 0;
+                padding: 1rem 0;
+            }
+        }
     </style>
 </head>
 <body>
