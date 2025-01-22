@@ -6,11 +6,11 @@ const config = {
     instagram: "https://www.instagram.com/soliman.omran",
     email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
-    portfolioLinks: {
-        wedding: "https://drive.google.com/embeddedlink1",
-        engagement: "https://drive.google.com/embeddedlink2",
-        portrait: "https://drive.google.com/embeddedlink3",
-    },
+    //  portfolioLinks: {
+    //     wedding: "https://drive.google.com/embeddedlink1",
+    //     engagement: "https://drive.google.com/embeddedlink2",
+    //     portrait: "https://drive.google.com/embeddedlink3",
+    // },
     // Translations
     translations: {
         fr: {
