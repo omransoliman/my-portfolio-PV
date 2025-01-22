@@ -190,24 +190,22 @@
             justify-content: space-between;
             align-items: center;
             padding: 5rem 2rem;
-            text-align: left;
+            text-align: center;
         }
 
         .about-title {
-            flex: 1;
-            font-size: 2rem;
+            font-size: 3rem; /* Increased font size */
             margin-right: 2rem;
         }
 
         .about-text {
-            flex: 2;
-            font-size: 1.2rem;
+            font-size: 1.5rem; /* Increased font size */
+            max-width: 800px; /* Limits the width of the text content */
         }
 
         @media (max-width: 768px) {
             .about-section {
-                flex-direction: column;
-                text-align: center;
+                padding: 2rem 1rem;
             }
 
             .about-title, .about-text {
