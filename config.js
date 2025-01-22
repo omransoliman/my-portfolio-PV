@@ -1,6 +1,6 @@
 // config.js - Save this file separately to easily update your website content
 const config = {
-    homeBackground: 'path-to-your-image.jpg', // Replace with the actual image path
+    homeBackground: 'https://www.dropbox.com/scl/fi/p78l0o6q87tmuewd2rpqz/IMG_6154-_1.jpg', // Replace with the actual image path
 
     websiteName: "Omran Soliman Photography",
     instagram: "https://www.instagram.com/soliman.omran",
