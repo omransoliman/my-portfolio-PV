@@ -1,10 +1,10 @@
 // config.js - Save this file separately to easily update your website content
 const config = {
-    homeBackground: 'https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg', // Replace with the actual image path
+    homeBackground: 'https://drive.google.com/file/d/1jAPd_z7VrQdXvngprJ5PPZlMKLsDsrA2/view', // Replace with the actual image path
 
     websiteName: "Omran Soliman",
     instagram: "https://www.instagram.com/soliman.omran",
-    email: "omransoliman.pv@gmail.commmmmmmmm",
+    email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
     portfolioLinks: {
         wedding: "https://drive.google.com/embeddedlink1",
@@ -14,7 +14,7 @@ const config = {
     // Translations
     translations: {
         fr: {
-            homeTitle: "capture la vie. la beauté. l'amour.ssssssssss",
+            homeTitle: "capture la vie. la beauté. l'amour.",
             homeSubtitle: "Photos et vidéos des meilleurs moments de la vie",
             aboutText: "Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes. Je vous invite à visiter mon site web pour voir mon portfolio et me suivre sur les réseaux sociaux pour suivre mes derniers travaux et aventures. Je serais ravi d'échanger avec vous et de discuter de vos projets photo ou vidéo à venir.",
             menu: {
