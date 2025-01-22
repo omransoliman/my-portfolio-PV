@@ -17,8 +17,14 @@ function HomePage() {
     <div>
       <h1>Welcome to My Website</h1>
       <p>This is the homepage with a Picflow gallery:</p>
-      {/* Picflow gallery element */}
-      <picflow-gallery id="gal_cBCgnwN8J3xVUCf7" lightbox="#000000E6"></picflow-gallery>
+      {/* Picflow gallery element with new attributes */}
+      <picflow-gallery 
+        id="gal_cBCgnwN8J3xVUCf7" 
+        lightbox="#000000E6" 
+        no-padding="true" 
+        no-background="true" 
+        show-cover="true"
+      ></picflow-gallery>
     </div>
   );
 }
