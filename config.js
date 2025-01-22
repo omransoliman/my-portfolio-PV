@@ -4,7 +4,7 @@ const config = {
 
     websiteName: "Omran Soliman",
     instagram: "https://www.instagram.com/soliman.omran",
-    email: "omransoliman.pv@gmail.com",
+    email: "omransoliman.pv@gmail.commmmmmmmm",
     phone: "+33625965257",
     portfolioLinks: {
         wedding: "https://drive.google.com/embeddedlink1",
@@ -14,7 +14,7 @@ const config = {
     // Translations
     translations: {
         fr: {
-            homeTitle: "capture la vie. la beauté. l'amour.",
+            homeTitle: "capture la vie. la beauté. l'amour.ssssssssss",
             homeSubtitle: "Photos et vidéos des meilleurs moments de la vie",
             aboutText: "Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes. Je vous invite à visiter mon site web pour voir mon portfolio et me suivre sur les réseaux sociaux pour suivre mes derniers travaux et aventures. Je serais ravi d'échanger avec vous et de discuter de vos projets photo ou vidéo à venir.",
             menu: {
