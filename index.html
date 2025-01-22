@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omran Soliman Photography</title>
+    <title id="website-name">Omran Soliman Photography</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --primary-color: #333;
@@ -37,9 +38,9 @@
         nav {
             position: fixed;
             width: 100%;
-            background: rgba(var(--background-color), 0.9);
+            background: var(--background-color);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: flex;
             justify-content: space-between;
@@ -76,18 +77,30 @@
             font-family: 'Audiowide', cursive;
         }
 
-        #home {
-            background: url('/api/placeholder/1920/1080') center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: flex-end;
-            padding: 5rem;
+        .social-icon {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.2rem;
         }
+
+        #home {
+    background-image: url('path-to-your-image.jpg'); /* Replace with the actual image path */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    height: 100vh; /* Makes the section full height */
+    display: flex; /* Aligns content */
+    align-items: flex-end; /* Positions content at the bottom */
+    justify-content: flex-start; /* Aligns content to the left */
+    padding: 20px; /* Adds some padding around the text */
+    color: #fff; /* Ensures text is visible on the background */
+}
 
         .home-content {
             color: white;
             max-width: 600px;
             margin-bottom: 5rem;
+            max-width: 600px; /* Limits the width of the text content */
         }
 
         .home-title {
@@ -103,10 +116,6 @@
             padding: 5rem 2rem;
         }
 
-        .portfolio-category {
-            margin-bottom: 4rem;
-        }
-
         .portfolio-category h2 {
             text-align: center;
             margin-bottom: 2rem;
@@ -120,48 +129,8 @@
             max-width: 1200px;
         }
 
-        .contact-section {
+        .contact-section, .about-section {
             padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .contact-info {
-            margin: 2rem 0;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-top: 0.5rem;
-            background: var(--background-color);
-            border: 1px solid var(--text-color);
-            color: var(--text-color);
-            font-family: 'Audiowide', cursive;
-        }
-
-        button {
-            background: var(--text-color);
-            color: var(--background-color);
-            padding: 1rem 2rem;
-            border: none;
-            cursor: pointer;
-            font-family: 'Audiowide', cursive;
-        }
-
-        .about-section {
-            padding: 5rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
             text-align: center;
         }
 
@@ -180,26 +149,18 @@
             #home {
                 padding: 2rem;
             }
-
-            .home-title {
-                font-size: 2rem;
-            }
-
-            .home-subtitle {
-                font-size: 1.2rem;
-            }
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="#" class="logo">Omran Soliman</a>
+        <a href="#" class="logo" id="logo">Omran Soliman</a>
         <div class="nav-links">
             <a href="#home" data-fr="Accueil" data-en="Home">Accueil</a>
             <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a>
             <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
             <a href="#about" data-fr="À propos" data-en="About">À propos</a>
-            <a href="https://instagram.com/soliman.omran" target="_blank">Instagram</a>
+            <a id="instagram-link" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
             <button class="language-switch" onclick="toggleLanguage()">EN</button>
         </div>
     </nav>
@@ -215,93 +176,82 @@
         <div class="portfolio-category">
             <h2 data-fr="Mariages" data-en="Weddings">Mariages</h2>
             <div class="portfolio-grid" id="wedding-photos">
-                <!-- Photos will be loaded from Google Drive -->
+                <!-- Embed Google Drive -->
             </div>
         </div>
 
         <div class="portfolio-category">
             <h2 data-fr="Fiançailles" data-en="Engagements">Fiançailles</h2>
             <div class="portfolio-grid" id="engagement-photos">
-                <!-- Photos will be loaded from Google Drive -->
+                <!-- Embed Google Drive -->
             </div>
         </div>
 
         <div class="portfolio-category">
             <h2 data-fr="Portraits" data-en="Portraits">Portraits</h2>
             <div class="portfolio-grid" id="portrait-photos">
-                <!-- Photos will be loaded from Google Drive -->
+                <!-- Embed Google Drive -->
             </div>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
         <h2 data-fr="Contact" data-en="Contact">Contact</h2>
-        <div class="contact-info">
-            <p>Email: omransoliman.pv@gmail.com</p>
-            <p>Tel: +33625965257</p>
-        </div>
-        <form class="contact-form" action="https://formspree.io/omransoliman.pv@gmail.com" method="POST">
-            <div class="form-group">
-                <label data-fr="Nom" data-en="Name">Nom</label>
-                <input type="text" name="name" required>
-            </div>
-            <div class="form-group">
-                <label data-fr="Email" data-en="Email">Email</label>
-                <input type="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label data-fr="Message" data-en="Message">Message</label>
-                <textarea name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" data-fr="Envoyer" data-en="Send">Envoyer</button>
-        </form>
+        <p id="contact-email">Email: omransoliman.pv@gmail.com</p>
+        <p id="contact-phone">Tel: +33625965257</p>
     </section>
 
     <section id="about" class="about-section">
         <h2 data-fr="À propos" data-en="About">À propos</h2>
-        <p data-fr="Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes. Je vous invite à visiter mon site web pour voir mon portfolio et me suivre sur les réseaux sociaux pour suivre mes derniers travaux et aventures. Je serais ravi d'échanger avec vous et de discuter de vos projets photo ou vidéo à venir."
-           data-en="Whether I am taking a landscape, portrait or spontaneous moment, my goal is always to create meaningful and impactful works. I invite you to visit my website to see my portfolio and follow me on social media to keep up with my latest work and adventures. I would love to hear from you and discuss any upcoming photo or video projects you have in mind.">
-            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes. Je vous invite à visiter mon site web pour voir mon portfolio et me suivre sur les réseaux sociaux pour suivre mes derniers travaux et aventures. Je serais ravi d'échanger avec vous et de discuter de vos projets photo ou vidéo à venir.
+        <p data-fr="Que ce soit pour un paysage..." data-en="Whether I am taking...">
+            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
         </p>
     </section>
 
+    <script src="config.js"></script>
     <script>
-        // Configuration object for easy updates
-        const config = {
-            websiteName: "Omran Soliman",
-            instagram: "https://instagram.com/soliman.omran",
-            email: "omransoliman.pv@gmail.com",
-            phone: "+33625965257",
-            portfolioLinks: {
-                wedding: "YOUR_GOOGLE_DRIVE_FOLDER_LINK_HERE",
-                engagement: "YOUR_GOOGLE_DRIVE_FOLDER_LINK_HERE",
-                portrait: "YOUR_GOOGLE_DRIVE_FOLDER_LINK_HERE"
-            }
-        };
-
-        // Language switching functionality
-        let currentLang = 'fr';
-
+        let currentLang = 'fr'; // Default language
+    
+        // Function to load translations dynamically
+        function loadTranslations() {
+            const translations = config.translations[currentLang];
+    
+            // Update text based on the selected language
+            document.querySelector('.home-title').textContent = translations.homeTitle;
+            document.querySelector('.home-subtitle').textContent = translations.homeSubtitle;
+            document.querySelector('#about .about-section p').textContent = translations.aboutText;
+    
+            // Update menu items
+            const menuItems = document.querySelectorAll('.nav-links a');
+            menuItems[0].textContent = translations.menu.home;
+            menuItems[1].textContent = translations.menu.portfolio;
+            menuItems[2].textContent = translations.menu.contact;
+            menuItems[3].textContent = translations.menu.about;
+        }
+    
+        // Language toggle
         function toggleLanguage() {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            document.documentElement.lang = currentLang;
-            document.querySelector('.language-switch').textContent = currentLang === 'fr' ? 'EN' : 'FR';
-            
-            document.querySelectorAll('[data-fr]').forEach(element => {
-                element.textContent = element.getAttribute(`data-${currentLang}`);
-            });
+            loadTranslations();
         }
+    
+        // Load initial content
+        window.onload = function () {
+            document.getElementById('home').style.backgroundImage = `url('${config.homeBackground}')`;
 
-        // Function to load photos from Google Drive (you'll need to implement this)
-        function loadPhotos() {
-            // Implementation for loading photos from Google Drive
-            // You'll need to use Google Drive API or embed links
-        }
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            loadPhotos();
-        });
+            document.getElementById('website-name').textContent = config.websiteName;
+            document.getElementById('logo').textContent = config.websiteName;
+            document.getElementById('instagram-link').href = config.instagram;
+            document.getElementById('contact-email').textContent = `Email: ${config.email}`;
+            document.getElementById('contact-phone').textContent = `Tel: ${config.phone}`;
+    
+            // Embed Google Drive links
+            document.getElementById('wedding-photos').innerHTML = `<iframe src="${config.portfolioLinks.wedding}" frameborder="0"></iframe>`;
+            document.getElementById('engagement-photos').innerHTML = `<iframe src="${config.portfolioLinks.engagement}" frameborder="0"></iframe>`;
+            document.getElementById('portrait-photos').innerHTML = `<iframe src="${config.portfolioLinks.portrait}" frameborder="0"></iframe>`;
+    
+            loadTranslations(); // Load the default language
+        };
     </script>
 </body>
 </html>
