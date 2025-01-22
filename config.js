@@ -1,6 +1,6 @@
 // config.js - Save this file separately to easily update your website content
 const config = {
-    homeBackground: 'https://previews.dropbox.com/p/thumb/ACjhtPJgKY2cF4f1N6P0NylaL0dhuUFanFxXRqaBPC4Z84f_tXsGZmbWyiynEQPtNssJYpQTGU83nQqLAub4LaltDsZTouv1w6YBJHips4VgNKQELGcjModzLb_iLmkZ1Y6dDyiB4ANUw0I-kgipgAZ58drNXiZMBgkIMjdUNRTsBRS_lKOqc65YiNSWlKNQ58yF-8xUUlTnP6iCyfv0RNcmUC_QfyU1Q_OUSgn_SrBZ9dgvvzH7x_rvbmBUWUGW9ralbOaCMT2lmX4FDWy5GTNeXpDc1G2eTyAKFMXDrmYidP9MQ3Xyel3srm1Tmes3A4W3WSmuYZqc8MmJIt3xIAqGfkQj3lp8ZFOjpz-jOxk5gD4QjTVHJDOuHQT-68Ya-FVWLFJyvN8XHwJEKlX_RAOVuSl7ohAUbKV2bVHGAh_jqf88vBsIG7mBUhKpi_fcQRhsnRXc0cmJm9DfB9P3vWDf6dzurJOrzdKLaPw10ANDYfKGqhOBgKZ_so7nUSaINJ7yLfShEUctcc8qtwFaLQMPPT--BTP3gHl_2xQl88LyhL3YtpRL0z9Aobh0vcqHNWBvttiC-Cp1KORY2zjz0mZk/p.jpeg', // Replace with the actual image path
+    homeBackground: 'https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg', // Replace with the actual image path
 
     websiteName: "Omran Soliman",
     instagram: "https://www.instagram.com/soliman.omran",
