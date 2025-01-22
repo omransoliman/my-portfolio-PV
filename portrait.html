@@ -129,7 +129,7 @@
           document.head.appendChild(s);
         }
       </script>
-      <picflow-gallery id="ID" 
+      <picflow-gallery id="picflow-gallery" 
         lightbox="#000000E6" 
         no-padding="true" 
         no-background="true" 
@@ -138,32 +138,32 @@
     </div>
   </main>
 
-  <div id="portrait-gallery-container"></div>
-
-<script>
-    // Get the gallery ID from config.js
-    const galleryId = config.picflowGalleryIds.portrait;
-    
-    // Initialize the Picflow gallery (you might need a script from Picflow for this)
-    const container = document.getElementById('portrait-gallery-container');
-    const picflowEmbedCode = `<iframe src="https://www.picflow.com/gallery/${galleryId}" frameborder="0" style="width: 100%; height: 600px;"></iframe>`;
-    
-    // Insert the gallery into the container
-    container.innerHTML = picflowEmbedCode;
-</script>
+  <script>
+    // Assuming config.js is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof config !== 'undefined' && config.picflowGalleryIds) {
+            const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+            const galleryId = config.picflowGalleryIds[pageName];
+            const picflowGalleryElement = document.querySelector('picflow-gallery');
+            if (picflowGalleryElement && galleryId) {
+                picflowGalleryElement.setAttribute('id', galleryId);
+            }
+        }
+    });
+  </script>
 
   <script>
     // Language toggle function (reused from index.html)
     function toggleLanguage() {
       const lang = document.querySelector('.language-switch').textContent.trim();
       const elements = document.querySelectorAll('[data-fr][data-en]');
-      const isFrench = lang === 'FR';
+      const isEnglish = lang === 'EN'; // Fix check to use 'EN' correctly
 
       elements.forEach(el => {
-        el.textContent = isFrench ? el.getAttribute('data-en') : el.getAttribute('data-fr');
+        el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
       });
 
-      document.querySelector('.language-switch').textContent = isFrench ? 'EN' : 'FR';
+      document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN'; // Toggle between 'EN' and 'FR'
     }
 
     // Initial load to ensure the correct language is set

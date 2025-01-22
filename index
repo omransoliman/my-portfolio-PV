@@ -8,67 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #333;
-            --background-color: #fff;
-            --text-color: #333;
-        }
+        
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #fff;
-                --background-color: #1a1a1a;
-                --text-color: #fff;
-            }
-        }
+       
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
 
-        body {
-            font-family: 'Audiowide', cursive;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: var(--background-color);
-        }
+        
 
-        nav {
-            position: fixed;
-            width: 100%;
-            background: var(--background-color);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+     
 
-        .logo {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-        }
+   
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
 
         .language-switch {
             cursor: pointer;
@@ -84,82 +35,10 @@
             font-size: 1.2rem;
         }
 
-        #home {
-    background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg'); /* Replace with the actual image path */
-    background-size: cover; /* Ensures the image covers the entire section */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    height: 100vh; /* Makes the section full height */
-    display: flex; /* Aligns content */
-    align-items: flex-end; /* Positions content at the bottom */
-    justify-content: flex-start; /* Aligns content to the left */
-    padding: 20px; /* Adds some padding around the text */
-    color: #fff; /* Ensures text is visible on the background */
-}
 
-        .home-content {
-            color: white;
-            max-width: 600px;
-            margin-bottom: 5rem;
-            max-width: 600px; /* Limits the width of the text content */
-        }
+    
 
-        .home-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
 
-        .home-subtitle {
-            font-size: 1.3rem;
-        }
-
-        .portfolio-sections {
-            padding: 5rem 2rem;
-        }
-
-        .portfolio-category h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin: 0 auto;
-            max-width: 1200px;
-            padding: 1rem;
-        }
-        .portfolio-grid img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;  /* Ensures images scale correctly */
-        }
-
-        .contact-section, .about-section {
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-                margin-top: 1rem;
-            }
-
-            #home {
-                padding: 2rem;
-            }
-        }
-        .picflow-footer {
-  display: none !important;
-}
     </style>
 </head>
 <body>
@@ -175,58 +54,10 @@
         </div>
     </nav>
 
-    <section id="home">
-        <div class="home-content">
-            <h1 class="home-title" data-fr="capture la vie. la beauté. l'amour." data-en="capture life. beauty. love.">capture la vie. la beauté. l'amour.</h1>
-            <p class="home-subtitle" data-fr="Photos et vidéos des meilleurs moments de la vie" data-en="Photos and videos of life's best moments">Photos et vidéos des meilleurs moments de la vie</p>
-        </div>
-    </section>
 
-    <section id="portfolio" class="portfolio-sections">
-        <div class="portfolio-category">
-            <h2 data-fr="Mariages" data-en="Weddings">Mariages</h2>
-            <div class="portfolio-grid" id="wedding-photos">
-                <!-- Embed Google Drive -->
 
-            </div>
-        </div>
 
-        <a href="wedding.html" style="text-decoration: none; color: inherit;">
-            <div class="portfolio-category">
-              <h2 data-fr="Fiançailles" data-en="Engagements">Fiançailles</h2>
-              <div class="portfolio-grid" id="engagement-photos">
-                <!-- Embed Google Drive -->
-              </div>
-            </div>
-          </a>
-
-        <div class="portfolio-category">
-            <h2 data-fr="Portraits" data-en="Portraits"></h2>
-            <div class="portfolio-grid" id="portrait-photos">
-                <!-- Picflow gallery -->
-                    <picflow-gallery
-                    id="gal_cBCgnwN8J3xVUCf7"
-                    lightbox="#000000E6"
-                    no-padding="true"
-                    no-background="true"
-                    show-cover="true"
-                    ></picflow-gallery>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <h2 data-fr="Contact" data-en="Contact">Contact</h2>
-        <p id="contact-email">Email: omransoliman.pv@gmail.com</p>
-        <p id="contact-phone">Tel: +33625965257</p>
-    </section>
-
-    <section id="about" class="about-section">
-        <h2 data-fr="À propos" data-en="About">À propos</h2>
-        <p data-fr="Que ce soit pour un paysage..." data-en="Whether I am taking...">
-            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
-        </p>
-    </section>
+  
 
     <script>
         if (!window.picflow) {
