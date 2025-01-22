@@ -216,20 +216,18 @@
 
     <script src="config.js"></script>
     <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
 
+        document.querySelector('.logo').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link action
+            window.location.reload(); // Refresh the page
+        });
 
+        document.querySelector('[href="#home"]').addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link action
+            window.location.reload(); // Refresh the page
+        });
 
-
-document.querySelector('.logo').addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent default link action
-    window.location.reload(); // Refresh the page
-});
-
-document.querySelector('[href="#home"]').addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent default link action
-    window.location.reload(); // Refresh the page
-});
         let currentLang = 'fr'; // Default language
     
         // Function to load translations dynamically
@@ -257,63 +255,63 @@ document.querySelector('[href="#home"]').addEventListener('click', function(e) {
     
         // Load initial content
         window.onload = function () {
-    // Set background image for home section
-    document.getElementById('home').style.backgroundImage = `url('${config.homeBackground}')`;
+            // Set background image for home section
+            document.getElementById('home').style.backgroundImage = `url('${config.homeBackground}')`;
 
-    // Set website name
-    document.getElementById('website-name').textContent = config.websiteName;
-    document.getElementById('logo').textContent = config.websiteName;
-    document.getElementById('instagram-link').href = config.instagram;
-    document.getElementById('contact-email').textContent = `Email: ${config.email}`;
-    document.getElementById('contact-phone').textContent = `Tel: ${config.phone}`;
+            // Set website name
+            document.getElementById('website-name').textContent = config.websiteName;
+            document.getElementById('logo').textContent = config.websiteName;
+            document.getElementById('instagram-link').href = config.instagram;
+            document.getElementById('contact-email').textContent = `Email: ${config.email}`;
+            document.getElementById('contact-phone').textContent = `Tel: ${config.phone}`;
 
-    // Dynamically load portfolio images
-    loadPortfolioImages();
+            // Dynamically load portfolio images
+            loadPortfolioImages();
 
-    loadTranslations(); // Load the default language
-};
+            loadTranslations(); // Load the default language
+        };
 
-// Function to create image elements dynamically
-function createImageElement(fileUrl) {
-    const img = document.createElement('img');
-    img.src = fileUrl;
-    img.alt = 'Photo';
-    img.style.width = '100%';
-    img.style.height = 'auto';
-    return img;
-}
+        // Function to create image elements dynamically
+        function createImageElement(fileUrl) {
+            const img = document.createElement('img');
+            img.src = fileUrl;
+            img.alt = 'Photo';
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            return img;
+        }
 
-// Function to load portfolio images dynamically
-function loadPortfolioImages() {
-    // Get the portfolio grid sections from the DOM
-    console.log('Loading portfolio images...');
-    const weddingGrid = document.getElementById('wedding-photos');
-    const engagementGrid = document.getElementById('engagement-photos');
-    const portraitGrid = document.getElementById('portrait-photos');
+        // Function to load portfolio images dynamically
+        function loadPortfolioImages() {
+            // Get the portfolio grid sections from the DOM
+            const weddingGrid = document.getElementById('wedding-photos');
+            const engagementGrid = document.getElementById('engagement-photos');
+            const portraitGrid = document.getElementById('portrait-photos');
 
-    // Clear the existing content (if any)
-    weddingGrid.innerHTML = '';
-    engagementGrid.innerHTML = '';
-    portraitGrid.innerHTML = '';
+            // Clear the existing content (if any)
+            weddingGrid.innerHTML = '';
+            engagementGrid.innerHTML = '';
+            portraitGrid.innerHTML = '';
 
-    // Load wedding photos
-    console.log('Wedding Photos:', config.portfolioLinks.wedding);
-    config.portfolioLinks.wedding.forEach(url => {
-        console.log('Adding image:', url);
-    weddingGrid.appendChild(createImageElement(url));
-});
+            // Load wedding photos using the proxy
+            config.portfolioLinks.wedding.forEach(url => {
+                const proxyUrl = `/proxy?imageUrl=${encodeURIComponent(url)}`;
+                weddingGrid.appendChild(createImageElement(proxyUrl));
+            });
 
-    // Load engagement photos
-    config.portfolioLinks.engagement.forEach(url => {
-        engagementGrid.appendChild(createImageElement(url));
+            // Load engagement photos using the proxy
+            config.portfolioLinks.engagement.forEach(url => {
+                const proxyUrl = `/proxy?imageUrl=${encodeURIComponent(url)}`;
+                engagementGrid.appendChild(createImageElement(proxyUrl));
+            });
+
+            // Load portrait photos using the proxy
+            config.portfolioLinks.portrait.forEach(url => {
+                const proxyUrl = `/proxy?imageUrl=${encodeURIComponent(url)}`;
+                portraitGrid.appendChild(createImageElement(proxyUrl));
+            });
+        };
     });
-
-    // Load portrait photos
-    config.portfolioLinks.portrait.forEach(url => {
-        portraitGrid.appendChild(createImageElement(url));
-    });
-};
-});
     </script>
 </body>
 </html>
