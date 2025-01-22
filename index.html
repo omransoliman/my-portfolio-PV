@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <script>
+        if (!window.picflow) {
+          window.picflow = true;
+          const script = document.createElement("script");
+          script.src = "https://picflow.com/embed/main.js";
+          script.type = "module";
+          script.defer = true;
+          document.head.appendChild(script);
+        }
+      </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="website-name">Omran Soliman</title>
@@ -196,7 +207,14 @@
         <div class="portfolio-category">
             <h2 data-fr="Portraits" data-en="Portraits">Portraits</h2>
             <div class="portfolio-grid" id="portrait-photos">
-                <script>if(!window.picflow){window.picflow=!0;var s=document.createElement("script");s.src="https://picflow.com/embed/main.js";s.type='module';s.defer=true;document.head.appendChild(s);}</script><picflow-gallery id="gal_cBCgnwN8J3xVUCf7" lightbox="#000000E6" no-padding="true" no-background="true" show-cover="true"></picflow-gallery>
+                <!-- Picflow gallery -->
+    <picflow-gallery
+    id="gal_cBCgnwN8J3xVUCf7"
+    lightbox="#000000E6"
+    no-padding="true"
+    no-background="true"
+    show-cover="true"
+  ></picflow-gallery>
             </div>
         </div>
     </section>
