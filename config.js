@@ -8,17 +8,17 @@ const config = {
     phone: "+33625965257",
     portfolioLinks: {
         wedding: [
-            "https://mega.nz/file/UcJXEJjZ?raw=1",
             "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU",
-            "https://mega.nz/file/<file_id_3>?raw=1"
+            "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU",
+            "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU"
         ],
         engagement: [
-            "https://mega.nz/file/<file_id_4>?raw=1",
-            "https://mega.nz/file/<file_id_5>?raw=1"
+            "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU",
+            "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU"
         ],
         portrait: [
-            "https://mega.nz/file/<file_id_6>?raw=1",
-            "https://mega.nz/file/<file_id_7>?raw=1"
+            "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU",
+            "https://mega.nz/file/UcJXEJjZ#ygNltec2t4FoK5NtGx39Obt1UHuV6tRe-8cPvmnyGKU"
         ]
     },
     // Translations
