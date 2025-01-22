@@ -1,0 +1,23 @@
+{
+  "name": "my-portfolio-pv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omransoliman/my-portfolio-PV.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omransoliman/my-portfolio-PV/issues"
+  },
+  "homepage": "https://github.com/omransoliman/my-portfolio-PV#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
