@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Portfolio</title>
+  <title>Portrait Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
+    /* Include consistent CSS styles from `index.html` */
     :root {
       --primary-color: #333;
       --background-color: #fff;
@@ -100,7 +101,7 @@
   </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
+  <!-- Consistent Navigation Bar -->
   <nav>
     <a href="index.html" class="logo">Omran Soliman</a>
     <div class="nav-links">
@@ -116,8 +117,8 @@
   <!-- Main Content -->
   <main>
     <div class="gallery-container">
-      <h1 data-fr="Portfolio - Mariages" data-en="Portfolio - Weddings">Portfolio - Weddings</h1>
-      <!-- Embed Picflow Wedding Gallery -->
+      <h1 data-fr="Portfolio - Portraits" data-en="Portfolio - Portraits">Portfolio - Portraits</h1>
+      <!-- Embed Picflow Portrait Gallery -->
       <script>
         if (!window.picflow) {
           window.picflow = true;
@@ -128,7 +129,7 @@
           document.head.appendChild(s);
         }
       </script>
-      <picflow-gallery id="0000" 
+      <picflow-gallery id="ID" 
         lightbox="#000000E6" 
         no-padding="true" 
         no-background="true" 
@@ -138,7 +139,7 @@
   </main>
 
   <script>
-    // Language toggle function
+    // Language toggle function (reused from index.html)
     function toggleLanguage() {
       const lang = document.querySelector('.language-switch').textContent.trim();
       const elements = document.querySelectorAll('[data-fr][data-en]');
@@ -151,7 +152,7 @@
       document.querySelector('.language-switch').textContent = isFrench ? 'EN' : 'FR';
     }
 
-    // Ensure correct language is set on load
+    // Initial load to ensure the correct language is set
     document.addEventListener('DOMContentLoaded', () => {
       toggleLanguage(); // Default to English
     });

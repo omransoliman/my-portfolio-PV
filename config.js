@@ -6,6 +6,7 @@ const config = {
     instagram: "https://www.instagram.com/soliman.omran",
     email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
+
     // Translations
     translations: {
         fr: {
@@ -17,6 +18,21 @@ const config = {
                 portfolio: "Portfolio",
                 contact: "Contact",
                 about: "À propos",
+                engagement: "Fiançailles",
+                wedding: "Mariages",
+                portrait: "Portraits",
+            },
+            engagement: {
+                pageTitle: "Portfolio - Fiançailles",
+                pageSubtitle: "Découvrez nos magnifiques photographies de fiançailles mettant en valeur l'amour et la connexion.",
+            },
+            wedding: {
+                pageTitle: "Portfolio - Mariages",
+                pageSubtitle: "Explorez notre collection de photos de mariage, capturant des moments d'amour et de joie.",
+            },
+            portrait: {
+                pageTitle: "Portfolio - Portraits",
+                pageSubtitle: "Découvrez des portraits artistiques mettant en lumière les émotions et la personnalité de chaque individu.",
             },
         },
         en: {
@@ -28,7 +44,29 @@ const config = {
                 portfolio: "Portfolio",
                 contact: "Contact",
                 about: "About",
+                engagement: "Engagement",
+                wedding: "Weddings",
+                portrait: "Portraits",
             },
-        }
-    }
+            engagement: {
+                pageTitle: "Portfolio - Engagements",
+                pageSubtitle: "Discover our stunning engagement photography showcasing love and connection.",
+            },
+            wedding: {
+                pageTitle: "Portfolio - Weddings",
+                pageSubtitle: "Explore our collection of wedding photos capturing moments of love and joy.",
+            },
+            portrait: {
+                pageTitle: "Portfolio - Portraits",
+                pageSubtitle: "View artistic portraits highlighting the emotions and personalities of individuals.",
+            },
+        },
+    },
+
+    // Picflow gallery IDs for different portfolio sections
+    picflowGalleryIds: {
+        engagement: "gal_OH9DLiMDm9lOzTY0", // Replace with the actual Picflow Gallery ID
+        wedding: "gal_j9zj3XwvUre5THEd", // Replace with the actual Picflow Gallery ID
+        portrait: "gal_cBCgnwN8J3xVUCf7", // Replace with the actual Picflow Gallery ID
+    },
 };
