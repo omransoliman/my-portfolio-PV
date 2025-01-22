@@ -144,6 +144,9 @@
     document.addEventListener('DOMContentLoaded', function() {
         if (typeof config !== 'undefined' && config.picflowGalleryIds) {
             const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+
+            console.log(pageName); 
+            
             const galleryId = config.picflowGalleryIds[pageName];
             const picflowGalleryElement = document.querySelector('picflow-gallery');
             if (picflowGalleryElement && galleryId) {
