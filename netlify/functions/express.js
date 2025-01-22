@@ -1,7 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');  // for making HTTP requests
 
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
 
 app.get('/proxy', async (req, res) => {
   const { imageUrl } = req.query;
