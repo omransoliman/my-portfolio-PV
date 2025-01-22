@@ -211,6 +211,53 @@
     <script src="config.js"></script>
     <script>
 
+            // List of image IDs (replace these with your actual image file IDs from Google Drive)
+            const weddingPhotoIds = ['FILE_ID_1', 'FILE_ID_2', 'FILE_ID_3']; // Add your wedding image IDs
+const engagementPhotoIds = ['FILE_ID_4', 'FILE_ID_5', 'FILE_ID_6']; // Add your engagement image IDs
+const portraitPhotoIds = ['1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I', '1EQ46hfDAbxhacQgz5o6Z7f8iAxJAPF7-', '1h6O5XZ8jxpP9_TK6L3-vQDaN-X9xtmUV']; // Add your portrait image IDs
+
+// Function to load photos dynamically into the respective sections
+function loadPhotos() {
+    const weddingContainer = document.getElementById('wedding-photos');
+    const engagementContainer = document.getElementById('engagement-photos');
+    const portraitContainer = document.getElementById('portrait-photos');
+
+    // Function to create an image element
+    function createImageElement(fileId) {
+        const img = document.createElement('img');
+        img.src = `https://drive.google.com/uc?export=view&id=${fileId}`;
+        img.alt = 'Photo';
+        img.style.width = '100%';
+        img.style.height = 'auto';
+        return img;
+    }
+
+    // Add wedding photos
+    weddingPhotoIds.forEach(fileId => {
+        const imgElement = createImageElement(fileId);
+        weddingContainer.appendChild(imgElement);
+    });
+
+    // Add engagement photos
+    engagementPhotoIds.forEach(fileId => {
+        const imgElement = createImageElement(fileId);
+        engagementContainer.appendChild(imgElement);
+    });
+
+    // Add portrait photos
+    portraitPhotoIds.forEach(fileId => {
+        const imgElement = createImageElement(fileId);
+        portraitContainer.appendChild(imgElement);
+    });
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+    loadPhotos();
+});
+
+
+
 document.querySelector('.logo').addEventListener('click', function(e) {
     e.preventDefault(); // Prevent default link action
     window.location.reload(); // Refresh the page
@@ -265,50 +312,7 @@ document.querySelector('[href="#home"]').addEventListener('click', function(e) {
 
 
 
-            // List of image IDs (replace these with your actual image file IDs from Google Drive)
-const weddingPhotoIds = ['FILE_ID_1', 'FILE_ID_2', 'FILE_ID_3']; // Add your wedding image IDs
-const engagementPhotoIds = ['FILE_ID_4', 'FILE_ID_5', 'FILE_ID_6']; // Add your engagement image IDs
-const portraitPhotoIds = ['1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I', '1EQ46hfDAbxhacQgz5o6Z7f8iAxJAPF7-', '1h6O5XZ8jxpP9_TK6L3-vQDaN-X9xtmUV']; // Add your portrait image IDs
 
-// Function to load photos dynamically into the respective sections
-function loadPhotos() {
-    const weddingContainer = document.getElementById('wedding-photos');
-    const engagementContainer = document.getElementById('engagement-photos');
-    const portraitContainer = document.getElementById('portrait-photos');
-
-    // Function to create an image element
-    function createImageElement(fileId) {
-        const img = document.createElement('img');
-        img.src = `https://drive.google.com/uc?export=view&id=${fileId}`;
-        img.alt = 'Photo';
-        img.style.width = '100%';
-        img.style.height = 'auto';
-        return img;
-    }
-
-    // Add wedding photos
-    weddingPhotoIds.forEach(fileId => {
-        const imgElement = createImageElement(fileId);
-        weddingContainer.appendChild(imgElement);
-    });
-
-    // Add engagement photos
-    engagementPhotoIds.forEach(fileId => {
-        const imgElement = createImageElement(fileId);
-        engagementContainer.appendChild(imgElement);
-    });
-
-    // Add portrait photos
-    portraitPhotoIds.forEach(fileId => {
-        const imgElement = createImageElement(fileId);
-        portraitContainer.appendChild(imgElement);
-    });
-}
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    loadPhotos();
-});
         };
     </script>
 </body>
