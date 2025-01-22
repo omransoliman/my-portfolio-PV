@@ -6,21 +6,6 @@ const config = {
     instagram: "https://www.instagram.com/soliman.omran",
     email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
-    portfolioLinks: {
-        wedding: [
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6",
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6",
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6"
-        ],
-        engagement: [
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6",
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6"
-        ],
-        portrait: [
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6&export=download",
-            "https://drive.google.com/uc?id=1nJkqJVJfIb-tfYidAwwrwxPtgmgS8Cc6&export=download"
-        ]
-    },
     // Translations
     translations: {
         fr: {
