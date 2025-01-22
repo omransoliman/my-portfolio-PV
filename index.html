@@ -192,8 +192,7 @@
             <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
             <a href="#about" data-fr="À propos" data-en="About">À propos</a>
             <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <button class="language-switch" id="language-en" onclick="toggleLanguage('en')">EN</button>
-            <button class="language-switch" id="language-fr" onclick="toggleLanguage('fr')">FR</button>
+            <button class="language-switch" onclick="toggleLanguage()">EN</button>
         </div>
     </nav>
     <section id="home">
@@ -243,32 +242,23 @@
             menu.classList.toggle('active');
         }
 
-        function toggleLanguage(language) {
-    // Get the current language data from config.js
-    const langData = config.translations[language];
+        // Language toggle function (reused from index.html)
+    function toggleLanguage() {
+      const lang = document.querySelector('.language-switch').textContent.trim();
+      const elements = document.querySelectorAll('[data-fr][data-en]');
+      const isEnglish = lang === 'EN'; // Fix check to use 'EN' correctly
 
-    // Update text content in the page
-    document.getElementById('homeTitle').textContent = langData.homeTitle;
-    document.getElementById('homeSubtitle').textContent = langData.homeSubtitle;
-    document.getElementById('aboutText').textContent = langData.aboutText;
+      elements.forEach(el => {
+        el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+      });
 
-    // Update menu items
-    document.getElementById('menu-home').textContent = langData.menu.home;
-    document.getElementById('menu-portfolio').textContent = langData.menu.portfolio;
-    document.getElementById('menu-contact').textContent = langData.menu.contact;
-    document.getElementById('menu-about').textContent = langData.menu.about;
+      document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN'; // Toggle between 'EN' and 'FR'
+    }
 
-    // Optionally, save the language choice in localStorage so it persists across sessions
-    localStorage.setItem('language', language);
-}
-
-// Event listeners for language switcher buttons
-document.getElementById('language-en').addEventListener('click', function() {
-    toggleLanguage('en');
-});
-document.getElementById('language-fr').addEventListener('click', function() {
-    toggleLanguage('fr');
-});
+    // Initial load to ensure the correct language is set
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleLanguage(); // Default to English
+    });
     </script>
 </body>
 </html>
