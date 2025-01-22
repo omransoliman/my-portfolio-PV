@@ -1,6 +1,7 @@
 const express = require('express');
-const app = express();
 const axios = require('axios');  // for making HTTP requests
+
+const app = express();
 
 app.get('/proxy', async (req, res) => {
   const { imageUrl } = req.query;
@@ -14,4 +15,15 @@ app.get('/proxy', async (req, res) => {
   }
 });
 
-module.exports.handler = app;
+// Export the handler for Netlify functions
+module.exports.handler = async (event, context) => {
+  return new Promise((resolve, reject) => {
+    app.handle(event, context, (err, response) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(response);
+      }
+    });
+  });
+};
