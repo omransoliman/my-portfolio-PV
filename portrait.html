@@ -126,6 +126,9 @@
           s.src = "https://picflow.com/embed/main.js";
           s.type = "module";
           s.defer = true;
+          s.onload = function() {
+        console.log('Picflow script loaded'); // Debugging
+    };
           document.head.appendChild(s);
         }
       </script>
@@ -146,7 +149,7 @@
             const pageName = window.location.pathname.split('/').pop().replace('.html', '');
 
             console.log(pageName); 
-            
+
             const galleryId = config.picflowGalleryIds[pageName];
             const picflowGalleryElement = document.querySelector('picflow-gallery');
             if (picflowGalleryElement && galleryId) {
