@@ -4,7 +4,9 @@
   "description": "",
   "main": "config.js",
   "scripts": {
-    "start": "node netlify/functions/express.js"
+    "start": "node netlify/functions/express.js",  // Keeps your existing server start script
+    "build": "next build",  // Add Next.js build script
+    "dev": "next dev"  // Optional: You can add a dev script for local development
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   "dependencies": {
     "axios": "^1.7.9",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "next": "^13.0.0"  // Ensure Next.js is added as a dependency
   }
 }
