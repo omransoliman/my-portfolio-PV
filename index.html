@@ -303,9 +303,6 @@ document.querySelector('[href="#home"]').addEventListener('click', function(e) {
             document.getElementById('contact-phone').textContent = `Tel: ${config.phone}`;
     
             // Embed Google Drive links
-            document.getElementById('wedding-photos').innerHTML = `<iframe src="${config.portfolioLinks.wedding}" frameborder="0"></iframe>`;
-            document.getElementById('engagement-photos').innerHTML = `<iframe src="${config.portfolioLinks.engagement}" frameborder="0"></iframe>`;
-            document.getElementById('portrait-photos').innerHTML = `<iframe src="${config.portfolioLinks.portrait}" frameborder="0"></iframe>`;
     
             loadTranslations(); // Load the default language
 
