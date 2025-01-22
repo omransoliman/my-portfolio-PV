@@ -126,9 +126,6 @@
           s.src = "https://picflow.com/embed/main.js";
           s.type = "module";
           s.defer = true;
-          s.onload = function() {
-        console.log('Picflow script loaded'); // Debugging
-    };
           document.head.appendChild(s);
         }
       </script>
@@ -145,18 +142,21 @@
   <script>
     // Assuming config.js is loaded
     document.addEventListener('DOMContentLoaded', function() {
-        if (typeof config !== 'undefined' && config.picflowGalleryIds) {
-            const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+    // Manually set the page name
+    const pageName = 'portrait'; // Change this to the appropriate page name ('engagement', 'wedding', 'portrait')
 
-            console.log(pageName); 
-
-            const galleryId = config.picflowGalleryIds[pageName];
-            const picflowGalleryElement = document.querySelector('picflow-gallery');
-            if (picflowGalleryElement && galleryId) {
-                picflowGalleryElement.setAttribute('id', galleryId);
-            }
+    // Check if the config is available
+    if (typeof config !== 'undefined' && config.picflowGalleryIds) {
+        const galleryId = config.picflowGalleryIds[pageName];
+        const picflowGalleryElement = document.querySelector('picflow-gallery');
+        
+        if (picflowGalleryElement && galleryId) {
+            picflowGalleryElement.setAttribute('id', galleryId);
+        } else {
+            console.error('Gallery ID is missing or Picflow gallery element not found.');
         }
-    });
+    }
+});
   </script>
 
 
