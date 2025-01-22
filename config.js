@@ -8,17 +8,17 @@ const config = {
     phone: "+33625965257",
     portfolioLinks: {
         wedding: [
-            "https://www.dropbox.com/s/yourfileid1/wedding1.jpg?raw=1",
-            "https://www.dropbox.com/s/yourfileid2/wedding2.jpg?raw=1",
-            "https://www.dropbox.com/s/yourfileid3/wedding3.jpg?raw=1"
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1",
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1",
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1"
         ],
         engagement: [
-            "https://www.dropbox.com/s/yourfileid1/engagement1.jpg?raw=1",
-            "https://www.dropbox.com/s/yourfileid2/engagement2.jpg?raw=1"
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1",
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1"
         ],
         portrait: [
-            "https://www.dropbox.com/s/yourfileid1/portrait1.jpg?raw=1",
-            "https://www.dropbox.com/s/yourfileid2/portrait2.jpg?raw=1"
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1",
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1"
         ]
     },
     // Translations
