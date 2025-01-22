@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Photography Portfolio</title>
+    <title>Omran Soliman Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #333;
+            --background-color: #fff;
+            --text-color: #333;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #fff;
+                --background-color: #1a1a1a;
+                --text-color: #fff;
+            }
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,222 +28,280 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Audiowide', cursive;
             line-height: 1.6;
-            color: #333;
+            color: var(--text-color);
+            background: var(--background-color);
         }
 
         nav {
             position: fixed;
             width: 100%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 1rem;
+            background: rgba(var(--background-color), 0.9);
+            padding: 1rem 2rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 1000;
-        }
-
-        nav ul {
             display: flex;
-            justify-content: center;
-            list-style: none;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        nav ul li {
-            margin: 0 1.5rem;
-        }
-
-        nav ul li a {
+        .logo {
+            font-size: 1.5rem;
+            color: var(--text-color);
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
             transition: color 0.3s;
         }
 
-        nav ul li a:hover {
-            color: #666;
+        .nav-links a:hover {
+            opacity: 0.8;
         }
 
-        section {
-            padding: 5rem 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        .language-switch {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-family: 'Audiowide', cursive;
         }
 
         #home {
             background: url('/api/placeholder/1920/1080') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 5rem;
+        }
+
+        .home-content {
             color: white;
-            text-align: center;
+            max-width: 600px;
+            margin-bottom: 5rem;
         }
 
-        .overlay {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        h1 {
+        .home-title {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            text-align: center;
+        .home-subtitle {
+            font-size: 1.5rem;
         }
 
-        p {
-            max-width: 800px;
-            margin: 1rem auto;
+        .portfolio-sections {
+            padding: 5rem 2rem;
+        }
+
+        .portfolio-category {
+            margin-bottom: 4rem;
+        }
+
+        .portfolio-category h2 {
             text-align: center;
+            margin-bottom: 2rem;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1rem;
+            margin: 0 auto;
             max-width: 1200px;
-            width: 100%;
         }
 
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1;
+        .contact-section {
+            padding: 5rem 2rem;
+            text-align: center;
         }
 
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .portfolio-item:hover img {
-            transform: scale(1.1);
+        .contact-info {
+            margin: 2rem 0;
         }
 
         .contact-form {
             max-width: 600px;
-            width: 100%;
+            margin: 0 auto;
         }
 
         .form-group {
             margin-bottom: 1rem;
+            text-align: left;
         }
 
         input, textarea {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.8rem;
             margin-top: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            background: var(--background-color);
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            font-family: 'Audiowide', cursive;
         }
 
         button {
-            background: #333;
-            color: white;
-            padding: 0.8rem 2rem;
+            background: var(--text-color);
+            color: var(--background-color);
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 4px;
             cursor: pointer;
-            transition: background 0.3s;
+            font-family: 'Audiowide', cursive;
         }
 
-        button:hover {
-            background: #555;
+        .about-section {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
-            nav ul {
+            nav {
                 flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
+                padding: 1rem;
             }
 
-            h1 {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            #home {
+                padding: 2rem;
+            }
+
+            .home-title {
                 font-size: 2rem;
             }
 
-            h2 {
-                font-size: 1.8rem;
+            .home-subtitle {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <a href="#" class="logo">Omran Soliman</a>
+        <div class="nav-links">
+            <a href="#home" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a>
+            <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+            <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+            <a href="https://instagram.com/soliman.omran" target="_blank">Instagram</a>
+            <button class="language-switch" onclick="toggleLanguage()">EN</button>
+        </div>
     </nav>
 
     <section id="home">
-        <div class="overlay">
-            <h1>Your Name</h1>
-            <p>Professional Photographer</p>
+        <div class="home-content">
+            <h1 class="home-title" data-fr="capture la vie. la beauté. l'amour." data-en="capture life. beauty. love.">capture la vie. la beauté. l'amour.</h1>
+            <p class="home-subtitle" data-fr="Photos et vidéos des meilleurs moments de la vie" data-en="Photos and videos of life's best moments">Photos et vidéos des meilleurs moments de la vie</p>
         </div>
     </section>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome! I'm [Your Name], a professional photographer specializing in [your specialties]. With [X] years of experience, I bring creativity and technical expertise to every shoot.</p>
-        <p>My passion for photography began [your story]. I believe that every moment tells a story, and I'm here to help tell yours through my lens.</p>
-    </section>
+    <section id="portfolio" class="portfolio-sections">
+        <div class="portfolio-category">
+            <h2 data-fr="Mariages" data-en="Weddings">Mariages</h2>
+            <div class="portfolio-grid" id="wedding-photos">
+                <!-- Photos will be loaded from Google Drive -->
+            </div>
+        </div>
 
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <div class="portfolio-grid">
-            <!-- Replace placeholder images with your actual work -->
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/600" alt="Portfolio 1">
+        <div class="portfolio-category">
+            <h2 data-fr="Fiançailles" data-en="Engagements">Fiançailles</h2>
+            <div class="portfolio-grid" id="engagement-photos">
+                <!-- Photos will be loaded from Google Drive -->
             </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/600" alt="Portfolio 2">
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/600" alt="Portfolio 3">
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/600" alt="Portfolio 4">
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/600" alt="Portfolio 5">
-            </div>
-            <div class="portfolio-item">
-                <img src="/api/placeholder/600/600" alt="Portfolio 6">
+        </div>
+
+        <div class="portfolio-category">
+            <h2 data-fr="Portraits" data-en="Portraits">Portraits</h2>
+            <div class="portfolio-grid" id="portrait-photos">
+                <!-- Photos will be loaded from Google Drive -->
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <div class="contact-form">
-            <form action="https://formspree.io/your-email@domain.com" method="POST">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
+    <section id="contact" class="contact-section">
+        <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+        <div class="contact-info">
+            <p>Email: omransoliman.pv@gmail.com</p>
+            <p>Tel: +33625965257</p>
         </div>
+        <form class="contact-form" action="https://formspree.io/omransoliman.pv@gmail.com" method="POST">
+            <div class="form-group">
+                <label data-fr="Nom" data-en="Name">Nom</label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label data-fr="Email" data-en="Email">Email</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label data-fr="Message" data-en="Message">Message</label>
+                <textarea name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" data-fr="Envoyer" data-en="Send">Envoyer</button>
+        </form>
     </section>
+
+    <section id="about" class="about-section">
+        <h2 data-fr="À propos" data-en="About">À propos</h2>
+        <p data-fr="Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes. Je vous invite à visiter mon site web pour voir mon portfolio et me suivre sur les réseaux sociaux pour suivre mes derniers travaux et aventures. Je serais ravi d'échanger avec vous et de discuter de vos projets photo ou vidéo à venir."
+           data-en="Whether I am taking a landscape, portrait or spontaneous moment, my goal is always to create meaningful and impactful works. I invite you to visit my website to see my portfolio and follow me on social media to keep up with my latest work and adventures. I would love to hear from you and discuss any upcoming photo or video projects you have in mind.">
+            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes. Je vous invite à visiter mon site web pour voir mon portfolio et me suivre sur les réseaux sociaux pour suivre mes derniers travaux et aventures. Je serais ravi d'échanger avec vous et de discuter de vos projets photo ou vidéo à venir.
+        </p>
+    </section>
+
+    <script>
+        // Configuration object for easy updates
+        const config = {
+            websiteName: "Omran Soliman",
+            instagram: "https://instagram.com/soliman.omran",
+            email: "omransoliman.pv@gmail.com",
+            phone: "+33625965257",
+            portfolioLinks: {
+                wedding: "YOUR_GOOGLE_DRIVE_FOLDER_LINK_HERE",
+                engagement: "YOUR_GOOGLE_DRIVE_FOLDER_LINK_HERE",
+                portrait: "YOUR_GOOGLE_DRIVE_FOLDER_LINK_HERE"
+            }
+        };
+
+        // Language switching functionality
+        let currentLang = 'fr';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            document.documentElement.lang = currentLang;
+            document.querySelector('.language-switch').textContent = currentLang === 'fr' ? 'EN' : 'FR';
+            
+            document.querySelectorAll('[data-fr]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        // Function to load photos from Google Drive (you'll need to implement this)
+        function loadPhotos() {
+            // Implementation for loading photos from Google Drive
+            // You'll need to use Google Drive API or embed links
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPhotos();
+        });
+    </script>
 </body>
 </html>
