@@ -271,9 +271,24 @@
         }
 
         .contact-form button:hover {
-            background-color: #555;
+            background-color: var(--button-hover-bg-color, #555);
         }
 
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --button-bg-color: #555;
+                --button-text-color: white;
+                --button-hover-bg-color: #777;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --button-bg-color: #333;
+                --button-text-color: white;
+                --button-hover-bg-color: #555;
+            }
+        }
         @media (max-width: 768px) {
             .contact-section {
                 flex-direction: column;
