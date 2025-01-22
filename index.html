@@ -107,21 +107,41 @@
             padding: 5rem 2rem;
             text-align: center;
         }
+        .portfolio-item:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
 
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for better readability */
+}
+
+.portfolio-title {
+    display: block;
+}
         .portfolio-grid {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
 
-        .portfolio-item {
-            width: 300px;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+        
+.portfolio-item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 300px; /* Adjust this to make the photo bigger */
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
     </style>
 </head>
 <body>
@@ -137,25 +157,81 @@
             <button class="language-switch" onclick="toggleLanguage()">EN</button>
         </div>
     </nav>
-
+    <section id="home">
+        <div class="home-content">
+            <h1 class="home-title" id="homeTitle" data-fr="capture la vie. la beauté. l'amour." data-en="capture life. beauty. love.">capture la vie. la beauté. l'amour.</h1>
+            <p class="home-subtitle" id="homeSubtitle" data-fr="Photos et vidéos des meilleurs moments de la vie" data-en="Photos and videos of life's best moments">Photos et vidéos des meilleurs moments de la vie</p>
+        </div>
+    </section>
+    <button class="language-switch" id="language-en" onclick="toggleLanguage('en')">EN</button>
+<button class="language-switch" id="language-fr" onclick="toggleLanguage('fr')">FR</button>
     <section id="portfolio" class="portfolio-sections">
         <h2 data-fr="Portfolio" data-en="Portfolio">Portfolio</h2>
         <div class="portfolio-grid">
-            <a href="wedding.html" class="portfolio-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg');"></a>
-            <a href="engagement.html" class="portfolio-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg');"></a>
-            <a href="portrait.html" class="portfolio-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg');"></a>
+            <a href="wedding.html" class="portfolio-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg');">
+                <div class="overlay">
+                    <span class="portfolio-title">Wedding</span>
+                </div>
+            </a>
+            <a href="engagement.html" class="portfolio-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg');">
+                <div class="overlay">
+                    <span class="portfolio-title">Engagement</span>
+                </div>
+            </a>
+            <a href="portrait.html" class="portfolio-item" style="background-image: url('https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg');">
+                <div class="overlay">
+                    <span class="portfolio-title">Portrait</span>
+                </div>
+            </a>
         </div>
     </section>
 
+    <section id="contact" class="contact-section">
+        <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+        <p id="contact-email">Email: omransoliman.pv@gmail.com</p>
+        <p id="contact-phone">Tel: +33625965257</p>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2 data-fr="À propos" data-en="About">À propos</h2>
+        <p data-fr="Que ce soit pour un paysage..." data-en="Whether I am taking...">
+            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
+        </p>
+    </section>
+
+    <script src="config.js"></script> <!-- Add this line to include the config.js file -->
     <script>
         function toggleMenu() {
             const menu = document.querySelector('.menu');
             menu.classList.toggle('active');
         }
 
-        function toggleLanguage() {
-            // Implement language toggle logic
-        }
+        function toggleLanguage(language) {
+    // Get the current language data from config.js
+    const langData = config.translations[language];
+
+    // Update text content in the page
+    document.getElementById('homeTitle').textContent = langData.homeTitle;
+    document.getElementById('homeSubtitle').textContent = langData.homeSubtitle;
+    document.getElementById('aboutText').textContent = langData.aboutText;
+
+    // Update menu items
+    document.getElementById('menu-home').textContent = langData.menu.home;
+    document.getElementById('menu-portfolio').textContent = langData.menu.portfolio;
+    document.getElementById('menu-contact').textContent = langData.menu.contact;
+    document.getElementById('menu-about').textContent = langData.menu.about;
+
+    // Optionally, save the language choice in localStorage so it persists across sessions
+    localStorage.setItem('language', language);
+}
+
+// Event listeners for language switcher buttons
+document.getElementById('language-en').addEventListener('click', function() {
+    toggleLanguage('en');
+});
+document.getElementById('language-fr').addEventListener('click', function() {
+    toggleLanguage('fr');
+});
     </script>
 </body>
 </html>

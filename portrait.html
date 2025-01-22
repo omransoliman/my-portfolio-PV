@@ -138,6 +138,20 @@
     </div>
   </main>
 
+  <div id="portrait-gallery-container"></div>
+
+<script>
+    // Get the gallery ID from config.js
+    const galleryId = config.picflowGalleryIds.portrait;
+    
+    // Initialize the Picflow gallery (you might need a script from Picflow for this)
+    const container = document.getElementById('portrait-gallery-container');
+    const picflowEmbedCode = `<iframe src="https://www.picflow.com/gallery/${galleryId}" frameborder="0" style="width: 100%; height: 600px;"></iframe>`;
+    
+    // Insert the gallery into the container
+    container.innerHTML = picflowEmbedCode;
+</script>
+
   <script>
     // Language toggle function (reused from index.html)
     function toggleLanguage() {
