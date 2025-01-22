@@ -1,0 +1,11 @@
+[netlify.function]
+  base = "src"
+  command = ["node"]
+  build = "src"
+  # if you want to use server-side
+  node_bundler = "esbuild"
+  node_version = "18"
+  included_files = ["index.js"]
+  name = "proxy"
+  runtime = "nodejs20.x"
+  directory = "proxy"

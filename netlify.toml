@@ -1,2 +1,14 @@
 [build]
-  functions = "netlify/functions"
+  base = "/"               # Root directory for your build
+  publish = "build"        # Where to publish your static assets (if any)
+  functions = "src/proxy"  # Directory for your serverless functions
+
+[functions]
+  directory = "src/proxy"  # Directory where your functions are stored
+  node_bundler = "esbuild" # Use esbuild for bundling functions (optional)
+  memory = 1024            # Allocate more memory to functions (optional)
+  timeout = 10             # Set the function timeout (optional)
+  node_version = "18"      # Specify Node.js version (you can adjust this if needed)
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"  # If you are using the Next.js plugin
