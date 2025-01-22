@@ -4,8 +4,8 @@
   "description": "",
   "main": "config.js",
   "scripts": {
-  "start": "node netlify/functions/express.js"
-},
+    "start": "node netlify/functions/express.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/omransoliman/my-portfolio-PV.git"
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/omransoliman/my-portfolio-PV#readme",
   "dependencies": {
     "axios": "^1.7.9",
+    "cors": "^2.8.5",
     "express": "^4.21.2"
   }
 }
