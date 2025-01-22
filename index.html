@@ -154,7 +154,7 @@
 </head>
 <body>
     <nav>
-        <a href="#" class="logo" id="logo">Omran Soliman</a>
+        <a href="/" class="logo" id="logo">Omran Soliman</a>
         <div class="nav-links">
             <a href="#home" data-fr="Accueil" data-en="Home">Accueil</a>
             <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a>
@@ -210,6 +210,16 @@
 
     <script src="config.js"></script>
     <script>
+
+document.querySelector('.logo').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default link action
+    window.location.reload(); // Refresh the page
+});
+
+document.querySelector('[href="#home"]').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default link action
+    window.location.reload(); // Refresh the page
+});
         let currentLang = 'fr'; // Default language
     
         // Function to load translations dynamically
