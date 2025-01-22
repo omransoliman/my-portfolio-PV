@@ -145,9 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Extract the page name from the URL path
         const pageName = window.location.pathname.split('/').pop().replace('.html', '');
 
-        // Log the pageName to the console for debugging
-        console.log(pageName);  // Add this line to check what page name is being detected
-
         // Get the corresponding gallery ID from config.js
         const galleryId = config.picflowGalleryIds[pageName];
         const picflowGalleryElement = document.querySelector('picflow-gallery');

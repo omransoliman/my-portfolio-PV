@@ -140,20 +140,19 @@
 
   <script src="config.js"></script>
   <script>
-    // Assuming config.js is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-    // Manually set the page name
-    const pageName = 'portrait'; // Change this to the appropriate page name ('engagement', 'wedding', 'portrait')
 
-    // Check if the config is available
+document.addEventListener('DOMContentLoaded', function() {
     if (typeof config !== 'undefined' && config.picflowGalleryIds) {
+        // Extract the page name from the URL path
+        const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+
+        // Get the corresponding gallery ID from config.js
         const galleryId = config.picflowGalleryIds[pageName];
         const picflowGalleryElement = document.querySelector('picflow-gallery');
-        
+
+        // If the element and gallery ID are found, set the gallery ID dynamically
         if (picflowGalleryElement && galleryId) {
             picflowGalleryElement.setAttribute('id', galleryId);
-        } else {
-            console.error('Gallery ID is missing or Picflow gallery element not found.');
         }
     }
 });
