@@ -232,6 +232,8 @@ function loadPhotos() {
     function createImageElement(fileId) {
         const img = document.createElement('img');
         img.src = `https://drive.google.com/uc?export=view&id=${fileId}`;
+        console.log(`Loading image: ${imageUrl}`);  // Debugging log
+        img.src = imageUrl;
         img.alt = 'Photo';
         img.style.width = '100%';
         img.style.height = 'auto';
