@@ -9,8 +9,8 @@ const config = {
     portfolioLinks: {
         wedding: [
             "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1",
-            "https://www.dropbox.com/s/5taryqlt6103uiy3pkzft/wedding2.jpg?raw=1",
-            "https://www.dropbox.com/s/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1"
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1",
+            "https://www.dropbox.com/scl/fi/5taryqlt6103uiy3pkzft/IMG_1372_V2.jpeg?raw=1"
         ],
         engagement: [
             "https://www.dropbox.com/s/yourfileid1/engagement1.jpg?raw=1",
