@@ -6,10 +6,10 @@ const config = {
     instagram: "https://www.instagram.com/soliman.omran",
     email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
-     portfolioLinks: {
-        wedding: "https://drive.google.com/embeddedlink1",
-        engagement: "https://drive.google.com/embeddedlink2",
-        portrait: "https://drive.google.com/embeddedlink3",
+    portfolioLinks: {
+        wedding: "https://www.dropbox.com/s/yourfileid/wedding.jpg?raw=1", // Update with your Dropbox link
+        engagement: "https://www.dropbox.com/s/yourfileid/engagement.jpg?raw=1", // Update with your Dropbox link
+        portrait: "https://www.dropbox.com/s/yourfileid/portrait.jpg?raw=1", // Update with your Dropbox link
     },
     // Translations
     translations: {

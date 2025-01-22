@@ -216,53 +216,31 @@
 
     <script src="config.js"></script>
     <script>
+        weddingPhotoIds = [
+    "https://www.dropbox.com/s/yourfileid/wedding.jpg?raw=1",
+    "https://www.dropbox.com/scl/fi/je335diatmfdx3ksf738g/IMG_3734.jpeg?rlkey=29pqpsimhyvj5ous802zh1jpm&st=couai486&dl=0"
+    // Add other Dropbox image links here
+];
 
-            // List of image IDs (replace these with your actual image file IDs from Google Drive)
-            const weddingPhotoIds = ['1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I', '1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I']; // Add your wedding image IDs
-            const engagementPhotoIds = ['1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I', '1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I']; // Add your engagement image IDs
-            const portraitPhotoIds = ['1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I', '1Xj-Sp4OhPe03LeOGskeZzir54n6EV37I']; // Add your portrait image IDs
+engagementPhotoIds = [
+    "https://www.dropbox.com/s/yourfileid/engagement.jpg?raw=1",
+    // Add other Dropbox image links here
+];
 
-// Function to load photos dynamically into the respective sections
-function loadPhotos() {
-    const weddingContainer = document.getElementById('wedding-photos');
-    const engagementContainer = document.getElementById('engagement-photos');
-    const portraitContainer = document.getElementById('portrait-photos');
+portraitPhotoIds = [
+    "https://www.dropbox.com/s/yourfileid/portrait.jpg?raw=1",
+    // Add other Dropbox image links here
+];
 
-    // Function to create an image element
-    function createImageElement(fileId) {
-        const img = document.createElement('img');
-        img.src = `https://drive.google.com/uc?export=view&id=${fileId}`;
-        console.log(`Loading image: ${imageUrl}`);  // Debugging log
-        img.src = imageUrl;
-        img.alt = 'Photo';
-        img.style.width = '100%';
-        img.style.height = 'auto';
-        return img;
-    }
-
-    // Add wedding photos
-    weddingPhotoIds.forEach(fileId => {
-        const imgElement = createImageElement(fileId);
-        weddingContainer.appendChild(imgElement);
-    });
-
-    // Add engagement photos
-    engagementPhotoIds.forEach(fileId => {
-        const imgElement = createImageElement(fileId);
-        engagementContainer.appendChild(imgElement);
-    });
-
-    // Add portrait photos
-    portraitPhotoIds.forEach(fileId => {
-        const imgElement = createImageElement(fileId);
-        portraitContainer.appendChild(imgElement);
-    });
+        
+        function createImageElement(fileUrl) {
+    const img = document.createElement('img');
+    img.src = fileUrl;
+    img.alt = 'Photo';
+    img.style.width = '100%';
+    img.style.height = 'auto';
+    return img;
 }
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    loadPhotos();
-});
 
 
 
