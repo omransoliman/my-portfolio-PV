@@ -256,10 +256,23 @@
         </div>
     </section>
 
+
     <section id="contact" class="contact-section">
         <h2 data-fr="Contact" data-en="Contact">Contact</h2>
         <p id="contact-email">Email: omransoliman.pv@gmail.com</p>
         <p id="contact-phone">Tel: +33625965257</p>
+        <form id="contact-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+    
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+    
+            <button type="submit">Send Message</button>
+        </form>
     </section>
 
     <section id="about" class="about-section">
@@ -268,6 +281,23 @@
             Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
         </p>
     </section>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function(){
+        emailjs.init("E-RvIRcSZ7GCz-Yz_");
+      })();
+    
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        emailjs.sendForm('service_kt9zzgp', 'template_xychznp', this)
+          .then(function(response) {
+             alert('Message sent successfully!');
+          }, function(error) {
+             alert('Failed to send message: ' + JSON.stringify(error));
+          });
+      });
+    </script>
 
     <script src="config.js"></script>
     <script>
