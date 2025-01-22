@@ -216,30 +216,7 @@
 
     <script src="config.js"></script>
     <script>
-        weddingPhotoIds = [
-    "https://www.dropbox.com/scl/fi/je335diatmfdx3ksf738g/IMG_3734.jpeg?raw=1"
-    // Add other Dropbox image links here
-];
 
-engagementPhotoIds = [
-    "https://www.dropbox.com/s/yourfileid/engagement.jpg?raw=1",
-    // Add other Dropbox image links here
-];
-
-portraitPhotoIds = [
-    "https://www.dropbox.com/s/yourfileid/portrait.jpg?raw=1",
-    // Add other Dropbox image links here
-];
-
-        
-        function createImageElement(fileUrl) {
-    const img = document.createElement('img');
-    img.src = fileUrl;
-    img.alt = 'Photo';
-    img.style.width = '100%';
-    img.style.height = 'auto';
-    return img;
-}
 
 
 
@@ -279,23 +256,59 @@ document.querySelector('[href="#home"]').addEventListener('click', function(e) {
     
         // Load initial content
         window.onload = function () {
-            document.getElementById('home').style.backgroundImage = `url('${config.homeBackground}')`;
+    // Set background image for home section
+    document.getElementById('home').style.backgroundImage = `url('${config.homeBackground}')`;
 
-            document.getElementById('website-name').textContent = config.websiteName;
-            document.getElementById('logo').textContent = config.websiteName;
-            document.getElementById('instagram-link').href = config.instagram;
-            document.getElementById('contact-email').textContent = `Email: ${config.email}`;
-            document.getElementById('contact-phone').textContent = `Tel: ${config.phone}`;
-    
-            // Embed Google Drive links
-            
-            loadTranslations(); // Load the default language
+    // Set website name
+    document.getElementById('website-name').textContent = config.websiteName;
+    document.getElementById('logo').textContent = config.websiteName;
+    document.getElementById('instagram-link').href = config.instagram;
+    document.getElementById('contact-email').textContent = `Email: ${config.email}`;
+    document.getElementById('contact-phone').textContent = `Tel: ${config.phone}`;
 
+    // Dynamically load portfolio images
+    loadPortfolioImages();
 
+    loadTranslations(); // Load the default language
+};
 
+// Function to create image elements dynamically
+function createImageElement(fileUrl) {
+    const img = document.createElement('img');
+    img.src = fileUrl;
+    img.alt = 'Photo';
+    img.style.width = '100%';
+    img.style.height = 'auto';
+    return img;
+}
 
+// Function to load portfolio images dynamically
+function loadPortfolioImages() {
+    // Get the portfolio grid sections from the DOM
+    const weddingGrid = document.getElementById('wedding-photos');
+    const engagementGrid = document.getElementById('engagement-photos');
+    const portraitGrid = document.getElementById('portrait-photos');
 
-        };
+    // Clear the existing content (if any)
+    weddingGrid.innerHTML = '';
+    engagementGrid.innerHTML = '';
+    portraitGrid.innerHTML = '';
+
+    // Load wedding photos
+    config.portfolioLinks.wedding.forEach(url => {
+        weddingGrid.appendChild(createImageElement(url));
+    });
+
+    // Load engagement photos
+    config.portfolioLinks.engagement.forEach(url => {
+        engagementGrid.appendChild(createImageElement(url));
+    });
+
+    // Load portrait photos
+    config.portfolioLinks.portrait.forEach(url => {
+        portraitGrid.appendChild(createImageElement(url));
+    });
+};
     </script>
 </body>
 </html>

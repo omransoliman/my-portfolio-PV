@@ -7,9 +7,19 @@ const config = {
     email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
     portfolioLinks: {
-        wedding: "https://www.dropbox.com/s/yourfileid/wedding.jpg?raw=1", // Update with your Dropbox link
-        engagement: "https://www.dropbox.com/s/yourfileid/engagement.jpg?raw=1", // Update with your Dropbox link
-        portrait: "https://www.dropbox.com/s/yourfileid/portrait.jpg?raw=1", // Update with your Dropbox link
+        wedding: [
+            "https://www.dropbox.com/s/yourfileid1/wedding1.jpg?raw=1",
+            "https://www.dropbox.com/s/yourfileid2/wedding2.jpg?raw=1",
+            "https://www.dropbox.com/s/yourfileid3/wedding3.jpg?raw=1"
+        ],
+        engagement: [
+            "https://www.dropbox.com/s/yourfileid1/engagement1.jpg?raw=1",
+            "https://www.dropbox.com/s/yourfileid2/engagement2.jpg?raw=1"
+        ],
+        portrait: [
+            "https://www.dropbox.com/s/yourfileid1/portrait1.jpg?raw=1",
+            "https://www.dropbox.com/s/yourfileid2/portrait2.jpg?raw=1"
+        ]
     },
     // Translations
     translations: {
