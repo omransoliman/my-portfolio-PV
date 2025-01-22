@@ -285,6 +285,7 @@ function createImageElement(fileUrl) {
 // Function to load portfolio images dynamically
 function loadPortfolioImages() {
     // Get the portfolio grid sections from the DOM
+    console.log('Loading portfolio images...');
     const weddingGrid = document.getElementById('wedding-photos');
     const engagementGrid = document.getElementById('engagement-photos');
     const portraitGrid = document.getElementById('portrait-photos');
@@ -295,9 +296,11 @@ function loadPortfolioImages() {
     portraitGrid.innerHTML = '';
 
     // Load wedding photos
+    console.log('Wedding Photos:', config.portfolioLinks.wedding);
     config.portfolioLinks.wedding.forEach(url => {
-        weddingGrid.appendChild(createImageElement(url));
-    });
+        console.log('Adding image:', url);
+    weddingGrid.appendChild(createImageElement(url));
+});
 
     // Load engagement photos
     config.portfolioLinks.engagement.forEach(url => {
