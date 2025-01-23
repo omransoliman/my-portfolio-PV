@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portrait</title>
+  <title>Wedding Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <style>
-    /* Include consistent CSS styles from `index.html` */
     :root {
       --primary-color: #333;
       --background-color: #fff;
@@ -88,20 +87,52 @@
       padding: 5rem 2rem;
     }
 
-    .gallery-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
     h1 {
       font-size: 2rem;
       margin-bottom: 2rem;
     }
+    .contact-section, .about-section {
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .about-section {
+            background-image: url('https://images.pexels.com/photos/30358106/pexels-photo-30358106.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Makes the section full height */
+            justify-content: center;
+            align-items: center;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .about-title {
+            font-size: 2rem; /* Increased font size */
+            margin-right: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.5rem; /* Increased font size */
+            max-width: 800px; /* Limits the width of the text content */
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                padding: 2rem 1rem;
+            }
+
+            .about-title, .about-text {
+                margin: 0;
+                padding: 1rem 0;
+            }
+        }
   </style>
 </head>
 <body>
-  <!-- Consistent Navigation Bar -->
+  <!-- Navigation Bar -->
   <nav>
     <a href="index.html" class="logo">Omran Soliman</a>
     <div class="nav-links">
@@ -116,64 +147,32 @@
 
   <!-- Main Content -->
   <main>
-    <div class="gallery-container">
-      <h1 data-fr="Portfolio - Portraits" data-en="Portfolio - Portraits">Portfolio - Portraits</h1>
-      <!-- Embed Picflow Portrait Gallery -->
-      <script>
-        if (!window.picflow) {
-          window.picflow = true;
-          var s = document.createElement("script");
-          s.src = "https://picflow.com/embed/main.js";
-          s.type = "module";
-          s.defer = true;
-          document.head.appendChild(s);
-        }
-      </script>
-      <picflow-gallery id="picflow-gallery" 
-        lightbox="#000000E6" 
-        no-padding="true" 
-        no-background="true" 
-        show-cover="true">
-      </picflow-gallery>
-    </div>
+    <section id="about" class="about-section">
+        <h2 data-fr="À propos" data-en="About" class="about-title">À propos</h2>
+        <p id="aboutText" data-fr="Que ce soit pour un paysage..." data-en="Whether I am taking..." class="about-text">
+            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
+        </p>
+    </section>
   </main>
 
   <script src="config.js"></script>
   <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-    if (typeof config !== 'undefined' && config.picflowGalleryIds) {
-        // Extract the page name from the URL path
-        const pageName = window.location.pathname.split('/').pop().replace('.html', '');
 
-        // Get the corresponding gallery ID from config.js
-        const galleryId = config.picflowGalleryIds[pageName];
-        const picflowGalleryElement = document.querySelector('picflow-gallery');
-
-        // If the element and gallery ID are found, set the gallery ID dynamically
-        if (picflowGalleryElement && galleryId) {
-            picflowGalleryElement.setAttribute('id', galleryId);
-        }
-    }
-});
-  </script>
-
-
-  <script>
-    // Language toggle function (reused from index.html)
+    // Language toggle function
     function toggleLanguage() {
       const lang = document.querySelector('.language-switch').textContent.trim();
       const elements = document.querySelectorAll('[data-fr][data-en]');
-      const isEnglish = lang === 'EN'; // Fix check to use 'EN' correctly
+      const isFrench = lang === 'FR';
 
       elements.forEach(el => {
-        el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+        el.textContent = isFrench ? el.getAttribute('data-en') : el.getAttribute('data-fr');
       });
 
-      document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN'; // Toggle between 'EN' and 'FR'
+      document.querySelector('.language-switch').textContent = isFrench ? 'EN' : 'FR';
     }
 
-    // Initial load to ensure the correct language is set
+    // Ensure correct language is set on load
     document.addEventListener('DOMContentLoaded', () => {
       toggleLanguage(); // Default to English
     });
