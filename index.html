@@ -156,7 +156,11 @@
     justify-content: flex-start; /* Aligns content to the left */
     padding: 20px; /* Adds some padding around the text */
     color: #fff; /* Ensures text is visible on the background */
+    transition: opacity 1s ease-in-out;
 }
+#home.fade-out {
+        opacity: 0;
+    }
 
 .home-content {
             color: white;
@@ -408,14 +412,18 @@
             let currentIndex = 0;
         
             function changeSlide() {
-                homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
-                currentIndex = (currentIndex + 1) % images.length;
+                homeSection.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+                    homeSection.classList.remove('fade-out');
+                    currentIndex = (currentIndex + 1) % images.length;
+                }, 1000); // Match the transition time
             }
         
-            // Only start slideshow if images exist
             if (images && images.length > 0) {
                 changeSlide(); // Initial image
-                setInterval(changeSlide, interval);
+                setInterval(changeSlide, interval + 1000);
             }
         });
         </script>
@@ -436,6 +444,40 @@
             elements.forEach(el => {
                 el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
             });
+
+
+            // Portfolio section titles
+    const portfolioTitle = document.querySelector('#portfolio h2');
+    portfolioTitle.textContent = isEnglish 
+        ? config.translations.fr.menu.portfolio 
+        : config.translations.en.menu.portfolio;
+
+    // Portfolio item titles
+    const portfolioItems = document.querySelectorAll('.portfolio-item .portfolio-title');
+    portfolioItems.forEach((item, index) => {
+        const titles = isEnglish 
+            ? [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait]
+            : [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait];
+        
+        item.textContent = titles[index];
+    });
+
+            // Translate dropdown menu
+    const dropdownTrigger = document.querySelector('.dropdown > a');
+    dropdownTrigger.textContent = isEnglish 
+        ? config.translations.fr.menu.portfolio 
+        : config.translations.en.menu.portfolio;
+
+    // Translate portfolio dropdown items if needed
+    const dropdownItems = document.querySelectorAll('.dropdown-content a');
+    dropdownItems.forEach((item, index) => {
+        const categories = isEnglish 
+            ? [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait]
+            : [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait];
+        
+        item.textContent = categories[index];
+    });
+
 
             document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN';
 
