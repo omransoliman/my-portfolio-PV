@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const galleryIdKey = picflowGalleryElement.getAttribute('data-gallery-id');
         const galleryId = config.picflowGalleryIds[galleryIdKey];
 
+        console.log('Gallery ID :', galleryId); 
         if (galleryId) {
             picflowGalleryElement.setAttribute('id', galleryId);
             console.log('Gallery ID set successfully:', galleryId);
