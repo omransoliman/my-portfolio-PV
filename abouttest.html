@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Omran Soliman</title>
+  <link rel="stylesheet" href="styletest.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="configte$.js" defer></script>
+</head>
+<body>
+  <!-- Consistent Menu Bar -->
+  <nav>
+    <a href="index.html" class="logo">Omran Soliman</a>
+    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <div class="nav-links menu">
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <div class="dropdown">
+        <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+        <div class="dropdown-content">
+          <a href="wedding.html">Wedding</a>
+          <a href="engagement.html">Engagement</a>
+          <a href="portrait.html">Portrait</a>
+        </div>
+      </div>
+      <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+      <button class="language-switch" onclick="toggleLanguage()">EN</button>
+    </div>
+  </nav>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-content">
+      <h1 id="about-title"></h1>
+      <p id="about-description"></p>
+      <a href="index.html#contact" class="contact-btn" id="contact-btn-text"></a>
+    </div>
+    <div class="about-image">
+      <img id="about-image" src="" alt="Omran Soliman">
+    </div>
+  </section>
+  <script>
+    function toggleMenu() {
+  const menu = document.querySelector(".nav-links");
+  menu.classList.toggle("active");
+}
+
+function toggleLanguage() {
+  // Add your language toggle logic here
+}
+  </script>
+</body>
+</html>
