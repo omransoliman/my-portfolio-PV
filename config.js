@@ -10,11 +10,11 @@ const config = {
 
     homeSlideshow: {
         images: [
-            'image1.jpg',
-            'image2.jpg',
-            'image3.jpg',
-            'image4.jpg',
-            'image5.jpg'
+            'https://picflow.media/images/resized/1280x853q85/47bc71cd-9712-45bb-962d-f138fed92bf1.jpg',
+            'https://picflow.media/images/resized/1280x720q85/2ab141bb-55fc-4d1c-9116-07ab5354b876.jpg',
+            'https://picflow.media/images/resized/1280x720q85/08566703-c8bc-47e8-84f6-56bd2b239a1b.jpg',
+            'https://picflow.media/images/resized/1280x853q85/3ddb348b-a765-4979-a817-cb93babbc523.jpg',
+            'https://picflow.media/images/resized/1280x853q85/ffa24446-4e64-40e0-be63-0b6ac62efad6.jpg'
         ],
         interval: 5000, // Default 5 seconds, can be changed
         transitionEffect: 'fade' // Optional transition effect
