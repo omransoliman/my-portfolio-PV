@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageSwitch = document.querySelector('.language-switch');
     if (languageSwitch) {
         console.log('Language switch button found.');
-        languageSwitch.textContent = savedLanguage === 'en' ? 'FR' : 'EN';
+        languageSwitch.textContent = savedLanguage === 'en' ? 'EN' : 'FR';
         console.log('Initial language switch button text:', languageSwitch.textContent);
 
         // Add event listener to the language switch button
