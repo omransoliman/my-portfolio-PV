@@ -314,23 +314,19 @@ background-color: rgba(0,0,0,0.1);
   }
   
 
-      /* About Section */
+/* About Section */
 .about {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 100px 20px;
     background: #1a1a1a;
-    flex-direction: column; /* Forces column layout */
-    text-align: center;
   }
   
   .about-image {
-    flex: 1;
-    max-width: 50%;
+    flex: 1; /* Takes up 50% of the space */
+    max-width: 50%; /* Limits width to 50% */
     animation: zoomIn 2s ease-in-out;
-    max-width: 100%; /* Forces full width */
-    padding-left: 0; /* Removes padding */
   }
   
   .about-image img {
@@ -340,9 +336,9 @@ background-color: rgba(0,0,0,0.1);
   }
   
   .about-content {
-    flex: 1;
-    max-width: 100%; /* Forces full width */
-    padding-left: 0; /* Removes padding */
+    flex: 1; /* Takes up 50% of the space */
+    max-width: 50%; /* Limits width to 50% */
+    padding-left: 50px; /* Adds space between image and content */
     animation: slideIn 1.5s ease-in-out;
   }
   
@@ -371,26 +367,30 @@ background-color: rgba(0,0,0,0.1);
     background: #ff4a3d;
     transform: scale(1.1);
   }
-  .about {
-    flex-direction: column;
-    text-align: center;
+  
+  /* Responsive Design for About section */
+  @media (max-width: 768px) {
+    .about {
+      flex-direction: column; /* Stacks image and content vertically on small screens */
+      text-align: center;
+    }
+  
+    .about-image, .about-content {
+      max-width: 100%; /* Full width on small screens */
+      padding-left: 0; /* Removes padding on small screens */
+    }
+  
+    .about-content h1 {
+      font-size: 2.5rem; /* Smaller font size for mobile */
+    }
+  
+    .about-content p {
+      font-size: 1rem; /* Smaller font size for mobile */
+    }
   }
-
-  .about-image, .about-content {
-    max-width: 100%;
-    padding-left: 0;
-  }
-
-  .about-content h1 {
-    font-size: 2.5rem;
-  }
-
-  .about-content p {
-    font-size: 1rem;
-  }
-
-  /* Animations for About Section */
-@keyframes fadeIn {
+  
+  /* Animations */
+  @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
   }
@@ -404,7 +404,6 @@ background-color: rgba(0,0,0,0.1);
     from { transform: scale(0.5); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
   }
-
 
 
       .gallery-container {
