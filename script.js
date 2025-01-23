@@ -122,7 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set the language switch button text
     const languageSwitch = document.querySelector('.language-switch');
-    languageSwitch.textContent = savedLanguage === 'en' ? 'FR' : 'EN';
+    if (languageSwitch) {
+        languageSwitch.textContent = savedLanguage === 'en' ? 'FR' : 'EN';
+    }
 
     // Initialize Picflow Gallery
     const picflowGalleryElement = document.querySelector('picflow-gallery');
