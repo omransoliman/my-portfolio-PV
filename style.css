@@ -321,12 +321,16 @@ background-color: rgba(0,0,0,0.1);
     align-items: center;
     padding: 100px 20px;
     background: #1a1a1a;
+    flex-direction: column; /* Forces column layout */
+    text-align: center;
   }
   
   .about-image {
     flex: 1;
     max-width: 50%;
     animation: zoomIn 2s ease-in-out;
+    max-width: 100%; /* Forces full width */
+    padding-left: 0; /* Removes padding */
   }
   
   .about-image img {
@@ -337,8 +341,8 @@ background-color: rgba(0,0,0,0.1);
   
   .about-content {
     flex: 1;
-    max-width: 50%;
-    padding-left: 50px;
+    max-width: 100%; /* Forces full width */
+    padding-left: 0; /* Removes padding */
     animation: slideIn 1.5s ease-in-out;
   }
   
