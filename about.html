@@ -43,51 +43,7 @@
     </section>
   </main>
 
-  <script src="config.js"></script>
-  <script>
-    function toggleMenu() {
-            const menu = document.querySelector('.menu');
-            menu.classList.toggle('active');
-        }
-
-        // Language toggle function
-        function toggleLanguage() {
-            const lang = document.querySelector('.language-switch').textContent.trim();
-            const elements = document.querySelectorAll('[data-fr][data-en]');
-            const isEnglish = lang === 'EN';
-
-            elements.forEach(el => {
-                el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
-            });
-
-            // Translate dropdown menu
-    const dropdownTrigger = document.querySelector('.dropdown > a');
-    dropdownTrigger.textContent = isEnglish 
-        ? config.translations.fr.menu.portfolio 
-        : config.translations.en.menu.portfolio;
-
-    // Translate portfolio dropdown items if needed
-    const dropdownItems = document.querySelectorAll('.dropdown-content a');
-    dropdownItems.forEach((item, index) => {
-        const categories = isEnglish 
-            ? [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait]
-            : [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait];
-        
-        item.textContent = categories[index];
-    });
-
-            document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN';
-
-            // Update aboutText based on the selected language
-            const aboutTextElement = document.getElementById('aboutText');
-            aboutTextElement.textContent = isEnglish ? config.translations.fr.aboutText : config.translations.en.aboutText;
-        }
-
-        // Initial load to ensure the correct language is set
-        document.addEventListener('DOMContentLoaded', () => {
-            toggleLanguage(); // Default to English
-        });
-
-  </script>
+  <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

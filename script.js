@@ -29,6 +29,30 @@ item.textContent = categories[index];
 });
 
 document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN'; // Toggle between 'EN' and 'FR'
+
+
+
+// Portfolio section titles
+const portfolioTitle = document.querySelector('#portfolio h2');
+portfolioTitle.textContent = isEnglish 
+    ? config.translations.fr.menu.portfolio 
+    : config.translations.en.menu.portfolio;
+
+// Portfolio item titles
+const portfolioItems = document.querySelectorAll('.portfolio-item .portfolio-title');
+portfolioItems.forEach((item, index) => {
+    const titles = isEnglish 
+        ? [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait]
+        : [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait];
+    
+    item.textContent = titles[index];
+});
+
+// Update aboutText based on the selected language
+const aboutTextElement = document.getElementById('aboutText');
+aboutTextElement.textContent = isEnglish ? config.translations.fr.aboutText : config.translations.en.aboutText;
+
+
 }
 
 // Initial load to ensure the correct language is set
@@ -52,6 +76,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
+// Slide show for home page
+document.addEventListener('DOMContentLoaded', function() {
+    const homeSection = document.getElementById('home');
+    const images = config.homeSlideshow.images;
+    const interval = config.homeSlideshow.interval || 5000;
+    let currentIndex = 0;
+
+    function changeSlide() {
+        homeSection.classList.add('fade-out');
+        
+        setTimeout(() => {
+            homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+            homeSection.classList.remove('fade-out');
+            currentIndex = (currentIndex + 1) % images.length;
+        }, 1000); // Match the transition time
+    }
+
+    if (images && images.length > 0) {
+        changeSlide(); // Initial image
+        setInterval(changeSlide, interval + 1000);
+    }
+});
+
+
 // Embed Picflow Portrait Gallery 
 if (!window.picflow) {
     window.picflow = true;
@@ -61,3 +110,19 @@ if (!window.picflow) {
     s.defer = true;
     document.head.appendChild(s);
   }
+
+  // EmailJS
+  (function(){
+    emailjs.init("E-RvIRcSZ7GCz-Yz_");
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_kt9zzgp', 'template_xychznp', this)
+      .then(function(response) {
+         alert('Message sent successfully!');
+      }, function(error) {
+         alert('Failed to send message: ' + JSON.stringify(error));
+      });
+  });
