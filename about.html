@@ -157,25 +157,33 @@
 
   <script src="config.js"></script>
   <script>
+    function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
 
+        // Language toggle function
+        function toggleLanguage() {
+            const lang = document.querySelector('.language-switch').textContent.trim();
+            const elements = document.querySelectorAll('[data-fr][data-en]');
+            const isEnglish = lang === 'EN';
 
-    // Language toggle function
-    function toggleLanguage() {
-      const lang = document.querySelector('.language-switch').textContent.trim();
-      const elements = document.querySelectorAll('[data-fr][data-en]');
-      const isFrench = lang === 'FR';
+            elements.forEach(el => {
+                el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
+            });
 
-      elements.forEach(el => {
-        el.textContent = isFrench ? el.getAttribute('data-en') : el.getAttribute('data-fr');
-      });
+            document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN';
 
-      document.querySelector('.language-switch').textContent = isFrench ? 'EN' : 'FR';
-    }
+            // Update aboutText based on the selected language
+            const aboutTextElement = document.getElementById('aboutText');
+            aboutTextElement.textContent = isEnglish ? config.translations.fr.aboutText : config.translations.en.aboutText;
+        }
 
-    // Ensure correct language is set on load
-    document.addEventListener('DOMContentLoaded', () => {
-      toggleLanguage(); // Default to English
-    });
+        // Initial load to ensure the correct language is set
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleLanguage(); // Default to English
+        });
+
   </script>
 </body>
 </html>
