@@ -356,7 +356,7 @@ background-color: rgba(0,0,0,0.1);
   .about-content .contact-btn {
     display: inline-block;
     padding: 15px 30px;
-    background: #ff6f61;
+    background: #333;
     color: white;
     font-size: 1.2rem;
     border-radius: 5px;
