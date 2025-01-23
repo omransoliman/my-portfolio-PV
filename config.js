@@ -7,6 +7,19 @@ const config = {
     email: "omransoliman.pv@gmail.com",
     phone: "+33625965257",
 
+
+    homeSlideshow: {
+        images: [
+            'image1.jpg',
+            'image2.jpg',
+            'image3.jpg',
+            'image4.jpg',
+            'image5.jpg'
+        ],
+        interval: 5000, // Default 5 seconds, can be changed
+        transitionEffect: 'fade' // Optional transition effect
+    },
+
     // Translations
     translations: {
         fr: {
