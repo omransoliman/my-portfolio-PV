@@ -78,6 +78,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   <script>
+
+function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
     // Language toggle function (reused from index.html)
     function toggleLanguage() {
       const lang = document.querySelector('.language-switch').textContent.trim();

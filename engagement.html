@@ -57,6 +57,10 @@
   </main>
   <script src="config.js"></script>
   <script>
+function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
 
 document.addEventListener('DOMContentLoaded', function() {
     if (typeof config !== 'undefined' && config.picflowGalleryIds) {
