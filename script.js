@@ -30,7 +30,28 @@ item.textContent = categories[index];
 
 document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN'; // Toggle between 'EN' and 'FR'
 
+// Update About section
+const aboutTitle = document.getElementById('about-title');
+const aboutDescription = document.getElementById('about-description');
+const contactButton = document.getElementById('contact-btn-text');
+const aboutImage = document.getElementById('about-image');
 
+if (aboutTitle && aboutDescription && contactButton && aboutImage) {
+    aboutTitle.textContent = isEnglish 
+        ? config.translations.fr.about.title 
+        : config.translations.en.about.title;
+    aboutDescription.textContent = isEnglish 
+        ? config.translations.fr.about.description 
+        : config.translations.en.about.description;
+    contactButton.textContent = isEnglish 
+        ? config.translations.fr.about.contactButton 
+        : config.translations.en.about.contactButton;
+    aboutImage.src = isEnglish 
+        ? config.translations.fr.about.image 
+        : config.translations.en.about.image;
+} else {
+    console.error("One or more About section elements not found in the DOM.");
+}
 
 // Portfolio section titles
 const portfolioTitle = document.querySelector('#portfolio h2');
@@ -48,9 +69,6 @@ portfolioItems.forEach((item, index) => {
     item.textContent = titles[index];
 });
 
-// Update aboutText based on the selected language
-const aboutTextElement = document.getElementById('aboutText');
-aboutTextElement.textContent = isEnglish ? config.translations.fr.aboutText : config.translations.en.aboutText;
 
 
 }
@@ -125,4 +143,22 @@ if (!window.picflow) {
       }, function(error) {
          alert('Failed to send message: ' + JSON.stringify(error));
       });
+  });
+
+
+  // Inject content into the about page
+  document.addEventListener("DOMContentLoaded", () => {
+    const aboutTitle = document.getElementById("about-title");
+    const aboutDescription = document.getElementById("about-description");
+    const contactButton = document.getElementById("contact-btn-text");
+    const aboutImage = document.getElementById("about-image");
+  
+    if (aboutTitle && aboutDescription && contactButton && aboutImage) {
+      aboutTitle.textContent = aboutData.title;
+      aboutDescription.textContent = aboutData.description;
+      contactButton.textContent = aboutData.contactButton;
+      aboutImage.src = aboutData.image;
+    } else {
+      console.error("One or more elements not found in the DOM.");
+    }
   });

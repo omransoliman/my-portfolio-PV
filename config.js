@@ -35,6 +35,12 @@ const config = {
                 wedding: "Mariages",
                 portrait: "Portraits",
             },
+            about: {
+                title: "À propos de moi",
+                description: "Je suis Omran Soliman, un photographe et vidéaste passionné dédié à capturer les plus beaux moments de la vie. Avec des années d'expérience, je me spécialise dans les mariages, les fiançailles et les portraits. Mon objectif est de créer des souvenirs inoubliables à travers mon objectif. Travaillons ensemble pour donner vie à votre vision !",
+                contactButton: "Contactez-moi",
+                image: "https://picflow.media/images/resized/1280x853q85/0b3d84e2-2733-4df8-9c3b-55d96e98d04e.jpg"
+            },
             engagement: {
                 pageTitle: "Portfolio - Fiançailles",
                 pageSubtitle: "Découvrez nos magnifiques photographies de fiançailles mettant en valeur l'amour et la connexion.",
@@ -61,6 +67,12 @@ const config = {
                 wedding: "Weddings",
                 portrait: "Portraits",
             },
+            about: {
+                title: "About Me",
+                description: "I'm Omran Soliman, a passionate photographer and videographer dedicated to capturing life's most beautiful moments. With years of experience, I specialize in weddings, engagements, and portraits. My goal is to create unforgettable memories through my lens. Let's work together to bring your vision to life!",
+                contactButton: "Get in Touch",
+                image: "https://picflow.media/images/resized/1280x853q85/0b3d84e2-2733-4df8-9c3b-55d96e98d04e.jpg"
+            },
             engagement: {
                 pageTitle: "Portfolio - Engagements",
                 pageSubtitle: "Discover our stunning engagement photography showcasing love and connection.",
@@ -84,26 +96,5 @@ const config = {
     },
 };
 
-const aboutData = {
-    title: "About Me",
-    description: "I'm Omran Soliman, a passionate photographer and videographer dedicated to capturing life's most beautiful moments. With years of experience, I specialize in weddings, engagements, and portraits. My goal is to create unforgettable memories through my lens. Let's work together to bring your vision to life!",
-    contactButton: "Get in Touch",
-    image: "https://picflow.media/images/resized/1280x853q85/0b3d84e2-2733-4df8-9c3b-55d96e98d04e.jpg"
-  };
+
   
-  // Inject content into the page
-  document.addEventListener("DOMContentLoaded", () => {
-    const aboutTitle = document.getElementById("about-title");
-    const aboutDescription = document.getElementById("about-description");
-    const contactButton = document.getElementById("contact-btn-text");
-    const aboutImage = document.getElementById("about-image");
-  
-    if (aboutTitle && aboutDescription && contactButton && aboutImage) {
-      aboutTitle.textContent = aboutData.title;
-      aboutDescription.textContent = aboutData.description;
-      contactButton.textContent = aboutData.contactButton;
-      aboutImage.src = aboutData.image;
-    } else {
-      console.error("One or more elements not found in the DOM.");
-    }
-  });
