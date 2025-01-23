@@ -176,44 +176,7 @@
 
        
 
-        .contact-section, .about-section {
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-        .about-section {
-            background-image: url('https://images.pexels.com/photos/30358106/pexels-photo-30358106.jpeg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            height: 100vh; /* Makes the section full height */
-            justify-content: center;
-            align-items: center;
-            padding: 5rem 2rem;
-            text-align: center;
-        }
-
-        .about-title {
-            font-size: 2rem; /* Increased font size */
-            margin-right: 2rem;
-        }
-
-        .about-text {
-            font-size: 1.5rem; /* Increased font size */
-            max-width: 800px; /* Limits the width of the text content */
-        }
-
-        @media (max-width: 768px) {
-            .about-section {
-                padding: 2rem 1rem;
-            }
-
-            .about-title, .about-text {
-                margin: 0;
-                padding: 1rem 0;
-            }
-        }
+    
         .contact-section {
             display: flex;
             justify-content: space-between;
@@ -363,13 +326,6 @@
     
             <button type="submit">Send Message</button>
         </form>
-    </section>
-
-    <section id="about" class="about-section">
-        <h2 data-fr="À propos" data-en="About" class="about-title">À propos</h2>
-        <p id="aboutText" data-fr="Que ce soit pour un paysage..." data-en="Whether I am taking..." class="about-text">
-            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
-        </p>
     </section>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
