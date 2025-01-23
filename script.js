@@ -12,9 +12,16 @@ function toggleLanguage() {
     // Save the selected language to localStorage
     const selectedLanguage = isEnglish ? 'fr' : 'en';
     localStorage.setItem('language', selectedLanguage);
+    console.log('Language saved to localStorage:', selectedLanguage);
 
     // Update the UI based on the selected language
     updateUI(selectedLanguage);
+
+    // Update the language switch button text
+    const languageSwitch = document.querySelector('.language-switch');
+    if (languageSwitch) {
+        languageSwitch.textContent = selectedLanguage === 'en' ? 'FR' : 'EN';
+    }
 }
 
 // Update the UI based on the selected language
@@ -144,6 +151,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (languageSwitch) {
         languageSwitch.textContent = savedLanguage === 'en' ? 'FR' : 'EN';
     }
+
+    // Add event listener to the language switch button
+    if (languageSwitch) {
+        languageSwitch.addEventListener('click', toggleLanguage);
+    }
+
 
     // Initialize Picflow Gallery
     const picflowGalleryElement = document.querySelector('picflow-gallery');
