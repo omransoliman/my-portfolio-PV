@@ -6,147 +6,31 @@
   <title>Engagement Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
   <style>
-    :root {
-      --primary-color: #333;
-      --background-color: #fff;
-      --text-color: #333;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --primary-color: #fff;
-        --background-color: #1a1a1a;
-        --text-color: #fff;
-      }
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Audiowide', cursive;
-      line-height: 1.6;
-      color: var(--text-color);
-      background: var(--background-color);
-    }
-
-    nav {
-      position: fixed;
-      width: 100%;
-      background: var(--background-color);
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      color: var(--text-color);
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-color);
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      opacity: 0.8;
-    }
-
-    .language-switch {
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--text-color);
-      font-family: 'Audiowide', cursive;
-    }
-
-    .social-icon {
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-
-    main {
-      padding: 5rem 2rem;
-    }
-
-    .gallery-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
-    .dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: var(--background-color);
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    color: var(--text-color);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: rgba(0,0,0,0.1);
-}
   </style>
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav>
     <a href="index.html" class="logo">Omran Soliman</a>
-    <div class="nav-links">
-      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-      <div class="dropdown">
-        <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
-        <div class="dropdown-content">
-            <a href="wedding.html">Wedding</a>
-            <a href="engagement.html">Engagement</a>
-            <a href="portrait.html">Portrait</a>
+    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+    <div class="nav-links menu">
+        <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+        <div class="dropdown">
+            <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+            <div class="dropdown-content">
+                <a href="wedding.html">Wedding</a>
+                <a href="engagement.html">Engagement</a>
+                <a href="portrait.html">Portrait</a>
+            </div>
         </div>
+        <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+        <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+        <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+        <button class="language-switch" onclick="toggleLanguage()">EN</button>
     </div>
-      <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
-      <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
-      <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-      <button class="language-switch" onclick="toggleLanguage()">EN</button>
-    </div>
-  </nav>
+</nav>
 
   <!-- Main Content -->
   <main>
