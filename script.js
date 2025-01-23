@@ -101,15 +101,31 @@ function updateUI(language) {
 
 // Function to load the PicFlow script
 function loadPicFlowScript() {
-    const script = document.createElement('script');
-    script.src = 'https://picflow.com/embed/main.js';
-    script.type = 'module';
-    script.defer = true;
+    const picflowGalleryElement = document.querySelector('picflow-gallery');
 
-    // Append the script to the document's head
-    document.head.appendChild(script);
+    // Only load the script if the gallery element exists
+    if (picflowGalleryElement) {
+        const script = document.createElement('script');
+        script.src = 'https://picflow.com/embed/main.js';
+        script.type = 'module';
+        script.defer = true;
 
-    console.log('PicFlow script loaded successfully.');
+        script.onload = () => {
+            console.log('PicFlow script loaded successfully.');
+            
+            // Reinitialize translations after the gallery loads
+            const savedLanguage = localStorage.getItem('language') || 'en';
+            updateUI(savedLanguage);
+        };
+
+        script.onerror = () => {
+            console.error('Failed to load PicFlow script.');
+        };
+
+        document.head.appendChild(script);
+    } else {
+        console.log('PicFlow gallery element not found. Skipping script load.');
+    }
 }
 
 // Initialize the page
