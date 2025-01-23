@@ -4,9 +4,202 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Omran Soliman</title>
-  <link rel="stylesheet" href="styleO.css">
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #1a1a1a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Helvetica', sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    section {
+      padding: 50px 20px;
+    }
+
+    /* Menu Bar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    nav .nav-links a {
+      color: white;
+      font-size: 1rem;
+    }
+
+    nav .nav-links .dropdown-content {
+      display: none;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    nav .nav-links .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    nav .nav-links .social-icon {
+      font-size: 1.2rem;
+    }
+
+    nav .nav-links .language-switch {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* About Section */
+    .about {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 100px 20px;
+      background: #1a1a1a;
+    }
+
+    .about-image {
+      flex: 1;
+      max-width: 50%;
+      animation: zoomIn 2s ease-in-out;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-content {
+      flex: 1;
+      max-width: 50%;
+      padding-left: 50px;
+      animation: slideIn 1.5s ease-in-out;
+    }
+
+    .about-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .about-content p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .about-content .contact-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background: #ff6f61;
+      color: white;
+      font-size: 1.2rem;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .about-content .contact-btn:hover {
+      background: #ff4a3d;
+      transform: scale(1.1);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav .menu-toggle {
+        display: block;
+      }
+
+      nav .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      nav .nav-links.active {
+        display: flex;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-image, .about-content {
+        max-width: 100%;
+        padding-left: 0;
+      }
+
+      .about-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-content p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Consistent Menu Bar -->
@@ -32,17 +225,26 @@
 
   <!-- About Section -->
   <section class="about">
-    <div class="about-content">
-      <div class="about-image">
-        <img id="about-image" src="" alt="Omran Soliman">
-      </div>
-      <h1 id="about-title">Loading...</h1>
-      <p id="about-description">Loading...</p>
-      <a href="index.html#contact" class="contact-btn" id="contact-btn-text">Loading...</a>
+    <div class="about-image">
+      <img src="https://picflow.media/images/resized/1280x853q85/ffa24446-4e64-40e0-be63-0b6ac62efad6.jpg" alt="Omran Soliman">
     </div>
-    
+    <div class="about-content">
+      <h1>About Me</h1>
+      <p>I'm Omran Soliman, a passionate photographer and videographer dedicated to capturing life's most beautiful moments. With years of experience, I specialize in weddings, engagements, and portraits. My goal is to create unforgettable memories through my lens. Let's work together to bring your vision to life!</p>
+      <a href="index.html#contact" class="contact-btn">Get in Touch</a>
+    </div>
   </section>
-  <script src="configtest.js" defer></script>
-  <script src="script.js" defer></script>
+
+  <script>
+    // script.js
+    function toggleMenu() {
+      const menu = document.querySelector(".nav-links");
+      menu.classList.toggle("active");
+    }
+
+    function toggleLanguage() {
+      // Add your language toggle logic here
+    }
+  </script>
 </body>
 </html>
