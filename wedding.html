@@ -133,7 +133,14 @@
     <a href="index.html" class="logo">Omran Soliman</a>
     <div class="nav-links">
       <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-      <a href="index.html#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a>
+      <div class="dropdown">
+        <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+        <div class="dropdown-content">
+            <a href="wedding.html">Wedding</a>
+            <a href="engagement.html">Engagement</a>
+            <a href="portrait.html">Portrait</a>
+        </div>
+    </div>
       <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
       <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
       <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -194,6 +201,22 @@ document.addEventListener('DOMContentLoaded', function() {
       elements.forEach(el => {
         el.textContent = isFrench ? el.getAttribute('data-en') : el.getAttribute('data-fr');
       });
+
+      // Translate dropdown menu
+    const dropdownTrigger = document.querySelector('.dropdown > a');
+    dropdownTrigger.textContent = isEnglish 
+        ? config.translations.fr.menu.portfolio 
+        : config.translations.en.menu.portfolio;
+
+    // Translate portfolio dropdown items if needed
+    const dropdownItems = document.querySelectorAll('.dropdown-content a');
+    dropdownItems.forEach((item, index) => {
+        const categories = isEnglish 
+            ? [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait]
+            : [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait];
+        
+        item.textContent = categories[index];
+    });
 
       document.querySelector('.language-switch').textContent = isFrench ? 'EN' : 'FR';
     }
