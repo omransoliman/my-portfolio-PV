@@ -87,6 +87,19 @@ function updateUI(language) {
     });
 }
 
+// Function to load the PicFlow script
+function loadPicFlowScript() {
+    const script = document.createElement('script');
+    script.src = 'https://picflow.com/embed/main.js';
+    script.type = 'module';
+    script.defer = true;
+
+    // Append the script to the document's head
+    document.head.appendChild(script);
+
+    console.log('PicFlow script loaded successfully.');
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     // Get the saved language preference from localStorage
@@ -156,15 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+    // Load the PicFlow script after everything else is initialized
+    loadPicFlowScript();
 });
 
-// Create a new script element
-const script = document.createElement('script');
-
-// Set the script attributes
-script.src = 'https://picflow.com/embed/main.js';
-script.type = 'module';
-script.defer = true;
-
-// Append the script to the document's head or body
-document.head.appendChild(script); // or document.body.appendChild(script);
