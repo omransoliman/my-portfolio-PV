@@ -314,10 +314,6 @@ background-color: rgba(0,0,0,0.1);
   }
   
 
-   .about-section {
-          padding: 5rem 2rem;
-          text-align: center;
-      }
       .about-section {
           background-image: url('https://images.pexels.com/photos/30358106/pexels-photo-30358106.jpeg');
           background-size: cover;
