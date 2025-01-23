@@ -289,3 +289,66 @@ display: block;
 .dropdown-content a:hover {
 background-color: rgba(0,0,0,0.1);
 }
+
+.language-switch {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-family: 'Audiowide', cursive;
+  }
+
+  .social-icon {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+
+  main {
+    padding: 5rem 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+
+   .about-section {
+          padding: 5rem 2rem;
+          text-align: center;
+      }
+      .about-section {
+          background-image: url('https://images.pexels.com/photos/30358106/pexels-photo-30358106.jpeg');
+          background-size: cover;
+          background-position: center;
+          color: white;
+          display: flex;
+          flex-direction: column;
+          height: 100vh; /* Makes the section full height */
+          justify-content: center;
+          align-items: center;
+          padding: 5rem 2rem;
+          text-align: center;
+      }
+
+      .about-title {
+          font-size: 2rem; /* Increased font size */
+          margin-right: 2rem;
+      }
+
+      .about-text {
+          font-size: 1.5rem; /* Increased font size */
+          max-width: 800px; /* Limits the width of the text content */
+      }
+
+      @media (max-width: 768px) {
+          .about-section {
+              padding: 2rem 1rem;
+          }
+
+          .about-title, .about-text {
+              margin: 0;
+              padding: 1rem 0;
+          }
+      }
