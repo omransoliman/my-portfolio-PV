@@ -116,18 +116,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const picflowGalleryElement = document.querySelector('picflow-gallery');
 
     if (picflowGalleryElement) {
-        // Get the gallery ID from the data attribute
         const galleryIdKey = picflowGalleryElement.getAttribute('data-gallery-id');
-
-        // Get the corresponding gallery ID from config.js
         const galleryId = config.picflowGalleryIds[galleryIdKey];
 
         if (galleryId) {
             picflowGalleryElement.setAttribute('id', galleryId);
+            console.log('Gallery ID set successfully:', galleryId);
         } else {
             console.error(`Gallery ID not found for key: ${galleryIdKey}`);
         }
+    } else {
+        console.error('PicFlow gallery element not found in the DOM.');
     }
+    // Load the PicFlow script
+    loadPicFlowScript();
 
     // Initialize Home Page Slideshow
     const homeSection = document.getElementById('home');
@@ -169,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
-    // Load the PicFlow script after everything else is initialized
-    loadPicFlowScript();
+
 });
 
