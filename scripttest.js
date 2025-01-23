@@ -29,7 +29,7 @@ function toggleLanguage() {
     updateUI(newLanguage);
 
     // Update the language switch button text
-    languageSwitch.textContent = newLanguage === 'en' ? 'FR' : 'EN';
+    languageSwitch.textContent = newLanguage === 'en' ? 'EN' : 'FR';
     console.log('Language switch button text updated to:', languageSwitch.textContent);
 }
 
