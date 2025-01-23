@@ -3,47 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>about Portfolio</title>
+  <title>About - Omran Soliman</title>
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css"> 
-  <style>
-
-  </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
+  <!-- Consistent Menu Bar -->
   <nav>
     <a href="index.html" class="logo">Omran Soliman</a>
     <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     <div class="nav-links menu">
-        <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-        <div class="dropdown">
-            <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
-            <div class="dropdown-content">
-                <a href="wedding.html">Wedding</a>
-                <a href="engagement.html">Engagement</a>
-                <a href="portrait.html">Portrait</a>
-            </div>
+      <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+      <div class="dropdown">
+        <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+        <div class="dropdown-content">
+          <a href="wedding.html">Wedding</a>
+          <a href="engagement.html">Engagement</a>
+          <a href="portrait.html">Portrait</a>
         </div>
-        <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
-        <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
-        <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-        <button class="language-switch" onclick="toggleLanguage()">EN</button>
+      </div>
+      <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+      <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+      <button class="language-switch" onclick="toggleLanguage()">EN</button>
     </div>
-</nav>
+  </nav>
 
-  <!-- Main Content -->
-  <main>
-    <section id="about" class="about-section">
-        <h2 data-fr="À propos" data-en="About" class="about-title">À propos</h2>
-        <p id="aboutText" data-fr="Que ce soit pour un paysage..." data-en="Whether I am taking..." class="about-text">
-            Que ce soit pour un paysage, un portrait ou un moment spontané, mon objectif est toujours de créer des œuvres significatives et percutantes.
-        </p>
-    </section>
-  </main>
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-image">
+      <img id="about-image" src="" alt="Omran Soliman">
+    </div>
+    <div class="about-content">
+      <h1 id="about-title"></h1>
+      <p id="about-description"></p>
+      <a href="index.html#contact" class="contact-btn" id="contact-btn-text">Get in Touch</a>
+    </div>
+  </section>
 
   <script src="config.js" defer></script>
-    <script src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
