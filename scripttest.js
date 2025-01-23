@@ -172,6 +172,24 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Language switch button not found.');
     }
 
+
+    // Initialize Picflow Gallery
+    const picflowGalleryElement = document.querySelector('picflow-gallery');
+
+    if (picflowGalleryElement) {
+        const galleryIdKey = picflowGalleryElement.getAttribute('data-gallery-id');
+        const galleryId = config.picflowGalleryIds[galleryIdKey];
+
+        console.log('Gallery ID :', galleryId); 
+        if (galleryId) {
+            picflowGalleryElement.setAttribute('id', galleryId);
+            console.log('Gallery ID set successfully:', galleryId);
+        } else {
+            console.error(`Gallery ID not found for key: ${galleryIdKey}`);
+        }
+    } else {
+        console.error('PicFlow gallery element not found in the DOM.');
+    }
     // Load the PicFlow script (only if the gallery element exists)
     loadPicFlowScript();
 
