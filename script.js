@@ -158,4 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-<script src="https://picflow.com/embed/main.js" type="module" defer></script>
+// Create a new script element
+const script = document.createElement('script');
+
+// Set the script attributes
+script.src = 'https://picflow.com/embed/main.js';
+script.type = 'module';
+script.defer = true;
+
+// Append the script to the document's head or body
+document.head.appendChild(script); // or document.body.appendChild(script);
