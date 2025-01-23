@@ -266,6 +266,34 @@
                 width: 100%;
             }
         }
+        .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--background-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0,0,0,0.1);
+}
     </style>
 </head>
 <body>
@@ -274,7 +302,14 @@
         <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div class="nav-links menu">
             <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-            <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio</a>
+            <div class="dropdown">
+                <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+                <div class="dropdown-content">
+                    <a href="wedding.html">Wedding</a>
+                    <a href="engagement.html">Engagement</a>
+                    <a href="portrait.html">Portrait</a>
+                </div>
+            </div>
             <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
             <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
             <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -366,24 +401,25 @@
 
     <script src="config.js"></script>
     <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-    const slideshowContainer = document.getElementById('home');
-    const images = config.homeSlideshow.images;
-    const interval = config.homeSlideshow.interval;
-    let currentIndex = 0;
-
-    function changeSlide() {
-        slideshowContainer.style.backgroundImage = `url(${images[currentIndex]})`;
-        currentIndex = (currentIndex + 1) % images.length;
-    }
-
-    // Initial image
-    changeSlide();
-    
-    // Set interval for slideshow
-    setInterval(changeSlide, interval);
-});
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeSection = document.getElementById('home');
+            const images = config.homeSlideshow.images;
+            const interval = config.homeSlideshow.interval || 5000;
+            let currentIndex = 0;
+        
+            function changeSlide() {
+                homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+                currentIndex = (currentIndex + 1) % images.length;
+            }
+        
+            // Only start slideshow if images exist
+            if (images && images.length > 0) {
+                changeSlide(); // Initial image
+                setInterval(changeSlide, interval);
+            }
+        });
+        </script>
+    <script>
 
 
         function toggleMenu() {
