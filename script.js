@@ -45,7 +45,11 @@ function updateUI(language) {
 
     // Toggle language switch text
     const languageSwitch = document.querySelector('.language-switch');
-    languageSwitch.textContent = isEnglish ? 'FR' : 'EN';
+    if (languageSwitch) {
+        languageSwitch.textContent = isEnglish ? 'FR' : 'EN';
+    } else {
+        console.error('Language switch element not found in the DOM.');
+    }
 
     // Update About section
     const aboutTitle = document.getElementById('about-title');
@@ -70,21 +74,29 @@ function updateUI(language) {
         console.error("One or more About section elements not found in the DOM.");
     }
 
-    // Portfolio section titles
+    // Portfolio section titles (only if the element exists)
     const portfolioTitle = document.querySelector('#portfolio h2');
-    portfolioTitle.textContent = isEnglish 
-        ? config.translations.en.menu.portfolio 
-        : config.translations.fr.menu.portfolio;
+    if (portfolioTitle) {
+        portfolioTitle.textContent = isEnglish 
+            ? config.translations.en.menu.portfolio 
+            : config.translations.fr.menu.portfolio;
+    } else {
+        console.log('Portfolio section not found on this page.'); // Optional: Log a message if the element is missing
+    }
 
-    // Portfolio item titles
+    // Portfolio item titles (only if the elements exist)
     const portfolioItems = document.querySelectorAll('.portfolio-item .portfolio-title');
-    portfolioItems.forEach((item, index) => {
-        const titles = isEnglish 
-            ? [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait]
-            : [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait];
+    if (portfolioItems.length > 0) {
+        portfolioItems.forEach((item, index) => {
+            const titles = isEnglish 
+                ? [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait]
+                : [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait];
 
-        item.textContent = titles[index];
-    });
+            item.textContent = titles[index];
+        });
+    } else {
+        console.log('Portfolio items not found on this page.'); // Optional: Log a message if the elements are missing
+    }
 }
 
 // Function to load the PicFlow script
