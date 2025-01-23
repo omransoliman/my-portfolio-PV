@@ -1,20 +1,20 @@
-// Toggle menu function
 function toggleMenu() {
     const menu = document.querySelector('.menu');
     menu.classList.toggle('active');
 }
-
-// Language toggle function
+// Language toggle function (reused from index.html)
 function toggleLanguage() {
-    const lang = document.querySelector('.language-switch').textContent.trim();
-    const isEnglish = lang === 'EN'; // Check if the current language is English
+const lang = document.querySelector('.language-switch').textContent.trim();
+const isEnglish = lang === 'EN'; // Fix check to use 'EN' correctly
 
-    // Save the selected language to localStorage
-    const selectedLanguage = isEnglish ? 'fr' : 'en';
-    localStorage.setItem('language', selectedLanguage);
+// Save the selected language to localStorage
+const selectedLanguage = isEnglish ? 'fr' : 'en';
+localStorage.setItem('language', selectedLanguage);
 
-    // Update the UI based on the selected language
-    updateUI(selectedLanguage);
+// Update the UI based on the selected language
+updateUI(selectedLanguage);
+
+
 }
 
 // Update the UI based on the selected language
@@ -44,8 +44,7 @@ function updateUI(language) {
     });
 
     // Toggle language switch text
-    const languageSwitch = document.querySelector('.language-switch');
-    languageSwitch.textContent = isEnglish ? 'FR' : 'EN';
+    document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN';
 
     // Update About section
     const aboutTitle = document.getElementById('about-title');
@@ -98,56 +97,74 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the language switch button text
     const languageSwitch = document.querySelector('.language-switch');
     languageSwitch.textContent = savedLanguage === 'en' ? 'FR' : 'EN';
+});
 
-    // Initialize Picflow Gallery if applicable
+
+document.addEventListener('DOMContentLoaded', function() {
     if (typeof config !== 'undefined' && config.picflowGalleryIds) {
+        // Extract the page name from the URL path
         const pageName = window.location.pathname.split('/').pop().replace('.html', '');
+
+        // Get the corresponding gallery ID from config.js
         const galleryId = config.picflowGalleryIds[pageName];
         const picflowGalleryElement = document.querySelector('picflow-gallery');
 
+        // If the element and gallery ID are found, set the gallery ID dynamically
         if (picflowGalleryElement && galleryId) {
             picflowGalleryElement.setAttribute('id', galleryId);
         }
     }
+});
 
-    // Initialize Home Page Slideshow
+
+// Slide show for home page
+document.addEventListener('DOMContentLoaded', function() {
     const homeSection = document.getElementById('home');
-    if (homeSection && config.homeSlideshow?.images?.length > 0) {
-        const images = config.homeSlideshow.images;
-        const interval = config.homeSlideshow.interval || 5000;
-        let currentIndex = 0;
+    const images = config.homeSlideshow.images;
+    const interval = config.homeSlideshow.interval || 5000;
+    let currentIndex = 0;
 
-        function changeSlide() {
-            homeSection.classList.add('fade-out');
-            
-            setTimeout(() => {
-                homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
-                homeSection.classList.remove('fade-out');
-                currentIndex = (currentIndex + 1) % images.length;
-            }, 1000); // Match the transition time
-        }
+    function changeSlide() {
+        homeSection.classList.add('fade-out');
+        
+        setTimeout(() => {
+            homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+            homeSection.classList.remove('fade-out');
+            currentIndex = (currentIndex + 1) % images.length;
+        }, 1000); // Match the transition time
+    }
 
+    if (images && images.length > 0) {
         changeSlide(); // Initial image
         setInterval(changeSlide, interval + 1000);
     }
-
-    // Initialize EmailJS
-    (function(){
-        emailjs.init("E-RvIRcSZ7GCz-Yz_");
-    })();
-
-    // Handle Contact Form Submission
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            emailjs.sendForm('service_kt9zzgp', 'template_xychznp', this)
-                .then(function(response) {
-                    alert('Message sent successfully!');
-                }, function(error) {
-                    alert('Failed to send message: ' + JSON.stringify(error));
-                });
-        });
-    }
 });
+
+
+// Embed Picflow Portrait Gallery 
+if (!window.picflow) {
+    window.picflow = true;
+    var s = document.createElement("script");
+    s.src = "https://picflow.com/embed/main.js";
+    s.type = "module";
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  // EmailJS
+  (function(){
+    emailjs.init("E-RvIRcSZ7GCz-Yz_");
+  })();
+
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_kt9zzgp', 'template_xychznp', this)
+      .then(function(response) {
+         alert('Message sent successfully!');
+      }, function(error) {
+         alert('Failed to send message: ' + JSON.stringify(error));
+      });
+  });
+
+
