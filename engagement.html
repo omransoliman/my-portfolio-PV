@@ -78,14 +78,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-    // Language toggle function
-    function toggleLanguage() {
+   // Language toggle function (reused from index.html)
+   function toggleLanguage() {
       const lang = document.querySelector('.language-switch').textContent.trim();
       const elements = document.querySelectorAll('[data-fr][data-en]');
-      const isFrench = lang === 'FR';
+      const isEnglish = lang === 'EN'; // Fix check to use 'EN' correctly
 
       elements.forEach(el => {
-        el.textContent = isFrench ? el.getAttribute('data-en') : el.getAttribute('data-fr');
+        el.textContent = isEnglish ? el.getAttribute('data-fr') : el.getAttribute('data-en');
       });
 
       // Translate dropdown menu
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.textContent = categories[index];
     });
 
-      document.querySelector('.language-switch').textContent = isFrench ? 'EN' : 'FR';
+      document.querySelector('.language-switch').textContent = isEnglish ? 'FR' : 'EN'; // Toggle between 'EN' and 'FR'
     }
 
     // Ensure correct language is set on load
