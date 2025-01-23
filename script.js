@@ -20,18 +20,24 @@ function toggleLanguage() {
 // Update the UI based on the selected language
 function updateUI(language) {
     const isEnglish = language === 'en';
+    console.log('Updating UI for language:', isEnglish ? 'English' : 'French');
 
     // Translate menu and other elements
     const elements = document.querySelectorAll('[data-fr][data-en]');
+    console.log('Found translatable elements:', elements.length);
     elements.forEach(el => {
         el.textContent = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-fr');
     });
 
     // Translate dropdown menu
     const dropdownTrigger = document.querySelector('.dropdown > a');
-    dropdownTrigger.textContent = isEnglish 
-        ? config.translations.en.menu.portfolio 
-        : config.translations.fr.menu.portfolio;
+    if (dropdownTrigger) {
+        dropdownTrigger.textContent = isEnglish 
+            ? config.translations.en.menu.portfolio 
+            : config.translations.fr.menu.portfolio;
+    } else {
+        console.error('Dropdown trigger element not found in the DOM.');
+    }
 
     // Translate portfolio dropdown items if needed
     const dropdownItems = document.querySelectorAll('.dropdown-content a');
@@ -103,8 +109,9 @@ function updateUI(language) {
 function loadPicFlowScript() {
     const picflowGalleryElement = document.querySelector('picflow-gallery');
 
-    // Only load the script if the gallery element exists
     if (picflowGalleryElement) {
+        console.log('PicFlow gallery element found. Loading script...');
+        
         const script = document.createElement('script');
         script.src = 'https://picflow.com/embed/main.js';
         script.type = 'module';
@@ -112,10 +119,6 @@ function loadPicFlowScript() {
 
         script.onload = () => {
             console.log('PicFlow script loaded successfully.');
-            
-            // Reinitialize translations after the gallery loads
-            const savedLanguage = localStorage.getItem('language') || 'en';
-            updateUI(savedLanguage);
         };
 
         script.onerror = () => {
