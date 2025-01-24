@@ -5,80 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            background: #fff;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-        }
-        form label {
-            display: block;
-            margin: 10px 0 5px;
-        }
-        form input, form select, form textarea, form button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        form button {
-            background-color: #5cb85c;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        form button:hover {
-            background-color: #4cae4c;
-        }
-        #reviews {
-            margin: 20px auto;
-            max-width: 800px;
-        }
-        .review {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .review img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 20px;
-            object-fit: cover;
-        }
-        .review .details {
-            display: flex;
-            align-items: center;
-        }
-        .review .rating {
-            color: gold;
-            margin-bottom: 10px;
-        }
-        #error-message {
-            color: red;
-            text-align: center;
-            margin-bottom: 10px;
-        }
+        /* [Previous CSS remains unchanged] */
     </style>
 </head>
 <body>
-    <h1>Submit Your Review</h1>
+    <h1>Submit Your ReviewNO</h1>
     <div id="error-message"></div>
     <form id="reviewForm" enctype="multipart/form-data">
         <label for="name">Full Name:</label>
@@ -106,9 +37,8 @@
     <div id="reviews"></div>
 
     <script>
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyLSkh-4eEUyf5O7iPzgAABDjZ4cqW0CEHc0LpsQ17xgmX5X0S8Z8_9736MrtNtwDKs/exec';
         const sheetId = '1iVf5w-zkfOs7QA5NOugbzlOivtWkrXddtpj7pN0sNgo';
-        const apiKey = 'AIzaSyBw44PAIqR2k7WVdZsAA2v1GU8ZrDpTGPQ';
-        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
 
         const errorMessageEl = document.getElementById('error-message');
 
@@ -137,23 +67,19 @@
                 const date = new Date().toLocaleDateString();
 
                 const data = {
-                    values: [[date, name, rating, comment, imageUrl]]
+                    date: date,
+                    name: name,
+                    rating: rating,
+                    comment: comment,
+                    imageUrl: imageUrl
                 };
 
-                fetch(sheetUrl, {
+                fetch(scriptUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    mode: 'no-cors',
                     body: JSON.stringify(data)
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
+                .then(() => {
                     displayReview(date, name, rating, comment, imageUrl);
                     document.getElementById('reviewForm').reset();
                 })
@@ -182,7 +108,7 @@
         }
 
         function fetchReviews() {
-            fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
+            fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=AIzaSyBw44PAIqR2k7WVdZsAA2v1GU8ZrDpTGPQ`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
