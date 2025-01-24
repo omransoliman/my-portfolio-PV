@@ -5,176 +5,274 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews Page</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f6f7;
+            --card-color: #ffffff;
+            --text-color: #2c3e50;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        header {
-            text-align: center;
-            padding: 50px 0;
-            background: #333;
-            color: #fff;
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            line-height: 1.6;
+            color: var(--text-color);
         }
-        #reviews {
-            position: relative;
-            background: url('https://via.placeholder.com/1920x1080') no-repeat fixed;
-            background-size: cover;
-            padding: 50px 20px;
-        }
-        .review {
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+        .container {
             max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .review img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 20px;
-        }
-        .review .rating {
-            color: gold;
-            margin-bottom: 10px;
-        }
-        #openModalBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #5cb85c;
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: 15% auto;
+            margin: 0 auto;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
             border-radius: 10px;
         }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+
+        .review-form {
+            background-color: var(--card-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
         }
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
+
+        .form-group {
+            margin-bottom: 20px;
         }
-        form label, form input, form select, form textarea, form button {
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-control {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: all 0.3s ease;
         }
-        form button {
-            background-color: #5cb85c;
-            color: #fff;
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
-        form button:hover {
-            background-color: #4cae4c;
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        #reviews {
+            display: grid;
+            gap: 20px;
+        }
+
+        .review {
+            background-color: var(--card-color);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review .details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .review img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .review .rating {
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+
+        #error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .review .details {
+                flex-direction: column;
+                text-align: center;
+            }
+            .review img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Customer Reviews</h1>
-    </header>
-    <section id="reviews">
-        <div class="review">
-            <img src="https://via.placeholder.com/60" alt="User Image">
-            <h3>John Doe</h3>
-            <div class="rating">⭐⭐⭐⭐⭐</div>
-            <p>Great photographer! Loved the photos.</p>
+    <div class="container">
+        <div class="header">
+            <h1>Customer Reviews</h1>
         </div>
-        <!-- Repeat for more reviews -->
-    </section>
-    <button id="openModalBtn">Submit a Review</button>
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Submit Your Review</h2>
-            <form id="reviewForm" enctype="multipart/form-data">
-                <label for="name">Full Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="rating">Rating:</label>
-                <select id="rating" name="rating" required>
-                    <option value="5">⭐⭐⭐⭐⭐</option>
-                    <option value="4">⭐⭐⭐⭐</option>
-                    <option value="3">⭐⭐⭐</option>
-                    <option value="2">⭐⭐</option>
-                    <option value="1">⭐</option>
+        
+        <div id="error-message"></div>
+        
+        <form id="reviewForm" class="review-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" class="form-control" required maxlength="50">
+            </div>
+            
+            <div class="form-group">
+                <label for="rating">Rating</label>
+                <select id="rating" class="form-control" required>
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ Great</option>
+                    <option value="3">⭐⭐⭐ Good</option>
+                    <option value="2">⭐⭐ Fair</option>
+                    <option value="1">⭐ Poor</option>
                 </select>
-                <label for="image">Upload Image:</label>
-                <input type="file" id="image" name="image" accept="image/*" required>
-                <label for="comment">Comment:</label>
-                <textarea id="comment" name="comment" required></textarea>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="image">Profile Image (Max 5MB)</label>
+                <input type="file" id="image" class="form-control" accept="image/*" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="comment">Your Review</label>
+                <textarea id="comment" class="form-control" required maxlength="500" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Review</button>
+        </form>
+        
+        <div id="reviews"></div>
     </div>
+
     <script>
-        // Parallax Scrolling Effect
-        window.addEventListener('scroll', function() {
-            const parallax = document.getElementById('reviews');
-            const scrollPosition = window.pageYOffset;
-            parallax.style.backgroundPositionY = -scrollPosition * 0.5 + 'px';
-        });
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyLSkh-4eEUyf5O7iPzgAABDjZ4cqW0CEHc0LpsQ17xgmX5X0S8Z8_9736MrtNtwDKs/exec';
+        const sheetId = '1iVf5w-zkfOs7QA5NOugbzlOivtWkrXddtpj7pN0sNgo';
 
-        // Modal Functionality
-        const modal = document.getElementById('modal');
-        const btn = document.getElementById('openModalBtn');
-        const span = document.getElementsByClassName('close')[0];
+        const errorMessageEl = document.getElementById('error-message');
 
-        btn.onclick = function() {
-            modal.style.display = 'block';
-        }
-
-        span.onclick = function() {
-            modal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // Form Submission (Placeholder for actual form handling logic)
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            // Your form submission logic here
-            alert('Review submitted!');
-            modal.style.display = 'none';
+            errorMessageEl.textContent = '';
+
+            const name = document.getElementById('name').value.trim();
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value.trim();
+            const imageFile = document.getElementById('image').files[0];
+
+            if (!name || !comment) {
+                errorMessageEl.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            if (imageFile.size > 5 * 1024 * 1024) {
+                errorMessageEl.textContent = 'Image must be less than 5MB.';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                const date = new Date().toLocaleDateString();
+
+                const data = {
+                    date: date,
+                    name: name,
+                    rating: rating,
+                    comment: comment,
+                    imageUrl: imageUrl
+                };
+
+                fetch(scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(data)
+                })
+                .then(() => {
+                    displayReview(date, name, rating, comment, imageUrl);
+                    document.getElementById('reviewForm').reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    errorMessageEl.textContent = 'Failed to submit review. Please try again.';
+                });
+            }
+            reader.readAsDataURL(imageFile);
         });
+
+        function displayReview(date, name, rating, comment, imageUrl) {
+            const reviewsContainer = document.getElementById('reviews');
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('review');
+            reviewElement.innerHTML = `
+                <div class="details">
+                    <img src="${imageUrl}" alt="User Image">
+                    <h3>${name}</h3>
+                </div>
+                <div class="rating">${'⭐'.repeat(rating)}</div>
+                <p><strong>Date:</strong> ${date}</p>
+                <p>${comment}</p>
+            `;
+            reviewsContainer.insertBefore(reviewElement, reviewsContainer.firstChild);
+        }
+
+        function fetchReviews() {
+            fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=AIzaSyBw44PAIqR2k7WVdZsAA2v1GU8ZrDpTGPQ`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const reviews = data.values ? data.values.slice(1) : [];
+                    reviews.reverse().forEach(review => {
+                        const [date, name, rating, comment, imageUrl] = review;
+                        displayReview(date, name, rating, comment, imageUrl);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching reviews:', error);
+                    errorMessageEl.textContent = 'Failed to load reviews.';
+                });
+        }
+
+        fetchReviews();
     </script>
 </body>
 </html>
