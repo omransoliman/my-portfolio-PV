@@ -72,7 +72,7 @@
     </style>
 </head>
 <body>
-    <h1>Submit Your Review</h1>
+    <h1>Submit Your ReviewMM</h1>
     <form id="reviewForm" enctype="multipart/form-data">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required>
@@ -157,7 +157,7 @@
         }
 
         // Fetch existing reviews from Google Sheets
-        fetch(sheetUrl.replace(':append', ''))
+        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
             .then(response => response.json())
             .then(data => {
                 console.log('Fetched reviews:', data);
