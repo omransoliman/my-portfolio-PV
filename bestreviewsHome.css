@@ -1,0 +1,53 @@
+/* Add this CSS to your existing styles */
+.reviews-section {
+    padding: 2rem 0;
+    background: var(--background-color);
+    text-align: center;
+}
+
+.reviews-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.reviews-section .outerdiv {
+    padding: 1rem 0;
+}
+
+.reviews-section .innerdiv {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+}
+
+.reviews-section .eachdiv {
+    padding: 1rem;
+    border-radius: 0.8rem;
+    box-shadow: 5px 5px 20px #6d6b6b6b;
+    color: white;
+}
+
+.reviews-section .div1 {
+    background: #733FC8;
+    background-image: url(https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/bg-pattern-quotation.svg);
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+}
+
+.reviews-section .div2 {
+    background: #49556B;
+}
+
+.reviews-section .div3 {
+    background: white;
+    color: black;
+}
+
+.reviews-section .div4 {
+    background: white;
+    color: black;
+}
+
+.reviews-section .div5 {
+    background: #18202D;
+}
