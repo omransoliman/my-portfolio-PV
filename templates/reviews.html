@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews Page</title>
+    <title>Customer Reviews</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
             background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
         }
         .reviews-container {
             display: grid;
@@ -29,14 +33,22 @@
             border-radius: 50%;
             object-fit: cover;
         }
+        .review h3 {
+            margin: 10px 0;
+            color: #333;
+        }
         .rating {
             color: #ffc107; /* Gold color for stars */
             font-size: 24px;
         }
+        .review p {
+            color: #555;
+            font-size: 16px;
+        }
         .review small {
             display: block;
             margin-top: 10px;
-            color: #666;
+            color: #777;
         }
         #review-form {
             margin-top: 20px;
@@ -44,6 +56,9 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             background-color: #fff;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         #review-form input, #review-form textarea {
             width: 100%;
@@ -51,6 +66,10 @@
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 16px;
+        }
+        #review-form input[type="number"] {
+            width: 100px;
         }
         #review-form button {
             padding: 10px 20px;
@@ -59,6 +78,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
         }
         #review-form button:hover {
             background-color: #0056b3;
