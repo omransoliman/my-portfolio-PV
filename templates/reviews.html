@@ -58,7 +58,7 @@
         const sheetId = '1UF8AcIp2Qxp7LahFXfiTyiuRHO0zeInfEdbIKJxXd8s';
         const sheetName = 'Sheet1';
         const apiKey = 'AIzaSyCTji2mtT9IKBlnN46tDfqz87gojMLBLzQ';
-        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=${apiKey}`;
+        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}:batchUpdate?key=${apiKey}`;
 
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -73,20 +73,36 @@
                 const imageUrl = e.target.result;
                 const date = new Date().toLocaleDateString();
 
-                // Append review to Google Sheet
+                // Create data object for appending to Google Sheet
+                const values = [
+                    [date, name, rating, comment, imageUrl]
+                ];
+
                 fetch(sheetUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                        values: [[date, name, rating, comment, imageUrl]]
+                        requests: [{
+                            appendCells: {
+                                sheetId: '0',
+                                rows: [{
+                                    values: values.map(value => ({ userEnteredValue: { stringValue: value } }))
+                                }],
+                                fields: 'userEnteredValue'
+                            }
+                        }]
                     })
                 })
                 .then(response => response.json())
                 .then(() => {
                     // Display the new review
                     displayReview(date, name, rating, comment, imageUrl);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
 
                 document.getElementById('reviewForm').reset();
@@ -117,6 +133,9 @@
                     const [date, name, rating, comment, imageUrl] = review;
                     displayReview(date, name, rating, comment, imageUrl);
                 });
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
     </script>
 </body>
