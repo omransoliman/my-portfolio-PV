@@ -6,7 +6,7 @@
     <title>Reviews Page</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
@@ -72,7 +72,7 @@
     </style>
 </head>
 <body>
-    <h1>Submit Your Review</h1>
+    <h1>Submit Your ReviewOS</h1>
     <form id="reviewForm" enctype="multipart/form-data">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required>
@@ -95,7 +95,7 @@
     <script>
         const sheetId = '1UF8AcIp2Qxp7LahFXfiTyiuRHO0zeInfEdbIKJxXd8s';
         const apiKey = 'AIzaSyCTji2mtT9IKBlnN46tDfqz87gojMLBLzQ';
-        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
+        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
 
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -110,22 +110,27 @@
                 const imageUrl = e.target.result;
                 const date = new Date().toLocaleDateString();
 
-                // Fetch token from Google Sheets API
+                const data = {
+                    values: [[date, name, rating, comment, imageUrl]]
+                };
+
+                // Append review to Google Sheet
                 fetch(sheetUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        values: [[date, name, rating, comment, imageUrl]]
-                    })
+                    body: JSON.stringify(data)
                 })
                 .then(response => response.json())
-                .then(() => {
+                .then(data => {
+                    console.log('Success:', data);
                     // Display the new review
                     displayReview(date, name, rating, comment, imageUrl);
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
                 document.getElementById('reviewForm').reset();
             }
@@ -149,7 +154,7 @@
         }
 
         // Fetch existing reviews from Google Sheets
-        fetch(sheetUrl)
+        fetch(sheetUrl.replace(':append', ''))
             .then(response => response.json())
             .then(data => {
                 const reviews = data.values;
@@ -158,7 +163,9 @@
                     displayReview(date, name, rating, comment, imageUrl);
                 });
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+            });
     </script>
 </body>
 </html>
