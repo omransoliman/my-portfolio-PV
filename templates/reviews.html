@@ -78,7 +78,7 @@
     </style>
 </head>
 <body>
-    <h1>Submit Your Review</h1>
+    <h1>Submit Your ReviewOS</h1>
     <div id="error-message"></div>
     <form id="reviewForm" enctype="multipart/form-data">
         <label for="name">Full Name:</label>
@@ -106,10 +106,7 @@
     <div id="reviews"></div>
 
     <script>
-        const sheetId = '1UF8AcIp2Qxp7LahFXfiTyiuRHO0zeInfEdbIKJxXd8s';
-        const apiKey = 'AIzaSyCTji2mtT9IKBlnN46tDfqz87gojMLBLzQ';
-        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
-
+        const appsScriptUrl = 'YOUR_APPS_SCRIPT_URL'; // Replace with your Google Apps Script Web App URL
         const errorMessageEl = document.getElementById('error-message');
 
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
@@ -134,66 +131,56 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 const imageUrl = e.target.result;
-                const date = new Date().toLocaleDateString();
 
+                // Send data to Apps Script
                 const data = {
-                    values: [[date, name, rating, comment, imageUrl]]
+                    name,
+                    rating,
+                    comment,
+                    imageUrl,
                 };
 
-                fetch(sheetUrl, {
+                fetch(appsScriptUrl, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
                 })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
-                    displayReview(date, name, rating, comment, imageUrl);
-                    document.getElementById('reviewForm').reset();
+                    if (data.success) {
+                        fetchReviews();
+                        document.getElementById('reviewForm').reset();
+                    } else {
+                        errorMessageEl.textContent = data.message || 'Failed to submit review.';
+                    }
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     errorMessageEl.textContent = 'Failed to submit review. Please try again.';
                 });
-            }
+            };
             reader.readAsDataURL(imageFile);
         });
 
-        function displayReview(date, name, rating, comment, imageUrl) {
-            const reviewsContainer = document.getElementById('reviews');
-            const reviewElement = document.createElement('div');
-            reviewElement.classList.add('review');
-            reviewElement.innerHTML = `
-                <div class="details">
-                    <img src="${imageUrl}" alt="User Image">
-                    <h3>${name}</h3>
-                </div>
-                <div class="rating">${'⭐'.repeat(rating)}</div>
-                <p><strong>Date:</strong> ${date}</p>
-                <p>${comment}</p>
-            `;
-            reviewsContainer.insertBefore(reviewElement, reviewsContainer.firstChild);
-        }
-
         function fetchReviews() {
-            fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const reviews = data.values ? data.values.slice(1) : [];
-                    reviews.reverse().forEach(review => {
-                        const [date, name, rating, comment, imageUrl] = review;
-                        displayReview(date, name, rating, comment, imageUrl);
+            fetch(appsScriptUrl)
+                .then(response => response.json())
+                .then(reviews => {
+                    const reviewsContainer = document.getElementById('reviews');
+                    reviewsContainer.innerHTML = '';
+                    reviews.forEach(({ date, name, rating, comment, imageUrl }) => {
+                        const review = `
+                            <div class="review">
+                                <div class="details">
+                                    <img src="${imageUrl}" alt="User Image">
+                                    <h3>${name}</h3>
+                                </div>
+                                <div class="rating">${'⭐'.repeat(rating)}</div>
+                                <p><strong>Date:</strong> ${date}</p>
+                                <p>${comment}</p>
+                            </div>
+                        `;
+                        reviewsContainer.innerHTML += review;
                     });
                 })
                 .catch(error => {
