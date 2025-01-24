@@ -60,6 +60,7 @@
             height: 60px;
             border-radius: 50%;
             margin-right: 20px;
+            object-fit: cover;
         }
         .review .details {
             display: flex;
@@ -69,13 +70,20 @@
             color: gold;
             margin-bottom: 10px;
         }
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Submit Your ReviewMM</h1>
+    <h1>Submit Your Review</h1>
+    <div id="error-message"></div>
     <form id="reviewForm" enctype="multipart/form-data">
         <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" required maxlength="50">
+        
         <label for="rating">Rating:</label>
         <select id="rating" name="rating" required>
             <option value="5">⭐⭐⭐⭐⭐</option>
@@ -84,40 +92,54 @@
             <option value="2">⭐⭐</option>
             <option value="1">⭐</option>
         </select>
-        <label for="image">Upload Image:</label>
+        
+        <label for="image">Upload Image (Max 5MB):</label>
         <input type="file" id="image" name="image" accept="image/*" required>
+        
         <label for="comment">Comment:</label>
-        <textarea id="comment" name="comment" required></textarea>
-        <button type="submit">Submit</button>
+        <textarea id="comment" name="comment" required maxlength="500"></textarea>
+        
+        <button type="submit">Submit Review</button>
     </form>
+    
     <h2>Reviews</h2>
     <div id="reviews"></div>
+
     <script>
         const sheetId = '1UF8AcIp2Qxp7LahFXfiTyiuRHO0zeInfEdbIKJxXd8s';
         const apiKey = 'AIzaSyCTji2mtT9IKBlnN46tDfqz87gojMLBLzQ';
         const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
 
+        const errorMessageEl = document.getElementById('error-message');
+
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            errorMessageEl.textContent = '';
 
-            const name = document.getElementById('name').value;
+            const name = document.getElementById('name').value.trim();
             const rating = document.getElementById('rating').value;
-            const comment = document.getElementById('comment').value;
+            const comment = document.getElementById('comment').value.trim();
             const imageFile = document.getElementById('image').files[0];
+
+            if (!name || !comment) {
+                errorMessageEl.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            if (imageFile.size > 5 * 1024 * 1024) {
+                errorMessageEl.textContent = 'Image must be less than 5MB.';
+                return;
+            }
 
             const reader = new FileReader();
             reader.onload = function(e) {
                 const imageUrl = e.target.result;
                 const date = new Date().toLocaleDateString();
-                console.log('Form data:', { date, name, rating, comment, imageUrl });
 
                 const data = {
                     values: [[date, name, rating, comment, imageUrl]]
                 };
 
-                console.log('Data to be sent:', data);
-
-                // Append review to Google Sheet
                 fetch(sheetUrl, {
                     method: 'POST',
                     headers: {
@@ -125,17 +147,20 @@
                     },
                     body: JSON.stringify(data)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    console.log('Success:', data);
-                    // Display the new review
                     displayReview(date, name, rating, comment, imageUrl);
+                    document.getElementById('reviewForm').reset();
                 })
                 .catch(error => {
                     console.error('Error:', error);
+                    errorMessageEl.textContent = 'Failed to submit review. Please try again.';
                 });
-
-                document.getElementById('reviewForm').reset();
             }
             reader.readAsDataURL(imageFile);
         });
@@ -153,23 +178,31 @@
                 <p><strong>Date:</strong> ${date}</p>
                 <p>${comment}</p>
             `;
-            reviewsContainer.appendChild(reviewElement);
+            reviewsContainer.insertBefore(reviewElement, reviewsContainer.firstChild);
         }
 
-        // Fetch existing reviews from Google Sheets
-        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('Fetched reviews:', data);
-                const reviews = data.values;
-                reviews.forEach(review => {
-                    const [date, name, rating, comment, imageUrl] = review;
-                    displayReview(date, name, rating, comment, imageUrl);
+        function fetchReviews() {
+            fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const reviews = data.values ? data.values.slice(1) : [];
+                    reviews.reverse().forEach(review => {
+                        const [date, name, rating, comment, imageUrl] = review;
+                        displayReview(date, name, rating, comment, imageUrl);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching reviews:', error);
+                    errorMessageEl.textContent = 'Failed to load reviews.';
                 });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        }
+
+        fetchReviews();
     </script>
 </body>
 </html>
