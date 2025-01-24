@@ -72,7 +72,7 @@
     </style>
 </head>
 <body>
-    <h1>Submit Your ReviewOS</h1>
+    <h1>Submit Your Review</h1>
     <form id="reviewForm" enctype="multipart/form-data">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" required>
@@ -109,10 +109,13 @@
             reader.onload = function(e) {
                 const imageUrl = e.target.result;
                 const date = new Date().toLocaleDateString();
+                console.log('Form data:', { date, name, rating, comment, imageUrl });
 
                 const data = {
                     values: [[date, name, rating, comment, imageUrl]]
                 };
+
+                console.log('Data to be sent:', data);
 
                 // Append review to Google Sheet
                 fetch(sheetUrl, {
@@ -157,6 +160,7 @@
         fetch(sheetUrl.replace(':append', ''))
             .then(response => response.json())
             .then(data => {
+                console.log('Fetched reviews:', data);
                 const reviews = data.values;
                 reviews.forEach(review => {
                     const [date, name, rating, comment, imageUrl] = review;
