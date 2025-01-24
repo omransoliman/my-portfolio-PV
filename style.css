@@ -320,8 +320,9 @@ background-color: rgba(0,0,0,0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 100px 20px;
-    background: #1a1a1a;
+    padding: 6rem 20px 100px 20px; /* Added padding-top: 6rem to account for the fixed nav bar */
+    background: var(--background-color); /* Use CSS variable */
+    color: var(--text-color); /* Use CSS variable */
   }
   
   .about-image {
@@ -346,18 +347,20 @@ background-color: rgba(0,0,0,0.1);
   .about-content h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    color: var(--text-color); /* Use CSS variable */
   }
   
   .about-content p {
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 30px;
+    color: var(--text-color); /* Use CSS variable */
   }
   
   .about-content .contact-btn {
     display: inline-block;
     padding: 15px 30px;
-    background: #333333;
+    background: var(--primary-color); /* Use CSS variable */
     color: white;
     font-size: 1.2rem;
     border-radius: 5px;
