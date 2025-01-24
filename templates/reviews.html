@@ -4,121 +4,278 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviews Page</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* snip1157 Design Styles */
-        @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
-        @import url('https://fonts.googleapis.com/css?family=Raleway:400,800');
+        /* General Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap');
 
-        figure.snip1157 {
-            font-family: 'Raleway', Arial, sans-serif;
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-            min-width: 220px;
-            max-width: 310px;
-            width: 100%;
-            color: #333;
-            text-align: left;
-            box-shadow: none !important;
-        }
-
-        figure.snip1157 * {
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            -webkit-transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-            transition: all 0.35s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-        }
-
-        figure.snip1157 img {
-            max-width: 100%;
-            vertical-align: middle;
-            height: 90px;
-            width: 90px;
-            border-radius: 50%;
-            margin: 40px 0 0 10px;
-        }
-
-        figure.snip1157 blockquote {
-            display: block;
-            border-radius: 8px;
-            position: relative;
-            background-color: #fafafa;
-            padding: 25px 50px 30px 50px;
-            font-size: 0.8em;
-            font-weight: 500;
-            margin: 0;
-            line-height: 1.6em;
-            font-style: italic;
-        }
-
-        figure.snip1157 blockquote:before,
-        figure.snip1157 blockquote:after {
-            font-family: 'FontAwesome';
-            content: "\201C";
-            position: absolute;
-            font-size: 50px;
-            opacity: 0.3;
-            font-style: normal;
-        }
-
-        figure.snip1157 blockquote:before {
-            top: 25px;
-            left: 20px;
-        }
-
-        figure.snip1157 blockquote:after {
-            content: "\201D";
-            right: 20px;
-            bottom: 0;
-        }
-
-        figure.snip1157 .arrow {
-            top: 100%;
-            width: 0;
-            height: 0;
-            border-left: 0 solid transparent;
-            border-right: 25px solid transparent;
-            border-top: 25px solid #fafafa;
-            margin: 0;
-            position: absolute;
-        }
-
-        figure.snip1157 .author {
-            position: absolute;
-            bottom: 45px;
-            padding: 0 10px 0 120px;
-            margin: 0;
-            text-transform: uppercase;
-            color: #ffffff;
-            -webkit-transform: translateY(50%);
-            transform: translateY(50%);
-        }
-
-        figure.snip1157 .author h5 {
-            opacity: 0.8;
-            margin: 0;
-            font-weight: 800;
-        }
-
-        figure.snip1157 .author h5 span {
-            font-weight: 400;
-            text-transform: none;
-            padding-left: 5px;
-        }
-
-        /* Demo purposes only */
-        html {
-            height: 100%;
+        :root {
+            --background-color: #ffffff;
+            --text-color: #333333;
         }
 
         body {
-            background-color: #212121;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-flow: wrap;
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            background: #EDF2F8;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        a:link, a:active, a:visited, a:hover {
+            color: #3f51b5;
+        }
+
+        /* Navigation Bar Styles */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--background-color);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .menu-toggle:focus {
+            outline: none;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--background-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 0.5rem 1rem;
+            display: block;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .language-switch {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                background: var(--background-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+            }
+        }
+
+        /* Reviews Section Styles */
+        .outerdiv {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .innerdiv {
+            width: 90%;
+            max-width: 1200px;
+            margin: 1rem;
+            display: grid;
+            grid-gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-auto-rows: minmax(200px, auto);
+        }
+
+        .eachdiv {
+            padding: 1.5rem;
+            border-radius: 0.8rem;
+            box-shadow: 5px 5px 20px #6d6b6b6b;
+            color: white;
+        }
+
+        .div1 {
+            background: #733FC8;
+            background-image: url(https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/bg-pattern-quotation.svg);
+            background-repeat: no-repeat;
+            background-position-x: 90%;
+        }
+
+        .div2 {
+            background: #49556B;
+        }
+
+        .div3 {
+            background: white;
+            color: black;
+        }
+
+        .div4 {
+            background: white;
+            color: black;
+        }
+
+        .div5 {
+            background: #18202D;
+        }
+
+        .userdetails {
+            display: flex;
+            align-items: center;
+        }
+
+        .imgbox {
+            margin-right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .imgbox img {
+            width: 100%;
             height: 100%;
+            object-fit: cover;
+        }
+
+        .detbox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .detbox p {
+            margin: 0;
+        }
+
+        .detbox .name {
+            color: hsl(0, 0%, 81%);
+            font-size: 1rem;
+            margin-bottom: 0.1rem;
+            font-weight: 600;
+        }
+
+        .detbox .name.dark {
+            color: #49505A;
+        }
+
+        .detbox .designation {
+            color: hsl(0, 0%, 81%);
+            opacity: 50%;
+            font-size: 0.9rem;
+        }
+
+        .detbox .designation.dark {
+            color: #49505A;
+        }
+
+        .review h4 {
+            font-size: 1.2rem;
+            color: #F3DEFF;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .review.dark h4 {
+            color: #4B5258;
+        }
+
+        .review p {
+            font-size: 0.95rem;
+            color: #F3DEFF;
+            font-weight: 500;
+            opacity: 50%;
+            line-height: 1.5;
+        }
+
+        .review.dark p {
+            color: #0e0e0e;
+        }
+
+        /* Star Rating Styles */
+        .stars {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 0.8rem;
+        }
+
+        .stars .star {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+
+        .stars .star.empty {
+            color: #ccc;
         }
 
         /* Button Styles */
@@ -137,7 +294,7 @@
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
-            z-index: 1001; /* Ensure the button is on top */
+            z-index: 1001;
         }
 
         #reviewButton:hover {
@@ -155,7 +312,7 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            z-index: 1002; /* Ensure the modal is on top of the button */
+            z-index: 1002;
             width: 90%;
             max-width: 500px;
         }
@@ -227,26 +384,56 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000; /* Ensure the overlay is below the modal but above other content */
+            z-index: 1000;
         }
 
-        /* Reviews Container */
-        #reviews {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        #error-message {
-            color: #e74c3c;
+        .attribution {
+            font-size: 1rem;
+            line-height: 1.5;
             text-align: center;
-            margin-bottom: 15px;
+            padding: 1rem;
+            background: white;
+            margin-top: 2rem;
+        }
+
+        .attribution a {
+            text-decoration: none;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .innerdiv {
+                grid-template-columns: 1fr;
+            }
+
+            .div1 {
+                background-position-x: 80%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="index.html" class="logo">Omran Soliman</a>
+        <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="nav-links menu">
+            <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
+            <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
+            <div class="dropdown">
+                <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+                <div class="dropdown-content">
+                    <a href="wedding.html">Wedding</a>
+                    <a href="engagement.html">Engagement</a>
+                    <a href="portrait.html">Portrait</a>
+                </div>
+            </div>
+            <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+            <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+            <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <button class="language-switch">EN</button>
+        </div>
+    </nav>
+
     <!-- Button to Open Modal -->
     <button id="reviewButton">Customer Reviews</button>
 
@@ -283,10 +470,26 @@
         </form>
     </div>
 
-    <!-- Reviews Display -->
-    <div id="reviews"></div>
+    <!-- Reviews Container -->
+    <div class="outerdiv">
+        <div class="innerdiv" id="reviews">
+            <!-- Reviews will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Attribution -->
+    <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a><br>
+        Coded by <a href="https://www.instagram.com/developer_sah/" target="_blank">Rahul Sah</a>.
+    </div>
 
     <script>
+        // Toggle Menu Function
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbyLSkh-4eEUyf5O7iPzgAABDjZ4cqW0CEHc0LpsQ17xgmX5X0S8Z8_9736MrtNtwDKs/exec';
         const sheetId = '1iVf5w-zkfOs7QA5NOugbzlOivtWkrXddtpj7pN0sNgo';
 
@@ -365,24 +568,60 @@
             reader.readAsDataURL(imageFile);
         });
 
+        // Function to display a review
         function displayReview(date, name, rating, comment, imageUrl) {
             const reviewsContainer = document.getElementById('reviews');
-            const reviewElement = document.createElement('figure');
-            reviewElement.classList.add('snip1157');
 
+            // Create a new review div
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('eachdiv');
+
+            // Assign a class based on the review index (to mimic the design layout)
+            const reviewCount = reviewsContainer.children.length;
+            switch (reviewCount % 5) {
+                case 0:
+                    reviewElement.classList.add('div1');
+                    break;
+                case 1:
+                    reviewElement.classList.add('div2');
+                    break;
+                case 2:
+                    reviewElement.classList.add('div3');
+                    break;
+                case 3:
+                    reviewElement.classList.add('div4');
+                    break;
+                case 4:
+                    reviewElement.classList.add('div5');
+                    break;
+            }
+
+            // Add the review content with styled rating stars
             reviewElement.innerHTML = `
-                <blockquote>
-                    ${comment}
-                    <div class="arrow"></div>
-                </blockquote>
-                <img src="${imageUrl}" alt="${name}" />
-                <div class="author">
-                    <h5>${name} <span>${date}</span></h5>
+                <div class="userdetails">
+                    <div class="imgbox">
+                        <img src="${imageUrl}" alt="${name}">
+                    </div>
+                    <div class="detbox">
+                        <p class="name">${name}</p>
+                        <p class="designation">${date}</p>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="stars">
+                        ${Array.from({ length: 5 }, (_, i) => `
+                            <span class="star ${i < rating ? '' : 'empty'}">★</span>
+                        `).join('')}
+                    </div>
+                    <h4>${comment}</h4>
                 </div>
             `;
+
+            // Append the review to the container
             reviewsContainer.appendChild(reviewElement);
         }
 
+        // Fetch reviews from Google Sheets
         function fetchReviews() {
             fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=AIzaSyBw44PAIqR2k7WVdZsAA2v1GU8ZrDpTGPQ`)
                 .then(response => {
@@ -400,10 +639,10 @@
                 })
                 .catch(error => {
                     console.error('Error fetching reviews:', error);
-                    errorMessageEl.textContent = 'Failed to load reviews.';
                 });
         }
 
+        // Fetch reviews on page load
         fetchReviews();
     </script>
 </body>
