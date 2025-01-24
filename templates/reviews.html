@@ -8,25 +8,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* General Styles */
-        @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap');
-
         :root {
-            --background-color: #ffffff;
-            --text-color: #333333;
+            --primary-color: #333;
+            --background-color: #fff;
+            --text-color: #333;
         }
 
-        body {
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #fff;
+                --background-color: #1a1a1a;
+                --text-color: #fff;
+            }
+        }
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Barlow Semi Condensed', sans-serif;
-            background: #EDF2F8;
-            min-height: 100vh;
-            overflow-y: auto;
+            scroll-behavior: smooth;
         }
 
-        a:link, a:active, a:visited, a:hover {
-            color: #3f51b5;
+        body {
+            font-family: 'Audiowide', cursive;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-color);
         }
 
         /* Navigation Bar Styles */
@@ -142,7 +149,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 0;
+            padding: 6rem 0 2rem 0; /* Added padding-top to account for the fixed nav bar */
         }
 
         .innerdiv {
@@ -490,6 +497,7 @@
             navLinks.classList.toggle('active');
         }
 
+        // Modal and Review Submission Logic
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbyLSkh-4eEUyf5O7iPzgAABDjZ4cqW0CEHc0LpsQ17xgmX5X0S8Z8_9736MrtNtwDKs/exec';
         const sheetId = '1iVf5w-zkfOs7QA5NOugbzlOivtWkrXddtpj7pN0sNgo';
 
