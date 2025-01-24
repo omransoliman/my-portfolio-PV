@@ -6,30 +6,68 @@
     <title>Reviews Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
         }
         form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            background: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        form input, form select, form textarea, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #5cb85c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #4cae4c;
         }
         #reviews {
-            margin-top: 20px;
+            margin: 20px auto;
+            max-width: 800px;
         }
         .review {
-            border: 1px solid #ccc;
+            background: #fff;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .review img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
+            margin-right: 20px;
+        }
+        .review .details {
+            display: flex;
+            align-items: center;
         }
         .review .rating {
             color: gold;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -56,9 +94,8 @@
     <div id="reviews"></div>
     <script>
         const sheetId = '1UF8AcIp2Qxp7LahFXfiTyiuRHO0zeInfEdbIKJxXd8s';
-        const sheetName = 'Sheet1';
         const apiKey = 'AIzaSyCTji2mtT9IKBlnN46tDfqz87gojMLBLzQ';
-        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}:batchUpdate?key=${apiKey}`;
+        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`;
 
         document.getElementById('reviewForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -73,27 +110,14 @@
                 const imageUrl = e.target.result;
                 const date = new Date().toLocaleDateString();
 
-                // Create data object for appending to Google Sheet
-                const values = [
-                    [date, name, rating, comment, imageUrl]
-                ];
-
+                // Fetch token from Google Sheets API
                 fetch(sheetUrl, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        requests: [{
-                            appendCells: {
-                                sheetId: '0',
-                                rows: [{
-                                    values: values.map(value => ({ userEnteredValue: { stringValue: value } }))
-                                }],
-                                fields: 'userEnteredValue'
-                            }
-                        }]
+                        values: [[date, name, rating, comment, imageUrl]]
                     })
                 })
                 .then(response => response.json())
@@ -101,9 +125,7 @@
                     // Display the new review
                     displayReview(date, name, rating, comment, imageUrl);
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+                .catch(error => console.error('Error:', error));
 
                 document.getElementById('reviewForm').reset();
             }
@@ -115,8 +137,10 @@
             const reviewElement = document.createElement('div');
             reviewElement.classList.add('review');
             reviewElement.innerHTML = `
-                <img src="${imageUrl}" alt="User Image">
-                <h3>${name}</h3>
+                <div class="details">
+                    <img src="${imageUrl}" alt="User Image">
+                    <h3>${name}</h3>
+                </div>
                 <div class="rating">${'⭐'.repeat(rating)}</div>
                 <p><strong>Date:</strong> ${date}</p>
                 <p>${comment}</p>
@@ -134,9 +158,7 @@
                     displayReview(date, name, rating, comment, imageUrl);
                 });
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            .catch(error => console.error('Error:', error));
     </script>
 </body>
 </html>
