@@ -3,106 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews</title>
+    <title>Reviews Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #reviews {
+            margin-top: 20px;
+        }
         .review {
             border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
         }
-        .review h3 {
-            margin: 0;
+        .review img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
         }
-        .review p {
-            margin: 5px 0;
-        }
-        .form-group {
-            margin-bottom: 10px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .flash-message {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-        .flash-message.success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .flash-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
+        .review .rating {
+            color: gold;
         }
     </style>
 </head>
 <body>
-    <h1>Customer Reviews</h1>
-
-    <!-- Flash messages -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="flash-message {{ category }}">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-
-    
-    <!-- Review Form -->
-    <h2>Submit a Review</h2>
-    <form action="{{ url_for('submit_review') }}" method="POST">
-        <div class="form-group">
-            <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" name="fullname" required>
-        </div>
-        <div class="form-group">
-            <label for="rating">Rating:</label>
-            <select id="rating" name="rating" required>
-                <option value="5">5 - Excellent</option>
-                <option value="4">4 - Very Good</option>
-                <option value="3">3 - Good</option>
-                <option value="2">2 - Fair</option>
-                <option value="1">1 - Poor</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="comment">Comment:</label>
-            <textarea id="comment" name="comment" rows="4" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required>
-        </div>
-        <button type="submit">Submit Review</button>
+    <h1>Submit Your Review</h1>
+    <form id="reviewForm" enctype="multipart/form-data">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="rating">Rating:</label>
+        <select id="rating" name="rating" required>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+        </select>
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
+        <button type="submit">Submit</button>
     </form>
+    <h2>Reviews</h2>
+    <div id="reviews"></div>
+    <script>
+        const sheetId = '1UF8AcIp2Qxp7LahFXfiTyiuRHO0zeInfEdbIKJxXd8s';
+        const sheetName = 'Sheet1';
+        const apiKey = 'AIzaSyCTji2mtT9IKBlnN46tDfqz87gojMLBLzQ';
+        const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${sheetName}?key=${apiKey}`;
 
-    <!-- Display Reviews -->
-    <h2>Recent Reviews</h2>
-    {% if reviews %}
-        {% for review in reviews %}
-            <div class="review">
-                <h3>{{ review.FullName }}</h3>
-                <p><strong>Rating:</strong> {{ review.Rating }}/5</p>
-                <p><strong>Comment:</strong> {{ review.Comment }}</p>
-                <p><strong>Date:</strong> {{ review.Date }}</p>
-                <p><strong>Location:</strong> {{ review.Location }}</p>
-            </div>
-        {% endfor %}
-    {% else %}
-        <p>No reviews yet. Be the first to submit one!</p>
-    {% endif %}
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const rating = document.getElementById('rating').value;
+            const comment = document.getElementById('comment').value;
+            const imageFile = document.getElementById('image').files[0];
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageUrl = e.target.result;
+                const date = new Date().toLocaleDateString();
+
+                // Append review to Google Sheet
+                fetch(sheetUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        values: [[date, name, rating, comment, imageUrl]]
+                    })
+                })
+                .then(response => response.json())
+                .then(() => {
+                    // Display the new review
+                    displayReview(date, name, rating, comment, imageUrl);
+                });
+
+                document.getElementById('reviewForm').reset();
+            }
+            reader.readAsDataURL(imageFile);
+        });
+
+        function displayReview(date, name, rating, comment, imageUrl) {
+            const reviewsContainer = document.getElementById('reviews');
+            const reviewElement = document.createElement('div');
+            reviewElement.classList.add('review');
+            reviewElement.innerHTML = `
+                <img src="${imageUrl}" alt="User Image">
+                <h3>${name}</h3>
+                <div class="rating">${'⭐'.repeat(rating)}</div>
+                <p><strong>Date:</strong> ${date}</p>
+                <p>${comment}</p>
+            `;
+            reviewsContainer.appendChild(reviewElement);
+        }
+
+        // Fetch existing reviews from Google Sheets
+        fetch(sheetUrl)
+            .then(response => response.json())
+            .then(data => {
+                const reviews = data.values;
+                reviews.forEach(review => {
+                    const [date, name, rating, comment, imageUrl] = review;
+                    displayReview(date, name, rating, comment, imageUrl);
+                });
+            });
+    </script>
 </body>
 </html>
