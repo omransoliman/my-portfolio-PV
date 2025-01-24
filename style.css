@@ -148,6 +148,7 @@ justify-content: flex-start; /* Aligns content to the left */
 padding: 20px; /* Adds some padding around the text */
 color: #fff; /* Ensures text is visible on the background */
 transition: opacity 1s ease-in-out;
+padding: 6rem 0 2rem 0; /* Added padding-top to account for the fixed nav bar */
 }
 #home.fade-out {
 opacity: 0;
