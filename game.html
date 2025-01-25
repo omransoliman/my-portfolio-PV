@@ -13,7 +13,7 @@
             text-align: center;
         }
 
-        #quiz-intro, #quiz-container, #leaderboard {
+        #quiz-intro, #leaderboard {
             margin: 20px auto;
             padding: 20px;
             background: var(--background-color);
@@ -29,11 +29,6 @@
         #scores-list li {
             padding: 10px;
             border-bottom: 1px solid #ccc;
-        }
-
-        #quiz-answers label {
-            display: block;
-            margin: 10px 0;
         }
 
         #feedback {
@@ -60,6 +55,140 @@
         button:hover {
             background-color: #555;
         }
+
+        /* Card Styles */
+        .ag-format-container {
+            width: 1142px;
+            margin: 0 auto;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        .ag-courses_box {
+            display: flex;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 50px 0;
+        }
+
+        .ag-courses_item {
+            flex-basis: calc(33.33333% - 30px);
+            margin: 0 15px 30px;
+            overflow: hidden;
+            border-radius: 28px;
+        }
+
+        .ag-courses-item_link {
+            display: block;
+            padding: 30px 20px;
+            background-color: #121212;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ag-courses-item_link:hover,
+        .ag-courses-item_link:hover .ag-courses-item_date {
+            text-decoration: none;
+            color: #FFF;
+        }
+
+        .ag-courses-item_link:hover .ag-courses-item_bg {
+            transform: scale(10);
+        }
+
+        .ag-courses-item_title {
+            min-height: 87px;
+            margin: 0 0 25px;
+            overflow: hidden;
+            font-weight: bold;
+            font-size: 30px;
+            color: #FFF;
+            z-index: 2;
+            position: relative;
+        }
+
+        .ag-courses-item_date-box {
+            font-size: 18px;
+            color: #FFF;
+            z-index: 2;
+            position: relative;
+        }
+
+        .ag-courses-item_date {
+            font-weight: bold;
+            color: #f9b234;
+            transition: color .5s ease;
+        }
+
+        .ag-courses-item_bg {
+            height: 128px;
+            width: 128px;
+            background-color: #f9b234;
+            z-index: 1;
+            position: absolute;
+            top: -75px;
+            right: -75px;
+            border-radius: 50%;
+            transition: all .5s ease;
+        }
+
+        .ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+            background-color: #3ecd5e;
+        }
+
+        .ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+            background-color: #e44002;
+        }
+
+        .ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+            background-color: #952aff;
+        }
+
+        .ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+            background-color: #cd3e94;
+        }
+
+        .ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+            background-color: #4c49ea;
+        }
+
+        @media only screen and (max-width: 979px) {
+            .ag-courses_item {
+                flex-basis: calc(50% - 30px);
+            }
+
+            .ag-courses-item_title {
+                font-size: 24px;
+            }
+        }
+
+        @media only screen and (max-width: 767px) {
+            .ag-format-container {
+                width: 96%;
+            }
+        }
+
+        @media only screen and (max-width: 639px) {
+            .ag-courses_item {
+                flex-basis: 100%;
+            }
+
+            .ag-courses-item_title {
+                min-height: 72px;
+                line-height: 1;
+                font-size: 24px;
+            }
+
+            .ag-courses-item_link {
+                padding: 22px 40px;
+            }
+
+            .ag-courses-item_date-box {
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -83,10 +212,11 @@
         </div>
         <div id="quiz-container" style="display:none;">
             <p id="score-display"></p>
-            <p id="question"></p>
-            <form id="quiz-answers">
-                <!-- Answers will be populated here by JavaScript -->
-            </form>
+            <div class="ag-format-container">
+                <div class="ag-courses_box" id="quiz-questions">
+                    <!-- Questions will be populated here by JavaScript -->
+                </div>
+            </div>
             <p id="feedback"></p>
         </div>
         <div id="leaderboard" style="display:none;">
@@ -101,15 +231,7 @@
         const quizData = [
             { question: "What does ISO stand for in photography?", answers: ["International Standards Organization", "Image Sensor Optimization", "Instant Shutter Operation"], correct: 0 },
             { question: "What is the 'rule of thirds'?", answers: ["A composition guideline", "A type of camera lens", "A post-processing technique"], correct: 0 },
-            { question: "What is the purpose of a polarizing filter?", answers: ["Reduce reflections", "Increase shutter speed", "Enhance colors"], correct: 0 },
-            { question: "What is the 'golden hour' in photography?", answers: ["The first hour after sunrise and the last hour before sunset", "The hour when the sun is at its highest point", "A rare celestial event"], correct: 0 },
-            { question: "What does 'bokeh' refer to?", answers: ["The aesthetic quality of out-of-focus areas in a photo", "A type of lens flare", "A camera setting for low light"], correct: 0 },
-            { question: "What is the primary function of a camera's aperture?", answers: ["Control the amount of light entering the lens", "Adjust the focus of the image", "Change the shutter speed"], correct: 0 },
-            { question: "What is 'shutter speed'?", answers: ["The amount of time the camera's shutter is open", "The speed at which the camera autofocuses", "The rate at which the camera takes photos"], correct: 0 },
-            { question: "What is 'white balance'?", answers: ["Adjusting the colors to make the image look natural", "Balancing the exposure in a photo", "A filter for black and white photography"], correct: 0 },
-            { question: "What is a 'prime lens'?", answers: ["A lens with a fixed focal length", "A lens with variable focal length", "A lens specifically for portraits"], correct: 0 },
-            { question: "What is 'depth of field'?", answers: ["The range of distance that appears acceptably sharp", "The distance between the camera and the subject", "The amount of light in a photo"], correct: 0 },
-            // Add 90 more questions here...
+            // Add 98 more questions here...
         ];
 
         let currentQuestion = 0;
@@ -129,25 +251,38 @@
         // Load Question
         function loadQuestion() {
             const questionData = quizData[currentQuestion];
-            document.getElementById('question').textContent = questionData.question;
-            const answersForm = document.getElementById('quiz-answers');
-            answersForm.innerHTML = '';
-            questionData.answers.forEach((answer, index) => {
-                const input = document.createElement('input');
-                input.type = 'radio';
-                input.name = 'answer';
-                input.value = index;
-                const label = document.createElement('label');
-                label.textContent = answer;
-                answersForm.appendChild(input);
-                answersForm.appendChild(label);
-                answersForm.appendChild(document.createElement('br'));
+            const quizQuestions = document.getElementById('quiz-questions');
+            quizQuestions.innerHTML = '';
+
+            const questionCard = document.createElement('div');
+            questionCard.className = 'ag-courses_item';
+            questionCard.innerHTML = `
+                <a href="#" class="ag-courses-item_link">
+                    <div class="ag-courses-item_bg"></div>
+                    <div class="ag-courses-item_title">${questionData.question}</div>
+                    <div class="ag-courses-item_date-box">
+                        ${questionData.answers.map((answer, index) => `
+                            <label>
+                                <input type="radio" name="answer" value="${index}">
+                                ${answer}
+                            </label>
+                        `).join('')}
+                    </div>
+                </a>
+            `;
+            quizQuestions.appendChild(questionCard);
+
+            // Add event listener for answer selection
+            const answerInputs = questionCard.querySelectorAll('input[name="answer"]');
+            answerInputs.forEach(input => {
+                input.addEventListener('change', function () {
+                    checkAnswer(input.value);
+                });
             });
         }
 
         // Check Answer
-        document.getElementById('quiz-answers').addEventListener('change', function (e) {
-            const selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
+        function checkAnswer(selectedAnswer) {
             if (selectedAnswer == quizData[currentQuestion].correct) {
                 score++;
                 document.getElementById('feedback').textContent = 'Correct!';
@@ -162,7 +297,7 @@
                 document.getElementById('feedback').textContent = 'Wrong! Game Over.';
                 endGame();
             }
-        });
+        }
 
         // Update Score Display
         function updateScoreDisplay() {
