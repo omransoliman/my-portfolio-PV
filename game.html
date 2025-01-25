@@ -57,7 +57,7 @@
             background-color: #555;
         }
 
-        /* Gradient Banner Card Styles */
+        /* Gradient Banner Card Styles with Flexbox */
         .cards {
             display: flex;
             flex-wrap: wrap;
@@ -72,8 +72,9 @@
             width: 100%;
             max-width: 500px;
             min-height: 200px;
-            display: grid;
-            grid-template-rows: 20px 50px 1fr 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             border-radius: 10px;
             box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
             transition: all 0.2s;
@@ -86,15 +87,13 @@
         }
 
         .card__title {
-            grid-row: 3/4;
             font-weight: 400;
             color: #ffffff;
             font-size: 1.5rem;
+            margin-bottom: 20px; /* Space between question and answers */
         }
 
         .card__answers {
-            grid-row: 4/5;
-            align-self: center;
             display: flex;
             flex-direction: column;
             gap: 10px;
