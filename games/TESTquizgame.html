@@ -9,52 +9,33 @@
     <link rel="stylesheet" href="stylegame.css"> 
     <link rel="stylesheet" href="../style.css"> 
     <style>
-        /* Animation Styles */
-        .winner-text {
-            color: #fff;
-            font-size: 2em;
-            text-align: center;
-            margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out;
+        /* Add your custom styles here */
+        .correct-popup {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            display: none;
         }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        .wrong-popup {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            display: none;
         }
-
         .star {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #fff;
+            width: 2px;
+            height: 2px;
+            background: white;
             border-radius: 50%;
-            animation: twinkle 1s infinite;
+            animation: twinkle 2s infinite;
         }
-
         @keyframes twinkle {
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-
-        /* Star Positions */
-        .star:nth-child(1) { top: 10%; left: 10%; }
-        .star:nth-child(2) { top: 20%; left: 30%; }
-        .star:nth-child(3) { top: 30%; left: 10%; }
-        .star:nth-child(4) { top: 40%; left: 40%; }
-        .star:nth-child(5) { top: 50%; left: 20%; }
-        .star:nth-child(6) { top: 60%; left: 30%; }
-        .star:nth-child(7) { top: 70%; left: 10%; }
-        .star:nth-child(8) { top: 80%; left: 40%; }
-        .star:nth-child(9) { top: 90%; left: 20%; }
-        .star:nth-child(10) { top: 10%; right: 10%; }
-        .star:nth-child(11) { top: 20%; right: 30%; }
-        .star:nth-child(12) { top: 30%; right: 10%; }
-        .star:nth-child(13) { top: 40%; right: 40%; }
-        .star:nth-child(14) { top: 50%; right: 20%; }
-        .star:nth-child(15) { top: 60%; right: 30%; }
-        .star:nth-child(16) { top: 70%; right: 10%; }
-        .star:nth-child(17) { top: 80%; right: 40%; }
-        .star:nth-child(18) { top: 90%; right: 20%; }
     </style>
 </head>
 <body>
@@ -83,7 +64,7 @@
 
     <!-- Photo Quiz Section -->
     <section id="photo-quiz">
-        <h2>Photo Quiz Final</h2>
+        <h2>Photo Quiz WOW</h2>
         <div id="quiz-intro">
             <p>Test your knowledge of photography terms and techniques!</p>
             <form id="player-info">
@@ -104,35 +85,32 @@
         </div>
 
         <!-- Animation Section (Hidden Initially) -->
-    <div id="animation-container" style="display: none;">
-        <h1 class="winner-text">WOW, Congratulations! You answered all the questions we have now.</h1>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
-    <button id="restart-game">Restart Game</button>
+        <div id="animation-container" style="display: none;">
+            <h1 class="winner-text">WOW, Congratulations! You answered all the questions we have now.</h1>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
         <div id="leaderboard">
             <h3>Leaderboard</h3>
             <ul id="scores-list"></ul>
         </div>
     </section>
-
-    
 
     <script src="../config.js" defer></script>
     <script src="../script.js" defer></script>
@@ -162,7 +140,7 @@
                 return leaderboard.map(row => ({
                     date: row[0],
                     name: row[1],
-                    score: row[2],
+                    score: parseInt(row[2]),
                     isKing: row[3]
                 }));
             } catch (error) {
@@ -174,6 +152,16 @@
         // Function to update leaderboard display
         async function updateLeaderboardDisplay() {
             const leaderboard = await fetchLeaderboard();
+            
+            // Sort the leaderboard by score (descending) and then by date (descending)
+            leaderboard.sort((a, b) => {
+                if (b.score !== a.score) {
+                    return b.score - a.score; // Sort by score descending
+                } else {
+                    return new Date(b.date) - new Date(a.date); // Sort by date descending
+                }
+            });
+
             const scoresList = document.getElementById('scores-list');
             scoresList.innerHTML = leaderboard.length === 0
                 ? '<li>No scores yet. Be the first to play!</li>'
