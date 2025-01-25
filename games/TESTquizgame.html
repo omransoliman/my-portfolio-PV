@@ -52,7 +52,7 @@
 
     <!-- Photo Quiz Section -->
     <section id="photo-quiz">
-        <h2>Photo Quiz LALA</h2>
+        <h2>Photo Quiz</h2>
         <div id="quiz-intro">
             <p>Test your knowledge of photography terms and techniques!</p>
             <form id="player-info">
@@ -150,8 +150,8 @@
             scoresList.innerHTML = leaderboard.length === 0
                 ? '<li>No scores yet. Be the first to play!</li>'
                 : leaderboard.map((entry, index) => `
-                    <li>${index + 1}. ${entry.name} (${entry.email}): ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}</li>
-                `).join('');
+                    <li>${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}</li>
+        `).join('');
         }
 
         // Load Leaderboard on Page Load
