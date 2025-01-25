@@ -168,6 +168,10 @@
             border-radius: 0.8rem;
             box-shadow: 5px 5px 20px #6d6b6b6b;
             color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: auto; /* Adjust height as needed */
         }
 
         .div1 {
@@ -244,6 +248,11 @@
         .detbox .designation.dark {
             color: #49505A;
         }
+        .review {
+            max-height: 150px; /* Adjust height as needed */
+            overflow-y: auto;
+            word-wrap: break-word;
+        }
 
         .review h4 {
             font-size: 1.2rem;
@@ -251,6 +260,7 @@
             font-weight: 600;
             line-height: 1.5;
             margin-bottom: 0.8rem;
+            word-wrap: break-word;
         }
 
         .review.dark h4 {
@@ -263,6 +273,7 @@
             font-weight: 500;
             opacity: 50%;
             line-height: 1.5;
+            word-wrap: break-word;
         }
 
         .review.dark p {
