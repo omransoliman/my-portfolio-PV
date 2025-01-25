@@ -10,7 +10,7 @@
     <style>
         /* Additional styles for the quiz page */
         #photo-quiz {
-            padding: 30px;
+            padding-top: 80px; /* Add padding to account for the fixed nav bar */
             text-align: center;
         }
 
@@ -38,8 +38,9 @@
         }
 
         #score-display {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-bottom: 20px;
+            color: var(--text-color);
         }
 
         button {
@@ -110,6 +111,36 @@
         .card__answers input[type="radio"] {
             accent-color: #76b2fe;
         }
+
+        /* Feedback Animation */
+        #feedback-animation {
+            display: none;
+            text-align: center;
+            font-size: 4rem;
+            margin: 20px 0;
+        }
+
+        @keyframes correctAnimation {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes wrongAnimation {
+            0% { transform: rotate(0deg); opacity: 0; }
+            50% { transform: rotate(10deg); opacity: 1; }
+            100% { transform: rotate(0deg); opacity: 1; }
+        }
+
+        .correct {
+            color: #4CAF50; /* Green for correct answer */
+            animation: correctAnimation 0.5s ease-in-out;
+        }
+
+        .wrong {
+            color: #F44336; /* Red for wrong answer */
+            animation: wrongAnimation 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body>
@@ -132,7 +163,8 @@
             </form>
         </div>
         <div id="quiz-container" style="display:none;">
-            <p id="score-display"></p>
+            <div id="score-display"></div>
+            <div id="feedback-animation"></div> <!-- Container for feedback animation -->
             <div class="cards" id="quiz-questions">
                 <!-- Questions will be populated here by JavaScript -->
             </div>
@@ -141,7 +173,6 @@
         <div id="leaderboard">
             <h3>Leaderboard</h3>
             <ul id="scores-list"></ul>
-            <button id="new-game">Start New Game</button>
         </div>
     </section>
 
@@ -156,6 +187,11 @@
         let currentQuestion = 0;
         let score = 0;
         let playerName = '';
+
+        // Load Leaderboard on Page Load
+        document.addEventListener('DOMContentLoaded', function () {
+            updateLeaderboard();
+        });
 
         // Start Quiz
         document.getElementById('player-info').addEventListener('submit', function (e) {
@@ -200,19 +236,31 @@
 
         // Check Answer
         function checkAnswer(selectedAnswer) {
+            const feedbackAnimation = document.getElementById('feedback-animation');
             if (selectedAnswer == quizData[currentQuestion].correct) {
                 score++;
+                feedbackAnimation.innerHTML = '✔️'; // Green checkmark
+                feedbackAnimation.className = 'correct';
+                feedbackAnimation.style.display = 'block';
                 document.getElementById('feedback').textContent = 'Correct!';
                 updateScoreDisplay();
                 currentQuestion++;
                 if (currentQuestion < quizData.length) {
-                    loadQuestion();
+                    setTimeout(() => {
+                        feedbackAnimation.style.display = 'none';
+                        loadQuestion();
+                    }, 1000); // Wait 1 second before loading the next question
                 } else {
                     endGame();
                 }
             } else {
+                feedbackAnimation.innerHTML = '❌'; // Red cross
+                feedbackAnimation.className = 'wrong';
+                feedbackAnimation.style.display = 'block';
                 document.getElementById('feedback').textContent = 'Wrong! Game Over.';
-                endGame();
+                setTimeout(() => {
+                    endGame();
+                }, 1000); // Wait 1 second before ending the game
             }
         }
 
@@ -231,26 +279,20 @@
         // Update Leaderboard
         function updateLeaderboard() {
             const scores = JSON.parse(localStorage.getItem('scores')) || [];
-            scores.push({ name: playerName, score: score });
-            scores.sort((a, b) => b.score - a.score);
-            localStorage.setItem('scores', JSON.stringify(scores));
+            scores.sort((a, b) => b.score - a.score); // Sort scores in descending order
             const scoresList = document.getElementById('scores-list');
             scoresList.innerHTML = '';
-            scores.forEach(entry => {
-                const li = document.createElement('li');
-                li.textContent = `${entry.name}: ${entry.score}`;
-                scoresList.appendChild(li);
-            });
-        }
 
-        // Start New Game
-        document.getElementById('new-game').addEventListener('click', function () {
-            document.getElementById('leaderboard').style.display = 'none';
-            document.getElementById('quiz-intro').style.display = 'block';
-            currentQuestion = 0;
-            score = 0;
-            document.getElementById('feedback').textContent = '';
-        });
+            if (scores.length === 0) {
+                scoresList.innerHTML = '<li>No scores yet. Be the first to play!</li>';
+            } else {
+                scores.forEach((entry, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score}`;
+                    scoresList.appendChild(li);
+                });
+            }
+        }
     </script>
 </body>
 </html>
