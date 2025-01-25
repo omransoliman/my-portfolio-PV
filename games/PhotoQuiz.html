@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css"> <!-- Link to your existing CSS file -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Additional styles for the quiz page */
@@ -195,27 +195,56 @@
         </div>
     </section>
 
+    <script src="https://apis.google.com/js/api.js"></script>
     <script>
+        // Google Sheets API Configuration
+        const API_KEY = 'AIzaSyDWhZa3OeVlm5ruiYRGbThmMarDssbff-s';
+        const SHEET_ID = '1FjSNTPg5UfwGU0F9H7qlPr2ZysW-WqNtEb4KCd4HNj0';
+
         // Quiz Data (50 questions)
         const quizData = [
             { question: "What does ISO stand for in photography?", answers: ["International Standards Organization", "Image Sensor Optimization", "Instant Shutter Operation"], correct: 0 },
             { question: "What is the 'rule of thirds'?", answers: ["A composition guideline", "A type of camera lens", "A post-processing technique"], correct: 0 },
-            { question: "What is the purpose of a polarizing filter?", answers: ["Reduce reflections", "Increase shutter speed", "Enhance colors"], correct: 0 },
-            { question: "What is the 'golden hour' in photography?", answers: ["The first hour after sunrise and the last hour before sunset", "The hour when the sun is at its highest point", "A rare celestial event"], correct: 0 },
-            { question: "What does 'bokeh' refer to?", answers: ["The aesthetic quality of out-of-focus areas in a photo", "A type of lens flare", "A camera setting for low light"], correct: 0 },
-            // Add 45 more questions here...
+            // Add 48 more questions here...
         ];
 
         let currentQuestion = 0;
         let score = 0;
         let playerName = '';
 
+        // Initialize Google Sheets API
+        function initGoogleSheetsAPI() {
+            gapi.load('client', () => {
+                gapi.client.init({
+                    apiKey: API_KEY,
+                    discoveryDocs: ['https://sheets.googleapis.com/$discovery/rest?version=v4'],
+                }).then(() => {
+                    console.log('Google Sheets API initialized.');
+                });
+            });
+        }
+
+        // Load the Google Sheets API on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            gapi.load('client', initGoogleSheetsAPI);
+        });
+
         // Fetch Leaderboard Data
         async function fetchLeaderboard() {
             try {
-                const response = await fetch('../DataForGames/PhotoQuizLeaderboard.json');
-                const data = await response.json();
-                return data;
+                const response = await gapi.client.sheets.spreadsheets.values.get({
+                    spreadsheetId: SHEET_ID,
+                    range: 'Sheet1!A2:C', // Adjust the range based on your sheet
+                });
+
+                const rows = response.result.values || [];
+                const leaderboard = rows.map(row => ({
+                    name: row[0],
+                    score: parseInt(row[1]),
+                    isKing: row[2] === 'TRUE',
+                }));
+
+                return leaderboard;
             } catch (error) {
                 console.error('Error fetching leaderboard:', error);
                 return [];
@@ -224,20 +253,20 @@
 
         // Update Leaderboard Data
         async function updateLeaderboard(isPerfectScore = false) {
-            const scores = await fetchLeaderboard();
-            const playerEntry = { name: playerName, score: score, isKing: isPerfectScore };
-            scores.push(playerEntry);
-            scores.sort((a, b) => b.score - a.score); // Sort scores in descending order
+            const leaderboard = await fetchLeaderboard();
+            const playerEntry = [playerName, score, isPerfectScore ? 'TRUE' : 'FALSE'];
 
-            // Save updated leaderboard to PhotoQuizLeaderboard.json
             try {
-                await fetch('../DataForGames/PhotoQuizLeaderboard.json', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
+                await gapi.client.sheets.spreadsheets.values.append({
+                    spreadsheetId: SHEET_ID,
+                    range: 'Sheet1!A2:C', // Adjust the range based on your sheet
+                    valueInputOption: 'RAW',
+                    resource: {
+                        values: [playerEntry],
                     },
-                    body: JSON.stringify(scores),
                 });
+
+                console.log('Leaderboard updated.');
             } catch (error) {
                 console.error('Error updating leaderboard:', error);
             }
@@ -246,33 +275,16 @@
             const scoresList = document.getElementById('scores-list');
             scoresList.innerHTML = '';
 
-            if (scores.length === 0) {
+            if (leaderboard.length === 0) {
                 scoresList.innerHTML = '<li>No scores yet. Be the first to play!</li>';
             } else {
-                scores.forEach((entry, index) => {
+                leaderboard.forEach((entry, index) => {
                     const li = document.createElement('li');
                     li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing ? '👑' : ''}`;
                     scoresList.appendChild(li);
                 });
             }
         }
-
-        // Load Leaderboard on Page Load
-        document.addEventListener('DOMContentLoaded', async function () {
-            const scores = await fetchLeaderboard();
-            const scoresList = document.getElementById('scores-list');
-            scoresList.innerHTML = '';
-
-            if (scores.length === 0) {
-                scoresList.innerHTML = '<li>No scores yet. Be the first to play!</li>';
-            } else {
-                scores.forEach((entry, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing ? '👑' : ''}`;
-                    scoresList.appendChild(li);
-                });
-            }
-        });
 
         // Start Quiz
         document.getElementById('player-info').addEventListener('submit', function (e) {
@@ -343,6 +355,7 @@
                 popupMessage.style.display = 'block';
                 quizQuestions.style.display = 'none'; // Hide the question div
                 restartButton.style.display = 'block'; // Show Restart Game button
+                updateLeaderboard(false); // Update leaderboard when the player loses
             }
         }
 
@@ -363,7 +376,7 @@
             }
 
             document.getElementById('quiz-container').style.display = 'none';
-            updateLeaderboard(isPerfectScore);
+            updateLeaderboard(isPerfectScore); // Update leaderboard when the player wins
             document.getElementById('leaderboard').style.display = 'block'; // Show leaderboard when game ends
         }
 
