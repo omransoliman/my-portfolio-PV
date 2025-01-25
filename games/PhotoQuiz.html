@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="stylegame.css"> 
     <link rel="stylesheet" href="../style.css"> 
     <style>
+
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
-
     <nav>
         <a href="../index.html" class="logo">Omran Soliman</a>
         <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div class="nav-links menu">
             <a href="../index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-            
             <div class="dropdown">
                 <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
                 <div class="dropdown-content">
@@ -33,10 +32,11 @@
             <a href="../reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
             <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
             <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <button class="language-switch" >EN</button>
+            <button class="language-switch">EN</button>
         </div>
     </nav>
 
+    <!-- Photo Quiz Section -->
     <section id="photo-quiz">
         <h2>Photo Quiz</h2>
         <div id="quiz-intro">
@@ -57,11 +57,37 @@
             </div>
             <button id="restart-game">Restart Game</button>
         </div>
+
+        <!-- Animation Section (Hidden Initially) -->
+    <div id="animation-container" style="display: none;">
+        <h1 class="winner-text">WOW, Congratulations! You answered all the questions we have now.</h1>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+    <button id="restart-game">Restart Game</button>
         <div id="leaderboard">
             <h3>Leaderboard</h3>
             <ul id="scores-list"></ul>
         </div>
     </section>
+
+    
 
     <script src="../config.js" defer></script>
     <script src="../script.js" defer></script>
@@ -223,12 +249,14 @@
             const popupText = document.getElementById('popup-text');
 
             if (isPerfectScore) {
+                // Show the animation
+                document.getElementById('quiz-container').style.display = 'none';
+                document.getElementById('animation-container').style.display = 'block';
                 popupText.textContent = 'Congratulations! You answered all questions correctly! 👑';
                 popupMessage.className = 'correct-popup';
                 popupMessage.style.display = 'block';
             }
 
-            document.getElementById('quiz-container').style.display = 'none';
             updateLeaderboard(isPerfectScore);
             document.getElementById('leaderboard').style.display = 'block';
         }
@@ -239,6 +267,7 @@
             document.getElementById('quiz-intro').style.display = 'block';
             document.getElementById('restart-game').style.display = 'none';
             document.getElementById('quiz-questions').style.display = 'block';
+            document.getElementById('animation-container').style.display = 'none';
             currentQuestion = 0;
             score = 0;
             document.getElementById('popup-message').style.display = 'none';
