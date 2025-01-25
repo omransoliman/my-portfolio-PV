@@ -152,11 +152,11 @@ button:hover {
     background-color: #555;
 }
 
+/* Player Info Form */
 #player-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -173,7 +173,6 @@ button:hover {
   }
 
   #player-info button {
-    background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     border: none;
