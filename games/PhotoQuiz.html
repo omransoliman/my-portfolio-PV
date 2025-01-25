@@ -103,15 +103,12 @@
 
     <script src="../config.js" defer></script>
     <script src="../script.js" defer></script>
+    <script src="quizData.js" defer></script>
     <script>
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbxNTiRE-mNpfHOyJ1v4DTgcF0v9iwLTTTzVBmNXPIEgbP-Ce8NuiDoFzlrandsitHLXAg/exec'; // Replace with your Google Apps Script URL
         const sheetId = '1FjSNTPg5UfwGU0F9H7qlPr2ZysW-WqNtEb4KCd4HNj0'; // Replace with your Google Sheet ID
         const apiKey = 'AIzaSyDWhZa3OeVlm5ruiYRGbThmMarDssbff-s'; // Replace with your Google Sheets API key
-        const quizData = [
-            { question: "What does ISO stand for in photography?", answers: ["International Standards Organization", "Image Sensor Optimization", "Instant Shutter Operation"], correct: 0 },
-            { question: "What is the 'rule of thirds'?", answers: ["A composition guideline", "A type of camera lens", "A post-processing technique"], correct: 0 },
-            // Add 48 more questions here...
-        ];
+    
 
         let currentQuestion = 0;
         let score = 0;
