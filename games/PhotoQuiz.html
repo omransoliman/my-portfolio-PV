@@ -235,7 +235,7 @@
     </nav>
 
     <section id="photo-quiz">
-        <h2>Photo Quiz</h2>
+        <h2>Photo Quiz B</h2>
         <div id="quiz-intro">
             <p>Test your knowledge of photography terms and techniques!</p>
             <form id="player-info">
@@ -262,10 +262,7 @@
 
     <script>
         // Google Apps Script URL
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxIf7J-gFQUvMx0XmLv-b4kWdZ2hyxBfM8t0iSL-1ydYH-HkElRI6zGJDujhMwfJkIw/exec';
-
-        // Google Sheet ID
-        const sheetId = '1FjSNTPg5UfwGU0F9H7qlPr2ZysW-WqNtEb4KCd4HNj0';
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzHEhDw4BW5YyrFhS-OO_2LYXxEOSZu5AkDWmVzo_MeGlSXBTUBAztBKGUk4KP9GZb5/exec';
 
         // Quiz Data (50 questions)
         const quizData = [
@@ -278,33 +275,36 @@
         let score = 0;
         let playerName = '';
 
-        // Fetch Leaderboard Data using Google Sheets API
+        // Fetch Leaderboard Data
         async function fetchLeaderboard() {
             try {
-                const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=AIzaSyBw44PAIqR2k7WVdZsAA2v1GU8ZrDpTGPQ`);
-                const data = await response.json();
-                const rows = data.values || [];
-                const leaderboard = rows.slice(1).map(row => ({
-                    name: row[0],
-                    score: parseInt(row[1]),
-                    isKing: row[2] === 'TRUE',
-                }));
-                return leaderboard;
+                const response = await fetch(scriptUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    return result.data; // Leaderboard data
+                } else {
+                    console.error('Error fetching leaderboard:', result.message);
+                    return [];
+                }
             } catch (error) {
                 console.error('Error fetching leaderboard:', error);
                 return [];
             }
         }
 
-        // Update Leaderboard Data using Google Apps Script
+        // Update Leaderboard Data
         async function updateLeaderboard(isPerfectScore = false) {
             const playerEntry = {
                 name: playerName,
                 score: score,
                 isKing: isPerfectScore ? 'TRUE' : 'FALSE',
             };
-
-            console.log('Sending data to Google Apps Script:', playerEntry); // Debug log
 
             try {
                 const response = await fetch(scriptUrl, {
@@ -314,11 +314,15 @@
                     },
                     body: JSON.stringify(playerEntry),
                 });
+                const result = await response.json();
 
-                const result = await response.text();
-                console.log('Response from Google Apps Script:', result); // Debug log
+                if (result.status === 'success') {
+                    console.log('Score submitted successfully');
+                } else {
+                    console.error('Error updating leaderboard:', result.message);
+                }
             } catch (error) {
-                console.error('Error updating leaderboard:', error); // Debug log
+                console.error('Error updating leaderboard:', error);
             }
 
             // Display leaderboard
@@ -331,7 +335,7 @@
             } else {
                 leaderboard.forEach((entry, index) => {
                     const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing ? '👑' : ''}`;
+                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}`;
                     scoresList.appendChild(li);
                 });
             }
@@ -348,7 +352,7 @@
             } else {
                 leaderboard.forEach((entry, index) => {
                     const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing ? '👑' : ''}`;
+                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}`;
                     scoresList.appendChild(li);
                 });
             }
@@ -427,7 +431,6 @@
                 updateLeaderboard(false); // Ensure this is called
             }
         }
-
 
         // Update Score Display
         function updateScoreDisplay() {
