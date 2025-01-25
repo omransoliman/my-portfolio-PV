@@ -260,6 +260,8 @@
         </div>
     </section>
 
+    <script src="../config.js" defer></script>
+    <script src="../script.js" defer></script>
     <script>
         // Google Apps Script URL
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbypekM3CmvsLXB7oxuXj3r9I19NLqKHIxvaReCR5TX1AQ9gUJV1YhDxK519LhTqETx4wA/exec';
@@ -310,7 +312,7 @@
                 });
 
                 const result = await response.text();
-                console.log('Score added to Google Sheet:', result); // Debug log
+                console.log('Response from Google Apps Script:', result); // Debug log
             } catch (error) {
                 console.error('Error updating leaderboard:', error); // Debug log
             }
