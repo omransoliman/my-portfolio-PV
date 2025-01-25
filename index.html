@@ -61,6 +61,21 @@
 .cta-button:hover {
     background-color: #555;
 }
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #000;
+}
     </style>
     <script>
         fetch('seo.html')
@@ -131,6 +146,7 @@
     <!--  promoModal section -->
     <div id="promoModal" class="modal">
         <div class="modal-content">
+            <span class="close-button">&times;</span> <!-- Close button -->
             <h2 style="color: red;">Exclusive Offer!</h2>
             <p data-fr="Célébrez le lancement de Mon Site Web avec une offre spéciale ! Pour une durée limitée, profitez de séances de photographie professionnelles à Lyon pour seulement 50€. Ne manquez pas cette incroyable opportunité de capturer de magnifiques souvenirs à un prix exceptionnel." data-en="Celebrate the launch of My Website with a special offer! For a limited time, enjoy professional photography sessions in Lyon for just €50. Don't miss this incredible opportunity to capture beautiful memories at an amazing price."></p>
             <a href="https://wa.me/33625965257?text=I%20am%20pleased%20to%20accept%20this%20offer.%20Thank%20you%20for%20this%20opportunity." class="cta-button" style="color: inherit" >Book Now</a>
@@ -202,6 +218,14 @@
                 modal.style.display = 'none';
             }
         };
+
+        // Close the modal if the user clicks outside of it or on the close button
+    window.onclick = function(event) {
+        var modal = document.getElementById('promoModal');
+        if (event.target == modal || event.target.classList.contains('close-button')) {
+            modal.style.display = 'none';
+        }
+    };
     </script>
 </body>
 </html>
