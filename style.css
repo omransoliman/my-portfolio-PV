@@ -371,7 +371,7 @@ background-color: rgba(0,0,0,0.1);
   .about-content .contact-btn {
     display: inline-block;
     padding: 15px 30px;
-    background: var(--primary-color); /* Use CSS variable */
+    background: var(--button-bg-color); /* Use CSS variable */
     color: white;
     font-size: 1.2rem;
     border-radius: 5px;
