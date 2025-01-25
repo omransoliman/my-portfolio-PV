@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS file -->
+    <link rel="stylesheet" href="../style.css"> <!-- Link to your existing CSS file -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Additional styles for the quiz page */
@@ -205,7 +205,10 @@
         const quizData = [
             { question: "What does ISO stand for in photography?", answers: ["International Standards Organization", "Image Sensor Optimization", "Instant Shutter Operation"], correct: 0 },
             { question: "What is the 'rule of thirds'?", answers: ["A composition guideline", "A type of camera lens", "A post-processing technique"], correct: 0 },
-            // Add 48 more questions here...
+            { question: "What is the purpose of a polarizing filter?", answers: ["Reduce reflections", "Increase shutter speed", "Enhance colors"], correct: 0 },
+            { question: "What is the 'golden hour' in photography?", answers: ["The first hour after sunrise and the last hour before sunset", "The hour when the sun is at its highest point", "A rare celestial event"], correct: 0 },
+            { question: "What does 'bokeh' refer to?", answers: ["The aesthetic quality of out-of-focus areas in a photo", "A type of lens flare", "A camera setting for low light"], correct: 0 },
+            // Add 45 more questions here...
         ];
 
         let currentQuestion = 0;
