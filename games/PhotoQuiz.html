@@ -9,6 +9,21 @@
     <link rel="stylesheet" href="stylegame.css"> 
     <link rel="stylesheet" href="../style.css"> 
     <style>
+        /* Add your custom styles here */
+        .correct-popup {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            display: none;
+        }
+        .wrong-popup {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+            display: none;
+        }
 
     </style>
 </head>
@@ -59,35 +74,32 @@
         </div>
 
         <!-- Animation Section (Hidden Initially) -->
-    <div id="animation-container" style="display: none;">
-        <h1 class="winner-text">WOW, Congratulations! You answered all the questions we have now.</h1>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
-    <button id="restart-game">Restart Game</button>
+        <div id="animation-container" style="display: none;">
+            <h1 class="winner-text">WOW, Congratulations! You answered all the questions we have now.</h1>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
         <div id="leaderboard">
             <h3>Leaderboard</h3>
             <ul id="scores-list"></ul>
         </div>
     </section>
-
-    
 
     <script src="../config.js" defer></script>
     <script src="../script.js" defer></script>
@@ -117,7 +129,7 @@
                 return leaderboard.map(row => ({
                     date: row[0],
                     name: row[1],
-                    score: row[2],
+                    score: parseInt(row[2]),
                     isKing: row[3]
                 }));
             } catch (error) {
@@ -129,6 +141,16 @@
         // Function to update leaderboard display
         async function updateLeaderboardDisplay() {
             const leaderboard = await fetchLeaderboard();
+            
+            // Sort the leaderboard by score (descending) and then by date (descending)
+            leaderboard.sort((a, b) => {
+                if (b.score !== a.score) {
+                    return b.score - a.score; // Sort by score descending
+                } else {
+                    return new Date(b.date) - new Date(a.date); // Sort by date descending
+                }
+            });
+
             const scoresList = document.getElementById('scores-list');
             scoresList.innerHTML = leaderboard.length === 0
                 ? '<li>No scores yet. Be the first to play!</li>'
