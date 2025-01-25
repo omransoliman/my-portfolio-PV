@@ -63,18 +63,17 @@
 }
 
 .close-button {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ff0000;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
-.close-button:hover {
-    color: #000;
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
     </style>
     <script>
@@ -206,20 +205,49 @@
     <script src="bestreviewsHome.js" defer></script>
 
     <script>
-        // Automatically open the modal when the page loads
-        window.onload = function() {
-            document.getElementById('promoModal').style.display = 'flex';
-        };
+    //     // Automatically open the modal when the page loads
+    //     window.onload = function() {
+    //         document.getElementById('promoModal').style.display = 'flex';
+    //     };
     
         
 
-        // Close the modal if the user clicks outside of it or on the close button
-    window.onclick = function(event) {
-        var modal = document.getElementById('promoModal');
-        if (event.target == modal || event.target.classList.contains('close-button')) {
-            modal.style.display = 'none';
-        }
-    };
+    //     // Close the modal if the user clicks outside of it or on the close button
+    // window.onclick = function(event) {
+    //     var modal = document.getElementById('promoModal');
+    //     if (event.target == modal || event.target.classList.contains('close-button')) {
+    //         modal.style.display = 'none';
+    //     }
+    // };
+
+
+
+    // Get the modal
+var modal = document.getElementById("promoModal");
+
+// Get the button that opens the modal
+// (You'll need to add an ID or class to the button that triggers the modal)
+var btn = document.getElementById("myBtn"); 
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close-button")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
     </script>
 </body>
 </html>
