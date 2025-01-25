@@ -11,50 +11,56 @@
     <link rel="stylesheet" href="bestreviewsHome.css">
     <style>
 
+/* Modal Styles */
 .modal {
-  display: none; /* Initially hidden */
-  position: fixed;
-  z-index: 1; /* Ensure it appears on top */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.4); /* Semi-transparent background */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* Center vertically */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; 
-  max-width: 600px; 
+    background-color: var(--background-color);
+    margin: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: var(--text-color);
 }
 
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.modal-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.modal-content p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .cta-button {
-  display: inline-block;
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #555;
 }
     </style>
     <script>
@@ -124,15 +130,14 @@
         </div>
     </section>
 
+    <!--  promoModal section -->
     <div id="promoModal" class="modal">
         <div class="modal-content">
-            <span class="close-button">&times;</span>
             <h2>Exclusive Offer!</h2>
             <p>Sign up today and enjoy a free mini-session with your next booking.</p>
             <a href="signup.html" class="cta-button">Sign Up</a>
         </div>
     </div>
-    <button id="myBtn">Show Offer</button> 
     <!-- Add this section to your index.html file -->
 <section class="reviews-section">
     <h2>Top Reviews</h2>
@@ -186,34 +191,19 @@
     <script src="script.js" defer></script>
     <script src="bestreviewsHome.js" defer></script>
 
-    <script defer>
-
-        // Get the modal
-var modal = document.getElementById("promoModal");
-
-// Get the button that opens the modal
-// (You'll need to add an ID or class to the button that triggers the modal)
-var btn = document.getElementById("myBtn"); 
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close-button")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+    <script>
+        // Automatically open the modal when the page loads
+        window.onload = function() {
+            document.getElementById('promoModal').style.display = 'flex';
+        };
+    
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('promoModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        };
     </script>
 </body>
 </html>
