@@ -6,223 +6,9 @@
     <title>Photo Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="stylegame.css"> 
     <style>
-        /* General Styles */
-        :root {
-            --primary-color: #333;
-            --background-color: #fff;
-            --text-color: #333;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #fff;
-                --background-color: #1a1a1a;
-                --text-color: #fff;
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Audiowide', cursive;
-            line-height: 1.6;
-            color: var(--text-color);
-            background: var(--background-color);
-        }
-
-        /* Navigation Bar Styles */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--background-color);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        /* Quiz Section Styles */
-        #photo-quiz {
-            padding-top: 80px; /* Add padding to account for the fixed nav bar */
-            text-align: center;
-        }
-
-        #quiz-intro, #leaderboard {
-            margin: 20px auto;
-            padding: 20px;
-            background: var(--background-color);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-        }
-
-        #scores-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        #scores-list li {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        #feedback {
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        #score-display {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-color);
-        }
-
-        button {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 20px;
-        }
-
-        button:hover {
-            background-color: #555;
-        }
-
-        /* Gradient Banner Card Styles with Flexbox */
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            margin: 20px;
-            padding: 20px;
-            width: 100%;
-            max-width: 500px;
-            min-height: 200px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-radius: 10px;
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
-            transition: all 0.2s;
-            background: radial-gradient(#76b2fe, #b69efe); /* Card-3 gradient */
-        }
-
-        .card:hover {
-            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-            transform: scale(1.01);
-        }
-
-        .card__title {
-            font-weight: 400;
-            color: #ffffff;
-            font-size: 1.5rem;
-            margin-bottom: 20px; /* Space between question and answers */
-        }
-
-        .card__answers {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .card__answers label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            font-size: 1rem;
-        }
-
-        .card__answers input[type="radio"] {
-            accent-color: #76b2fe;
-        }
-
-        /* Popup Message */
-        #popup-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            border-radius: 10px;
-            font-size: 1.5rem;
-            z-index: 1000;
-            display: none;
-            animation: popupAnimation 0.5s ease-in-out;
-        }
-
-        @keyframes popupAnimation {
-            0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-        }
-
-        .correct-popup {
-            background-color: #4CAF50; /* Green for correct answer */
-        }
-
-        .wrong-popup {
-            background-color: #F44336; /* Red for wrong answer */
-        }
-
-        /* Restart Game Button */
-        #restart-game {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin: 20px auto; /* Center the button */
-            display: none; /* Hidden by default */
-        }
-
-        #restart-game:hover {
-            background-color: #555;
-        }
+        /* Add your CSS styles here (same as provided in your original code) */
     </style>
 </head>
 <body>
@@ -235,7 +21,7 @@
     </nav>
 
     <section id="photo-quiz">
-        <h2>Photo Quiz SSS</h2>
+        <h2>Photo Quiz final</h2>
         <div id="quiz-intro">
             <p>Test your knowledge of photography terms and techniques!</p>
             <form id="player-info">
@@ -262,6 +48,8 @@
 
     <script>
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbxNTiRE-mNpfHOyJ1v4DTgcF0v9iwLTTTzVBmNXPIEgbP-Ce8NuiDoFzlrandsitHLXAg/exec'; // Replace with your Google Apps Script URL
+        const sheetId = '1FjSNTPg5UfwGU0F9H7qlPr2ZysW-WqNtEb4KCd4HNj0'; // Replace with your Google Sheet ID
+        const apiKey = 'AIzaSyDWhZa3OeVlm5ruiYRGbThmMarDssbff-s'; // Replace with your Google Sheets API key
         const quizData = [
             { question: "What does ISO stand for in photography?", answers: ["International Standards Organization", "Image Sensor Optimization", "Instant Shutter Operation"], correct: 0 },
             { question: "What is the 'rule of thirds'?", answers: ["A composition guideline", "A type of camera lens", "A post-processing technique"], correct: 0 },
@@ -271,6 +59,43 @@
         let currentQuestion = 0;
         let score = 0;
         let playerName = '';
+
+        // Function to fetch leaderboard data from Google Sheets
+        async function fetchLeaderboard() {
+            try {
+                const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=${apiKey}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                const leaderboard = data.values ? data.values.slice(1) : []; // Skip the header row
+                return leaderboard.map(row => ({
+                    date: row[0],
+                    name: row[1],
+                    score: row[2],
+                    isKing: row[3]
+                }));
+            } catch (error) {
+                console.error('Error fetching leaderboard:', error);
+                return [];
+            }
+        }
+
+        // Function to update leaderboard display
+        async function updateLeaderboardDisplay() {
+            const leaderboard = await fetchLeaderboard();
+            const scoresList = document.getElementById('scores-list');
+            scoresList.innerHTML = leaderboard.length === 0
+                ? '<li>No scores yet. Be the first to play!</li>'
+                : leaderboard.map((entry, index) => `
+                    <li>${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}</li>
+                `).join('');
+        }
+
+        // Load Leaderboard on Page Load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await updateLeaderboardDisplay();
+        });
 
         // Function to update leaderboard
         async function updateLeaderboard(isPerfectScore = false) {
@@ -296,32 +121,8 @@
                 console.error('Error submitting score:', error);
             }
 
-            // Display leaderboard (fetching leaderboard will still require CORS)
-            const leaderboard = await fetchLeaderboard();
-            const scoresList = document.getElementById('scores-list');
-            scoresList.innerHTML = leaderboard.length === 0
-                ? '<li>No scores yet. Be the first to play!</li>'
-                : leaderboard.map((entry, index) => `
-                    <li>${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}</li>
-                `).join('');
-        }
-
-        // Function to fetch leaderboard
-        async function fetchLeaderboard() {
-            try {
-                // Use no-cors mode
-                const response = await fetch(scriptUrl, {
-                    method: 'GET',
-                    mode: 'no-cors', // Disables CORS
-                });
-
-                // Note: You cannot read the response in no-cors mode
-                console.log('Leaderboard fetch attempted (no-cors mode)');
-                return []; // Return an empty array since the response cannot be read
-            } catch (error) {
-                console.error('Error fetching leaderboard:', error);
-                return [];
-            }
+            // Update the leaderboard display
+            await updateLeaderboardDisplay();
         }
 
         // Start Quiz

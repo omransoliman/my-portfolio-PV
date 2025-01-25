@@ -235,7 +235,7 @@
     </nav>
 
     <section id="photo-quiz">
-        <h2>Photo Quiz Bb</h2>
+        <h2>Photo Quiz</h2>
         <div id="quiz-intro">
             <p>Test your knowledge of photography terms and techniques!</p>
             <form id="player-info">
@@ -261,10 +261,7 @@
     </section>
 
     <script>
-        // Google Apps Script URL
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxNTiRE-mNpfHOyJ1v4DTgcF0v9iwLTTTzVBmNXPIEgbP-Ce8NuiDoFzlrandsitHLXAg/exec';
-
-        // Quiz Data (50 questions)
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxNTiRE-mNpfHOyJ1v4DTgcF0v9iwLTTTzVBmNXPIEgbP-Ce8NuiDoFzlrandsitHLXAg/exec'; // Replace with your Google Apps Script URL
         const quizData = [
             { question: "What does ISO stand for in photography?", answers: ["International Standards Organization", "Image Sensor Optimization", "Instant Shutter Operation"], correct: 0 },
             { question: "What is the 'rule of thirds'?", answers: ["A composition guideline", "A type of camera lens", "A post-processing technique"], correct: 0 },
@@ -275,30 +272,7 @@
         let score = 0;
         let playerName = '';
 
-        // Fetch Leaderboard Data
-        async function fetchLeaderboard() {
-            try {
-                const response = await fetch(scriptUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    return result.data; // Leaderboard data
-                } else {
-                    console.error('Error fetching leaderboard:', result.message);
-                    return [];
-                }
-            } catch (error) {
-                console.error('Error fetching leaderboard:', error);
-                return [];
-            }
-        }
-
-        // Update Leaderboard Data
+        // Function to update leaderboard
         async function updateLeaderboard(isPerfectScore = false) {
             const playerEntry = {
                 name: playerName,
@@ -307,56 +281,48 @@
             };
 
             try {
-                const response = await fetch(scriptUrl, {
+                // Use no-cors mode
+                await fetch(scriptUrl, {
                     method: 'POST',
+                    mode: 'no-cors', // Disables CORS
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(playerEntry),
                 });
-                const result = await response.json();
 
-                if (result.status === 'success') {
-                    console.log('Score submitted successfully');
-                } else {
-                    console.error('Error updating leaderboard:', result.message);
-                }
+                console.log('Score submitted (no-cors mode)');
             } catch (error) {
-                console.error('Error updating leaderboard:', error);
+                console.error('Error submitting score:', error);
             }
 
-            // Display leaderboard
+            // Display leaderboard (fetching leaderboard will still require CORS)
             const leaderboard = await fetchLeaderboard();
             const scoresList = document.getElementById('scores-list');
-            scoresList.innerHTML = '';
-
-            if (leaderboard.length === 0) {
-                scoresList.innerHTML = '<li>No scores yet. Be the first to play!</li>';
-            } else {
-                leaderboard.forEach((entry, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}`;
-                    scoresList.appendChild(li);
-                });
-            }
+            scoresList.innerHTML = leaderboard.length === 0
+                ? '<li>No scores yet. Be the first to play!</li>'
+                : leaderboard.map((entry, index) => `
+                    <li>${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}</li>
+                `).join('');
         }
 
-        // Load Leaderboard on Page Load
-        document.addEventListener('DOMContentLoaded', async () => {
-            const leaderboard = await fetchLeaderboard();
-            const scoresList = document.getElementById('scores-list');
-            scoresList.innerHTML = '';
-
-            if (leaderboard.length === 0) {
-                scoresList.innerHTML = '<li>No scores yet. Be the first to play!</li>';
-            } else {
-                leaderboard.forEach((entry, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = `${index + 1}. ${entry.name}: ${entry.score} ${entry.isKing === 'TRUE' ? '👑' : ''}`;
-                    scoresList.appendChild(li);
+        // Function to fetch leaderboard
+        async function fetchLeaderboard() {
+            try {
+                // Use no-cors mode
+                const response = await fetch(scriptUrl, {
+                    method: 'GET',
+                    mode: 'no-cors', // Disables CORS
                 });
+
+                // Note: You cannot read the response in no-cors mode
+                console.log('Leaderboard fetch attempted (no-cors mode)');
+                return []; // Return an empty array since the response cannot be read
+            } catch (error) {
+                console.error('Error fetching leaderboard:', error);
+                return [];
             }
-        });
+        }
 
         // Start Quiz
         document.getElementById('player-info').addEventListener('submit', function (e) {
@@ -373,29 +339,24 @@
         function loadQuestion() {
             const questionData = quizData[currentQuestion];
             const quizQuestions = document.getElementById('quiz-questions');
-            quizQuestions.innerHTML = '';
-
-            const questionCard = document.createElement('div');
-            questionCard.className = 'card';
-            questionCard.innerHTML = `
-                <h2 class="card__title">${questionData.question}</h2>
-                <div class="card__answers">
-                    ${questionData.answers.map((answer, index) => `
-                        <label>
-                            <input type="radio" name="answer" value="${index}">
-                            ${answer}
-                        </label>
-                    `).join('')}
+            quizQuestions.innerHTML = `
+                <div class="card">
+                    <h2 class="card__title">${questionData.question}</h2>
+                    <div class="card__answers">
+                        ${questionData.answers.map((answer, index) => `
+                            <label>
+                                <input type="radio" name="answer" value="${index}">
+                                ${answer}
+                            </label>
+                        `).join('')}
+                    </div>
                 </div>
             `;
-            quizQuestions.appendChild(questionCard);
 
             // Add event listener for answer selection
-            const answerInputs = questionCard.querySelectorAll('input[name="answer"]');
+            const answerInputs = quizQuestions.querySelectorAll('input[name="answer"]');
             answerInputs.forEach(input => {
-                input.addEventListener('change', function () {
-                    checkAnswer(input.value);
-                });
+                input.addEventListener('change', () => checkAnswer(input.value));
             });
         }
 
@@ -422,13 +383,12 @@
                     endGame(true);
                 }
             } else {
-                console.log('Player lost. Updating leaderboard...'); // Debug log
                 popupText.textContent = 'Wrong! Game Over.';
                 popupMessage.className = 'wrong-popup';
                 popupMessage.style.display = 'block';
                 quizQuestions.style.display = 'none';
                 restartButton.style.display = 'block';
-                updateLeaderboard(false); // Ensure this is called
+                updateLeaderboard(false);
             }
         }
 
