@@ -138,7 +138,7 @@
             </div>
             <p id="feedback"></p>
         </div>
-        <div id="leaderboard" style="display:none;">
+        <div id="leaderboard">
             <h3>Leaderboard</h3>
             <ul id="scores-list"></ul>
             <button id="new-game">Start New Game</button>
@@ -163,6 +163,7 @@
             playerName = document.getElementById('player-name').value;
             document.getElementById('quiz-intro').style.display = 'none';
             document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('leaderboard').style.display = 'none'; // Hide leaderboard when quiz starts
             updateScoreDisplay();
             loadQuestion();
         });
@@ -224,7 +225,7 @@
         function endGame() {
             document.getElementById('quiz-container').style.display = 'none';
             updateLeaderboard();
-            document.getElementById('leaderboard').style.display = 'block';
+            document.getElementById('leaderboard').style.display = 'block'; // Show leaderboard when game ends
         }
 
         // Update Leaderboard
