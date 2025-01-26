@@ -1,177 +1,263 @@
-# Photography Portfolio Website Documentation
+# Website Documentation for Omran Soliman's Photography Portfolio
+
+This documentation provides a **detailed and specific guide** to understanding the structure, functionality, and components of Omran Soliman's photography portfolio website. It is designed to help **designers** and **coders** maintain consistency across the website. The website showcases Omran's work in various photography categories, including weddings, engagements, and portraits, and includes interactive elements like a photo quiz, reviews section, and contact form.
+
+---
 
 ## Table of Contents
-1. [Website Overview](#website-overview)
-2. [File Structure](#file-structure)
-3. [Features](#features)
-4. [Making Common Changes](#making-common-changes)
-5. [Technical Details](#technical-details)
-6. [Troubleshooting](#troubleshooting)
+1. [Website Structure](#1-website-structure)
+2. [Pages and Functionality](#2-pages-and-functionality)
+3. [Styling and Design](#3-styling-and-design)
+4. [Interactive Features](#4-interactive-features)
+5. [Third-Party Integrations](#5-third-party-integrations)
+6. [Localization and Language Support](#6-localization-and-language-support)
+7. [SEO and Analytics](#7-seo-and-analytics)
+8. [Contact and Reviews](#8-contact-and-reviews)
+9. [Photo Quiz](#9-photo-quiz)
+10. [Picflow Gallery Integration](#10-picflow-gallery-integration)
+11. [EmailJS Integration](#11-emailjs-integration)
+12. [Google Sheets Integration](#12-google-sheets-integration)
+13. [Deployment and Maintenance](#13-deployment-and-maintenance)
 
-## Website Overview
-This is a one-page photography portfolio website built for Omran Soliman Photography. It features a responsive design, bilingual support (French/English), and dark/light mode capabilities.
+---
 
-Current website information:
-- Website Name: Omran Soliman
-- Instagram: @soliman.omran
-- Email: omransoliman.pv@gmail.com
-- Phone: +33625965257
+## 1. Website Structure
 
-## File Structure
-```
-root/
-├── index.html         # Main website file
-├── config.js          # Configuration file for easy updates
-└── README.md          # This documentation
-```
+The website is a **multi-page application** with the following pages:
 
-## Features
+- **Home (`index.html`)**: The landing page with a slideshow, portfolio sections, and a contact form.
+- **About (`about.html`)**: Information about Omran Soliman, including his background and photography style.
+- **Portfolio Pages**:
+  - **Wedding (`wedding.html`)**: Showcases wedding photography.
+  - **Engagement (`engagement.html`)**: Displays engagement photography.
+  - **Portrait (`portrait.html`)**: Features portrait photography.
+- **Reviews (`reviews.html`)**: A page where users can view and submit reviews.
+- **Photo Quiz (`games/PhotoQuiz.html`)**: An interactive quiz to test photography knowledge.
+- **Contact Form**: Integrated into the home page for users to get in touch.
 
-### 1. Responsive Design
-- Works on desktop, tablet, and mobile devices
-- Automatically adjusts layout based on screen size
-- Responsive navigation menu that collapses on mobile
+---
 
-### 2. Navigation
-- Logo on the left side
-- Menu items on the right side
-- Order: Home → Portfolio → Contact → About
-- Instagram link in the menu
-- Language toggle (FR/EN)
+## 2. Pages and Functionality
 
-### 3. Bilingual Support
-- Default language: French
-- Toggle between French and English
-- All text content is available in both languages
+### Home Page (`index.html`)
+- **Slideshow**:
+  - Displays a rotating set of images from the `config.js` file.
+  - Images are defined in the `homeSlideshow.images` array in `config.js`.
+  - The slideshow interval is set to 5 seconds by default, but it can be adjusted in `config.js`.
+  - The transition effect is a fade animation.
+- **Portfolio Grid**:
+  - Links to the wedding, engagement, and portrait portfolio pages.
+  - Each portfolio item has a background image and a title overlay.
+  - The background images are defined in the `portfolio-grid` section of `index.html`.
+- **Contact Form**:
+  - Fields: First Name, Last Name, Email, Phone Number, Subject, and Message.
+  - Submissions are handled by **EmailJS**.
+  - The form is validated to ensure all required fields are filled.
+- **Promo Modal**:
+  - Displays an exclusive offer for photography sessions.
+  - The modal appears automatically when the page loads and can be closed by clicking the "X" button or outside the modal.
+  - The modal content is defined in the `promoModal` section of `index.html`.
 
-### 4. Theme Support
-- Automatically switches between light/dark mode based on device settings
-- Light mode: White background, dark text
-- Dark mode: Dark background, light text
+### About Page (`about.html`)
+- **About Section**:
+  - Contains a brief description of Omran Soliman, his photography style, and a call-to-action button to contact him.
+  - The content is dynamically loaded from `config.js` based on the selected language (English or French).
+  - The text content is defined in the `translations` object in `config.js`.
+- **Image Section**:
+  - Displays a professional image of Omran.
+  - The image source is defined in `config.js` under `translations.en.about.image` and `translations.fr.about.image`.
 
-### 5. Sections
-- Home: Background image with tagline
-- Portfolio: Three sections (Wedding, Engagement, Portrait)
-- Contact: Form with email and phone
-- About: Biography and information
+### Portfolio Pages (`wedding.html`, `engagement.html`, `portrait.html`)
+- **Picflow Gallery**:
+  - Embeds a gallery of images for each category (wedding, engagement, portrait) using the Picflow service.
+  - The gallery ID for each category is defined in `config.js` under `picflowGalleryIds`.
+  - Customization options include lightbox, padding, and background settings.
+  - The gallery is embedded using the `<picflow-gallery>` tag with the appropriate `data-gallery-id`.
 
-## Making Common Changes
+### Reviews Page (`reviews.html`)
+- **Review Submission Form**:
+  - Fields: Full Name, Rating (1-5 stars), Profile Image (max 5MB), and Review Comment (max 500 characters).
+  - Submissions are stored in a **Google Sheet** using a Google Apps Script.
+  - The form is validated to ensure all fields are filled and the image is less than 5MB.
+- **Review Display**:
+  - Reviews are displayed in a grid layout with star ratings and user details.
+  - Each review card has a unique background color based on its position in the grid.
+  - The reviews are fetched from a Google Sheet and displayed dynamically using JavaScript.
 
-### Basic Information Updates
-Open `config.js` and modify these fields:
-```javascript
-websiteName: "Omran Soliman",
-instagram: "https://instagram.com/soliman.omran",
-email: "omransoliman.pv@gmail.com",
-phone: "+33625965257"
-```
+### Photo Quiz (`games/PhotoQuiz.html`)
+- **Quiz Interface**:
+  - The quiz consists of multiple-choice questions about photography terms and techniques.
+  - Questions are defined in `quizData.js`.
+  - Each question has 3 possible answers, and the correct answer is marked by the `correct` property.
+  - Users select an answer, and the system checks if it is correct.
+- **Score Tracking**:
+  - Users' scores are tracked and displayed in real-time.
+  - The score is incremented for each correct answer.
+  - The score is displayed using the `updateScoreDisplay` function.
+- **Leaderboard**:
+  - Scores are submitted to a **Google Sheet** and displayed in a leaderboard.
+  - The leaderboard shows the top scores, including the player's name, email, and score.
+  - The leaderboard is updated dynamically using the `updateLeaderboardDisplay` function.
 
-### Updating Portfolio Images
-1. Upload your images to Google Drive
-2. Get the sharing link
-3. Update the portfolio links in `config.js`:
-```javascript
-portfolioLinks: {
-    wedding: "YOUR_GOOGLE_DRIVE_LINK",
-    engagement: "YOUR_GOOGLE_DRIVE_LINK",
-    portrait: "YOUR_GOOGLE_DRIVE_LINK"
-}
-```
+---
 
-### Changing Text Content
-To update translations, modify the translations object in `config.js`:
-```javascript
-translations: {
-    fr: {
-        homeTitle: "Your French Title",
-        homeSubtitle: "Your French Subtitle",
-        aboutText: "Your French About Text"
-    },
-    en: {
-        homeTitle: "Your English Title",
-        homeSubtitle: "Your English Subtitle",
-        aboutText: "Your English About Text"
-    }
-}
-```
+## 3. Styling and Design
 
-### Updating Home Background
-In `index.html`, find the `#home` section's background URL:
-```css
-#home {
-    background: url('your-image-url-here') center/cover;
-}
-```
+The website uses a combination of **custom CSS** and third-party libraries for styling:
 
-### Changing Colors
-To modify the color scheme, update these CSS variables in `index.html`:
-```css
-:root {
-    --primary-color: #333;
-    --background-color: #fff;
-    --text-color: #333;
-}
+- **Custom CSS**:
+  - `style.css`: Handles the overall layout, typography, and responsive design.
+  - `stylegame.css`: Specific styles for the Photo Quiz page.
+  - `bestreviewsHome.css`: Styles for the reviews section on the home page.
+- **Font Awesome**: Used for icons throughout the website.
+- **Google Fonts**: The "Audiowide" font is used for headings and titles.
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #fff;
-        --background-color: #1a1a1a;
-        --text-color: #fff;
-    }
-}
-```
+### Key Styling Features:
+- **Responsive Design**:
+  - The website is fully responsive, with mobile-friendly navigation and layout adjustments.
+  - Media queries are used to adjust the layout for different screen sizes.
+  - The navigation bar collapses into a hamburger menu on mobile devices.
+- **Dark/Light Mode**:
+  - The website supports both dark and light modes based on user preferences.
+  - The color scheme is defined using CSS variables in `style.css`.
+  - The `prefers-color-scheme` media query is used to detect the user's system preference.
+- **Animations**:
+  - Subtle animations are used for transitions, such as the slideshow and the about section.
+  - Keyframe animations like `fadeIn`, `slideIn`, and `zoomIn` are used for visual effects.
 
-## Technical Details
+---
 
-### Languages Used
-- HTML5
-- CSS3
-- JavaScript (ES6+)
+## 4. Interactive Features
 
-### Fonts
-- Main font: Audiowide (Google Fonts)
-- Loading: `<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">`
+### Photo Quiz (`games/PhotoQuiz.html`)
+- **Quiz Questions**:
+  - Questions are loaded from `quizData.js`.
+  - Each question has 3 possible answers, and the correct answer is marked by the `correct` property.
+  - The answers are shuffled using the Fisher-Yates algorithm to ensure randomness.
+- **Score Tracking**:
+  - The score is displayed in real-time using the `updateScoreDisplay` function.
+  - The score is incremented for each correct answer.
+- **Leaderboard**:
+  - Scores are submitted to a **Google Sheet** using a Google Apps Script.
+  - The leaderboard is updated dynamically using the `updateLeaderboardDisplay` function.
 
-### Key JavaScript Functions
-1. `toggleLanguage()`: Switches between French and English
-2. `loadPhotos()`: Loads portfolio images from Google Drive
-3. Configuration object: Stores all updateable content
+### Reviews Section (`reviews.html`)
+- **Review Submission**:
+  - Users can submit reviews with their name, rating, comment, and profile image.
+  - The form is validated to ensure all fields are filled and the image is less than 5MB.
+  - The form submission is handled by a Google Apps Script.
+- **Review Display**:
+  - Reviews are displayed in a grid layout with star ratings and user details.
+  - Each review card has a unique background color based on its position in the grid.
+  - The reviews are fetched from a Google Sheet and displayed dynamically using JavaScript.
+
+---
+
+## 5. Third-Party Integrations
+
+### Google Tag Manager
+- **Purpose**: Used for managing tracking scripts and analytics.
+- **Implementation**: The Google Tag Manager script is included in the `<head>` section of each page.
+
+### Picflow Gallery
+- **Purpose**: Used to display photo galleries for wedding, engagement, and portrait sections.
+- **Implementation**: The gallery is embedded using the `<picflow-gallery>` tag with a unique gallery ID from `config.js`.
+
+### EmailJS
+- **Purpose**: Handles the contact form submissions.
+- **Implementation**: The contact form on the home page sends messages via EmailJS.
+
+### Google Sheets
+- **Purpose**: Stores quiz scores and reviews.
+- **Implementation**: Quiz scores and reviews are submitted to Google Sheets using a Google Apps Script.
+
+---
+
+## 6. Localization and Language Support
+
+The website supports both **English** and **French** languages. The language can be toggled using a language switch button.
+
+- **Language Toggle**:
+  - The language switch button changes the text content of the website between English and French.
+  - The selected language is saved in `localStorage` for persistence.
+- **Localization Logic**:
+  - The `script.js` file handles the language toggle functionality.
+  - Text content is dynamically updated based on the selected language using data attributes (`data-en` and `data-fr`).
+
+---
+
+## 7. SEO and Analytics
+
+### SEO
+- **Meta Tags**: Basic meta tags are included in the `<head>` section of each page.
+- **Structured Data**: The website uses structured data for better search engine visibility.
+
+### Analytics
+- **Google Tag Manager**: Used for tracking user interactions and analytics.
+
+---
+
+## 8. Contact and Reviews
 
 ### Contact Form
-Uses Formspree for form submission:
-```html
-<form action="https://formspree.io/your-email@domain.com" method="POST">
-```
+- **Fields**: Name, email, phone number, subject, and message.
+- **Submission**: The form is submitted via EmailJS, and users receive a confirmation message.
 
-## Troubleshooting
+### Reviews Section
+- **Review Submission**: Users can submit reviews with their name, rating, comment, and profile image.
+- **Review Display**: Reviews are displayed in a grid layout with star ratings and user details.
 
-### Common Issues
+---
 
-1. Images not loading:
-   - Check Google Drive sharing permissions
-   - Verify portfolio links in config.js
-   - Ensure proper image format (JPG/PNG recommended)
+## 9. Photo Quiz
 
-2. Language toggle not working:
-   - Check data-fr and data-en attributes in HTML
-   - Verify translations in config.js
-   - Check console for JavaScript errors
+### Quiz Interface
+- **Questions**: The quiz consists of multiple-choice questions about photography terms and techniques.
+- **Score Tracking**: Users' scores are tracked and displayed in real-time.
+- **Leaderboard**: Scores are submitted to a Google Sheet and displayed in a leaderboard.
 
-3. Contact form issues:
-   - Verify email in Formspree configuration
-   - Check required fields are filled
-   - Confirm form action URL is correct
+---
 
-### Getting Help
-If you need additional assistance:
-1. Check the HTML comments for guidance
-2. Review the configuration file
-3. Contact the original developer
-4. Consult GitHub Pages documentation
+## 10. Picflow Gallery Integration
 
-## Version History
-- Initial Release: January 2025
-- Last Updated: [Current Date]
-- Created by: [Your Name]
+### Gallery Embedding
+- **Implementation**: The gallery is embedded using the `<picflow-gallery>` tag with a unique gallery ID from `config.js`.
+- **Customization**: The gallery can be customized with options like lightbox, padding, and background.
 
-Remember to update this documentation whenever significant changes are made to the website.
+---
+
+## 11. EmailJS Integration
+
+### Contact Form Submission
+- **Purpose**: Handles the contact form submissions.
+- **Implementation**: The contact form on the home page sends messages via EmailJS.
+
+---
+
+## 12. Google Sheets Integration
+
+### Quiz Scores and Reviews
+- **Purpose**: Stores quiz scores and reviews.
+- **Implementation**: Quiz scores and reviews are submitted to Google Sheets using a Google Apps Script.
+
+---
+
+## 13. Deployment and Maintenance
+
+### Deployment
+- **Hosting**: The website can be hosted on any static hosting service (e.g., GitHub Pages, Netlify, Vercel).
+- **Domain**: A custom domain can be configured for the website.
+
+### Maintenance
+- **Content Updates**: Content can be updated by modifying the `config.js` file or the respective HTML files.
+- **Bug Fixes**: Regular updates and bug fixes can be managed through version control (e.g., Git).
+
+---
+
+## Conclusion
+
+This documentation provides a **detailed and specific overview** of Omran Soliman's photography portfolio website. It covers the structure, functionality, and key features of the website, making it easy for **designers** and **coders** to maintain consistency and functionality. For further assistance, refer to the code comments and configuration files.
+
+---
+
+**Note**: This documentation is intended for developers, designers, and content managers who will be working on or maintaining the website.
