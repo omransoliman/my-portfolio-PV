@@ -9,7 +9,6 @@
     <!-- Phosphor Icons for the Share Button -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
-
         /* General Styles */
 :root {
     --primary-color: #333;
@@ -234,33 +233,6 @@ nav {
 .btn--icon:focus {
     border-color: #7d8396;
 }
-
-.offer-social {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.link {
-    text-decoration: none;
-    color: #7d8396;
-}
-
-.link--icon {
-    font-size: 1.25em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 2px solid #7d8396;
-    transition: background-color 0.3s;
-}
-
-.link--icon:hover {
-    background-color: rgba(125, 131, 150, 0.1);
-}
     </style>
 </head>
 <body>
@@ -291,21 +263,10 @@ nav {
                 <p>High-resolution digital images delivered within 7 days.</p>
             </div>
             <div class="offer-actions">
-                <button class="btn btn--primary">Book Now</button>
+                <button class="btn btn--primary" onclick="handleBookNow()">Book Now</button>
                 <button class="btn btn--icon" onclick="shareOffer()">
                     <i class="ph-share-network"></i>
                 </button>
-            </div>
-            <div class="offer-social">
-                <a href="#" class="link link--icon">
-                    X <!-- Simple text for X logo -->
-                </a>
-                <a href="#" class="link link--icon">
-                    <i class="ph-facebook-logo"></i>
-                </a>
-                <a href="#" class="link link--icon">
-                    <i class="ph-instagram-logo"></i>
-                </a>
             </div>
         </article>
     </main>
@@ -315,7 +276,7 @@ nav {
         <p>&copy; 2023 Your Photography Brand. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle and Share Button -->
+    <!-- JavaScript for Mobile Menu Toggle, Share Button, and Book Now -->
     <script>
         // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
@@ -339,6 +300,26 @@ nav {
                     .catch((error) => console.error('Error sharing:', error));
             } else {
                 alert('Your browser does not support sharing. Copy the link manually.');
+            }
+        }
+
+        // Book Now Functionality
+        function handleBookNow() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const phoneNumber = "+33625965257"; // Your WhatsApp number
+            const email = "your-email@example.com"; // Your email address
+
+            if (isMobile) {
+                // Open WhatsApp on mobile
+                const message = "Hello! I would like to book a photography session.";
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, "_blank");
+            } else {
+                // Send email on desktop
+                const subject = "Booking a Photography Session";
+                const body = "Hello! I would like to book a photography session.";
+                const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.location.href = mailtoUrl;
             }
         }
     </script>
