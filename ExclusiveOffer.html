@@ -9,6 +9,7 @@
     <!-- Phosphor Icons for the Share Button -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
+
         /* General Styles */
 :root {
     --primary-color: #333;
@@ -245,8 +246,20 @@ nav {
     color: #7d8396;
 }
 
-.link--icon i {
+.link--icon {
     font-size: 1.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #7d8396;
+    transition: background-color 0.3s;
+}
+
+.link--icon:hover {
+    background-color: rgba(125, 131, 150, 0.1);
 }
     </style>
 </head>
@@ -285,7 +298,7 @@ nav {
             </div>
             <div class="offer-social">
                 <a href="#" class="link link--icon">
-                    <i class="ph-x-logo"></i> <!-- Updated to X logo -->
+                    X <!-- Simple text for X logo -->
                 </a>
                 <a href="#" class="link link--icon">
                     <i class="ph-facebook-logo"></i>
