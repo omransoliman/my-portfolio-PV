@@ -1,4 +1,7 @@
 /* Reviews Section Styles */
+h2 {
+    text-align: center;
+}
 .outerdiv {
     width: 100%;
     display: flex;
