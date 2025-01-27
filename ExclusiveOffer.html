@@ -6,9 +6,10 @@
     <title>Exclusive Offer</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
+    <!-- Phosphor Icons for the Share Button -->
+    <script src="https://unpkg.com/phosphor-icons"></script>
 
     <style>
-
         /* General Styles */
 :root {
     --primary-color: #333;
@@ -234,18 +235,6 @@ nav {
     border-color: #7d8396;
 }
 
-.offer-terms {
-    font-size: 0.875rem;
-    color: #7d8396;
-    margin-bottom: 1.5rem;
-}
-
-.offer-terms ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    text-align: left;
-}
-
 .offer-social {
     display: flex;
     justify-content: center;
@@ -284,23 +273,14 @@ nav {
             <h2 class="offer-title">Capture Your Special Moments!</h2>
             <small class="offer-subtitle">Limited-Time Photography Offer</small>
             <div class="offer-details">
-                <p>Get <strong>20% off</strong> on all photography packages!</p>
-                <p>Free 1-hour consultation session.</p>
+                <p>Free consultation session (1 hour to 1 hour and a half max).</p>
                 <p>Complimentary photo editing for your selected images.</p>
             </div>
             <div class="offer-actions">
                 <button class="btn btn--primary">Book Now</button>
-                <button class="btn btn--icon">
-                    <i class="ph-share"></i>
+                <button class="btn btn--icon" onclick="shareOffer()">
+                    <i class="ph-share-network"></i>
                 </button>
-            </div>
-            <div class="offer-terms">
-                <p><strong>Terms & Conditions:</strong></p>
-                <ul>
-                    <li>Valid for new clients only.</li>
-                    <li>Offer expires on December 31, 2023.</li>
-                    <li>Discount cannot be combined with other offers.</li>
-                </ul>
             </div>
             <div class="offer-social">
                 <a href="#" class="link link--icon">
@@ -321,14 +301,32 @@ nav {
         <p>&copy; 2023 Your Photography Brand. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
+    <!-- JavaScript for Mobile Menu Toggle and Share Button -->
     <script>
+        // Mobile Menu Toggle
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
 
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
+
+        // Share Offer Functionality
+        function shareOffer() {
+            const shareData = {
+                title: 'Limited-Time Photography Offer',
+                text: 'Capture your special moments with this exclusive photography offer!',
+                url: window.location.href,
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log('Offer shared successfully!'))
+                    .catch((error) => console.error('Error sharing:', error));
+            } else {
+                alert('Your browser does not support sharing. Copy the link manually.');
+            }
+        }
     </script>
 </body>
 </html>
