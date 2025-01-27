@@ -7,11 +7,11 @@ const showOffers = false; // Change to `true` to show offers, `false` to hide th
 function initializeOffers() {
     const offerCards = document.querySelectorAll('.offer-card');
     const noOffersMessage = document.createElement('div');
-    noOffersMessage.id = 'no-offers-message';
-    noOffersMessage.innerHTML = `
-        <p>Thank you for your interest in our services! We're always looking for ways to provide exceptional value to our customers. While we don't have any special offers available at this time, we encourage you to follow us on Instagram to be the first to know about future promotions and exclusive deals.</p>
-        <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">Follow us on Instagram</a>
-    `;
+noOffersMessage.id = 'no-offers-message';
+noOffersMessage.innerHTML = `
+    <p>Thank you for your interest in our services! We're always looking for ways to provide exceptional value to our customers. While we don't have any special offers available at this time, we encourage you to follow us on Instagram to be the first to know about future promotions and exclusive deals.</p>
+    <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">Follow us on Instagram</a>
+`;
 
     // Insert the message at the top of the <main> container (right below the nav)
     const mainContainer = document.querySelector('main.exclusive-offer');

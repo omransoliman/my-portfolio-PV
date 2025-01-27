@@ -166,9 +166,21 @@
     display: none; /* Initially hidden */
 }
 
-#no-offers-message a {
+#no-offers-message a.btn {
     margin-top: 1rem;
     display: inline-block; /* Ensure the button is properly styled */
+    text-decoration: none; /* Remove underline from the link */
+    border-radius: 99em; /* Rounded corners */
+    background-color: #3772ff; /* Primary button color */
+    background-image: linear-gradient(135deg, #5587ff, #3772ff); /* Gradient effect */
+    color: #fff; /* White text */
+    padding: 0.75rem 1.5rem; /* Padding for the button */
+    font-size: 1rem; /* Font size */
+    transition: background-size 0.15s ease; /* Smooth transition for hover effect */
+}
+
+#no-offers-message a.btn:hover {
+    background-size: 150%; /* Enlarge gradient on hover */
 }
     </style>
 </head>
