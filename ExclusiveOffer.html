@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Offer</title>
+    <link rel="stylesheet" href="style.css"> 
+
+
+    <style></style>
+    <!-- Custom CSS -->
+    <style>
+
+        /* Exclusive Offer Section */
+.exclusive-offer {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.exclusive-offer h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.offer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.offer-overview,
+.offer-terms,
+.offer-cta,
+.social-proof {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.offer-overview h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.offer-overview p,
+.offer-terms ul,
+.social-proof p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.offer-terms h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.offer-terms ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.offer-cta .cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--button-bg-color);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.offer-cta .cta-button:hover {
+    background: var(--button-hover-bg-color);
+}
+
+.offer-visuals img,
+.offer-visuals video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.social-proof {
+    font-style: italic;
+    color: var(--text-color);
+}
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">Your Brand</a>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#" class="active">Exclusive Offer</a>
+        </div>
+        <button class="menu-toggle">&#9776;</button>
+    </nav>
+
+    <!-- Exclusive Offer Section -->
+    <main>
+        <section class="exclusive-offer">
+            <h1>Unlock Exclusive Savings Today!</h1>
+            <div class="offer-content">
+                <!-- Offer Overview -->
+                <div class="offer-overview">
+                    <h2>Get 20% Off Your First Order!</h2>
+                    <p>Save money and experience the best value with our limited-time offer.</p>
+                    <ul>
+                        <li>Free shipping on all orders over $50</li>
+                        <li>Buy One, Get One 50% Off</li>
+                        <li>Try our products risk-free</li>
+                    </ul>
+                </div>
+
+                <!-- Visual Appeal -->
+                <div class="offer-visuals">
+                    <img src="https://via.placeholder.com/600x400" alt="Exclusive Offer Product">
+                    <video controls>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- Eligibility & Restrictions -->
+                <div class="offer-terms">
+                    <h3>Terms & Conditions</h3>
+                    <ul>
+                        <li>Valid for new customers only</li>
+                        <li>Offer expires on December 31, 2023</li>
+                        <li>Discount cannot be combined with other offers</li>
+                    </ul>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="offer-cta">
+                    <a href="#" class="cta-button">Shop Now</a>
+                    <p>Use code <strong>EXCLUSIVE20</strong> at checkout</p>
+                </div>
+
+                <!-- Social Proof (Optional) -->
+                <div class="social-proof">
+                    <p>"Loved by thousands! Join our happy customers."</p>
+                    <p>Hurry, offer ends soon!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
