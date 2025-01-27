@@ -17,17 +17,11 @@
     <style>
         /* General Styles */
         :root {
-            --primary-color: #333;
-            --background-color: #fff;
-            --text-color: #333;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #fff;
-                --background-color: #1a1a1a;
-                --text-color: #fff;
-            }
+            --primary-color: #fff;
+            --background-color: #060606;
+            --text-color: #f1f3f3;
+            --accent-color: #3772ff;
+            --border-color: #343945;
         }
 
         * {
@@ -44,112 +38,6 @@
             background: var(--background-color);
         }
 
-        /* Navigation Bar Styles */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--background-color);
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-        }
-
-        .menu-toggle:focus {
-            outline: none;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: var(--background-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            padding: 0.5rem 1rem;
-            display: block;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .language-switch {
-            background: none;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                align-items: flex-start;
-                background: var(--background-color);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                padding: 1rem;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-            }
-        }
-
         /* Reviews Section Styles */
         .outerdiv {
             width: 100%;
@@ -157,8 +45,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 0 2rem 0;
-            background-color: #060606;
+            padding: 6rem 0 2rem 0; /* Added padding-top to account for the fixed nav bar */
         }
 
         .innerdiv {
@@ -168,21 +55,19 @@
             display: grid;
             grid-gap: 1.5rem;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-auto-rows: minmax(200px, auto);
+            grid-auto-rows: minmax(auto, 1fr);
         }
 
-        .profile {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
+        .eachdiv {
             padding: 2rem;
-            background-color: #1b2028;
             border-radius: 16px;
-            position: relative;
+            background-color: #1b2028;
             border: 3px solid transparent;
             background-clip: padding-box;
             text-align: center;
-            color: #f1f3f3;
+            color: var(--text-color);
+            position: relative;
+            overflow: hidden;
             background-image: linear-gradient(
                 135deg,
                 rgba(117, 46, 124, 0.35),
@@ -192,7 +77,7 @@
             );
         }
 
-        .profile::after {
+        .eachdiv::after {
             content: "";
             display: block;
             top: -3px;
@@ -211,39 +96,57 @@
             );
         }
 
-        .profile-image {
-            border-radius: 50%;
-            overflow: hidden;
+        .userdetails {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+        }
+
+        .imgbox {
             width: 100px;
             height: 100px;
-            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 1rem;
         }
 
-        .profile-image img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .imgbox img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .profile-username {
-            font-size: 1.2rem;
+        .detbox {
+            text-align: center;
+        }
+
+        .detbox .name {
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-top: 1rem;
+            margin-bottom: 0.25rem;
         }
 
-        .profile-user-handle {
+        .detbox .designation {
             color: #7d8396;
             font-size: 0.9rem;
         }
 
         .review {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #f1f3f3;
-            opacity: 0.8;
-            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .review h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+        }
+
+        .review p {
+            font-size: 0.9rem;
+            color: #7d8396;
+            line-height: 1.5;
         }
 
         .stars {
@@ -251,7 +154,7 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
 
         .stars .star {
@@ -260,7 +163,7 @@
         }
 
         .stars .star.empty {
-            color: #ccc;
+            color: #343945;
         }
 
         /* Button Styles */
@@ -269,7 +172,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #3498db, #2ecc71);
+            background: linear-gradient(135deg, #5587ff, #3772ff);
             color: white;
             border: none;
             padding: 14px 20px;
@@ -293,13 +196,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
+            background-color: #1b2028;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             z-index: 1002;
             width: 90%;
             max-width: 500px;
+            color: var(--text-color);
         }
 
         #reviewModal .close {
@@ -308,7 +212,7 @@
             right: 10px;
             font-size: 24px;
             cursor: pointer;
-            color: #333;
+            color: var(--text-color);
         }
 
         #reviewModal .close:hover {
@@ -318,7 +222,6 @@
         #reviewModal h2 {
             margin-bottom: 20px;
             text-align: center;
-            color: #333;
         }
 
         #reviewModal .form-group {
@@ -334,19 +237,21 @@
         #reviewModal .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
+            background-color: #2c333e;
+            color: var(--text-color);
             transition: all 0.3s ease;
         }
 
         #reviewModal .form-control:focus {
             outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(55, 114, 255, 0.2);
         }
 
         #reviewModal .submit-btn {
-            background: linear-gradient(135deg, #3498db, #2ecc71);
+            background: linear-gradient(135deg, #5587ff, #3772ff);
             color: white;
             border: none;
             padding: 14px 20px;
@@ -375,27 +280,6 @@
         @media only screen and (max-width: 600px) {
             .innerdiv {
                 grid-template-columns: 1fr;
-            }
-
-            .profile {
-                padding: 1.5rem;
-            }
-
-            .profile-image {
-                width: 80px;
-                height: 80px;
-            }
-
-            .profile-username {
-                font-size: 1rem;
-            }
-
-            .profile-user-handle {
-                font-size: 0.8rem;
-            }
-
-            .review {
-                font-size: 0.85rem;
             }
         }
     </style>
