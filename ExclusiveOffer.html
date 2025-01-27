@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Offer</title>
+    <title>Exclusive Offers</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
     <!-- Phosphor Icons for the Share Button -->
@@ -111,10 +111,12 @@ nav {
     }
 }
 
-/* Exclusive Offer Section */
+/* Exclusive Offers Section */
 .exclusive-offer {
     padding: 6rem 2rem 2rem 2rem; /* Adjusted for fixed nav */
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -124,9 +126,7 @@ nav {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 3rem;
-    width: 90%;
-    max-width: 400px;
+    padding: 2rem;
     background-color: #1b2028;
     border-radius: 16px;
     position: relative;
@@ -243,16 +243,17 @@ nav {
             <a href="#">Home</a>
             <a href="#">Portfolio</a>
             <a href="#">About</a>
-            <a href="#" class="active">Exclusive Offer</a>
+            <a href="#" class="active">Exclusive Offers</a>
         </div>
         <button class="menu-toggle">&#9776;</button>
     </nav>
 
-    <!-- Exclusive Offer Section -->
+    <!-- Exclusive Offers Section -->
     <main class="exclusive-offer">
+        <!-- Offer 1 -->
         <article class="offer-card">
             <div class="offer-image">
-                <img src="https://picflow.media/images/resized/720x1080q85/3ffc1d44-a641-45a6-bce1-36435c17411d.jpg" alt="Exclusive Photography Offer" />
+                <img src="https://picflow.media/images/resized/720x1080q85/3ffc1d44-a641-45a6-bce1-36435c17411d.jpg" alt="Exclusive Photography Offer 1" />
             </div>
             <h2 class="offer-title">Capture Your Special Moments!</h2>
             <small class="offer-subtitle">Limited-Time Photography Offer</small>
@@ -261,6 +262,48 @@ nav {
                 <p>Complimentary photo editing for your selected images.</p>
                 <p>Customized photography packages tailored to your needs.</p>
                 <p>High-resolution digital images delivered within 7 days.</p>
+            </div>
+            <div class="offer-actions">
+                <button class="btn btn--primary" onclick="handleBookNow()">Book Now</button>
+                <button class="btn btn--icon" onclick="shareOffer()">
+                    <i class="ph-share-network"></i>
+                </button>
+            </div>
+        </article>
+
+        <!-- Offer 2 -->
+        <article class="offer-card">
+            <div class="offer-image">
+                <img src="https://via.placeholder.com/300x200" alt="Exclusive Photography Offer 2" />
+            </div>
+            <h2 class="offer-title">Family Photography Package</h2>
+            <small class="offer-subtitle">Limited-Time Family Offer</small>
+            <div class="offer-details">
+                <p>1-hour family photoshoot session.</p>
+                <p>10 professionally edited high-resolution images.</p>
+                <p>Customized family portraits for your home.</p>
+                <p>Delivery within 5 business days.</p>
+            </div>
+            <div class="offer-actions">
+                <button class="btn btn--primary" onclick="handleBookNow()">Book Now</button>
+                <button class="btn btn--icon" onclick="shareOffer()">
+                    <i class="ph-share-network"></i>
+                </button>
+            </div>
+        </article>
+
+        <!-- Offer 3 -->
+        <article class="offer-card">
+            <div class="offer-image">
+                <img src="https://via.placeholder.com/300x200" alt="Exclusive Photography Offer 3" />
+            </div>
+            <h2 class="offer-title">Event Photography Package</h2>
+            <small class="offer-subtitle">Limited-Time Event Offer</small>
+            <div class="offer-details">
+                <p>Full-day event coverage.</p>
+                <p>50+ professionally edited high-resolution images.</p>
+                <p>Customized photo album design.</p>
+                <p>Delivery within 10 business days.</p>
             </div>
             <div class="offer-actions">
                 <button class="btn btn--primary" onclick="handleBookNow()">Book Now</button>
