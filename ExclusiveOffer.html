@@ -252,7 +252,7 @@ nav {
     <main class="exclusive-offer">
         <article class="offer-card">
             <div class="offer-image">
-                <img src="https://via.placeholder.com/300x200" alt="Exclusive Photography Offer" />
+                <img src="https://picflow.media/images/resized/720x1080q85/3ffc1d44-a641-45a6-bce1-36435c17411d.jpg" alt="Exclusive Photography Offer" />
             </div>
             <h2 class="offer-title">Capture Your Special Moments!</h2>
             <small class="offer-subtitle">Limited-Time Photography Offer</small>
@@ -307,17 +307,17 @@ nav {
         function handleBookNow() {
             const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             const phoneNumber = "+33625965257"; // Your WhatsApp number
-            const email = "your-email@example.com"; // Your email address
+            const email = "omransoliman.pv@gmail.com"; // Your email address
 
             if (isMobile) {
                 // Open WhatsApp on mobile
-                const message = "Hello! I would like to book a photography session.";
+                const message = "Limited-Time Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.";
                 const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, "_blank");
             } else {
                 // Send email on desktop
-                const subject = "Booking a Photography Session";
-                const body = "Hello! I would like to book a photography session.";
+                const subject = "Limited-Time Photography Offer";
+                const body = "Hello! I am pleased to accept this offer. Thank you for this opportunity.";
                 const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.location.href = mailtoUrl;
             }
