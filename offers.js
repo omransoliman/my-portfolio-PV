@@ -181,8 +181,12 @@ function initializeOffers() {
         noOffersMessage.style.display = 'block'; // Show the message
     }
 
-    // Set default language to English
-    updateContent('en');
+    // Get the saved language from localStorage
+    const savedLanguage = localStorage.getItem('language') || 'en'; // Default to English if no preference is saved
+    console.log('Initializing offers with language:', savedLanguage);
+
+    // Update the offers content based on the saved language
+    updateContent(savedLanguage);
 }
 
 // Share Offer Functionality
