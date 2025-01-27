@@ -4,8 +4,8 @@ const showOffers = true; // Change to `true` to show offers, `false` to hide the
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
     offer1: true,  // Set to `true` to show Offer 1, `false` to hide it
-    offer2: true, // Set to `true` to show Offer 2, `false` to hide it
-    offer3: true   // Set to `true` to show Offer 3, `false` to hide it
+    offer2: false, // Set to `true` to show Offer 2, `false` to hide it
+    offer3: false   // Set to `true` to show Offer 3, `false` to hide it
 };
 
 // Language configuration object
@@ -17,13 +17,14 @@ const languageConfig = {
         },
         offers: [
             {
+                // Offer 1
                 title: "Capture Your Special Moments!",
                 subtitle: "Limited-Time Photography Offer",
                 details: [
-                    "Free consultation session (1 hour to 1 hour and a half max).",
-                    "Complimentary photo editing for your selected images.",
-                    "Customized photography packages tailored to your needs.",
-                    "High-resolution digital images delivered within 7 days."
+                    "📸 Enjoy a personalized session lasting 1 hour to 1.5 hours",
+                    "✨ A maximum of 40 expertly captured photos, Photos will be received online, and Receive your stunning images within 10 days",
+                    "📅 Don't miss out, this offer is available until 15/02/2025",
+                    "💶 All of this for just 50 euros"
                 ],
                 bookNow: "Book Now",
                 shareMessage: "Capture your special moments with this exclusive photography offer!",
@@ -32,6 +33,7 @@ const languageConfig = {
                 emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
             },
             {
+                // offer 2
                 title: "Family Photography Package",
                 subtitle: "Limited-Time Family Offer",
                 details: [
@@ -47,6 +49,7 @@ const languageConfig = {
                 emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
             },
             {
+                // Offer 3
                 title: "Event Photography Package",
                 subtitle: "Limited-Time Event Offer",
                 details: [
@@ -222,11 +225,3 @@ function handleBookNow() {
 
 // Initialize the offers section when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeOffers);
-
-// Add event listener to the language switch button
-document.querySelector('.language-switch')?.addEventListener('click', () => {
-    const currentLanguage = document.documentElement.lang;
-    const newLanguage = currentLanguage === 'en' ? 'fr' : 'en';
-    document.documentElement.lang = newLanguage;
-    updateContent(newLanguage);
-});
