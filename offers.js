@@ -18,7 +18,7 @@ const languageConfig = {
         offers: [
             {
                 // Offer 1
-                title: "Capture Your Special Moments!",
+                title: "📸 Capture Your Special Moments! or 💖 Valentine's Day 💖",
                 subtitle: "Limited-Time Photography Offer",
                 details: [
                     "📸 Enjoy a personalized session lasting 1 hour to 1.5 hours",
@@ -73,13 +73,14 @@ const languageConfig = {
         },
         offers: [
             {
-                title: "Capturez vos moments spéciaux !",
+                // Offer 1
+                title: "📸 Capturez Vos Moments Spéciaux ! or 💖 Saint-Valentin 💖",
                 subtitle: "Offre photographique limitée dans le temps",
                 details: [
-                    "Session de consultation gratuite (1 heure à 1 heure et demie maximum).",
-                    "Retouche photo gratuite pour vos images sélectionnées.",
-                    "Forfaits photographiques personnalisés adaptés à vos besoins.",
-                    "Images numériques haute résolution livrées dans les 7 jours."
+                    "📸 Profitez d'une session personnalisée d'une durée de 1 à 1,5 heure",
+                    "✨ Un maximum de 40 photos capturées avec expertise, les photos seront reçues en ligne, et vous recevrez vos images époustouflantes dans les 10 jours",
+                    "📅 Ne manquez pas cette offre, valable jusqu'au 15/02/2025",
+                    "💶 Tout cela pour seulement 50 euros"
                 ],
                 bookNow: "Réserver maintenant",
                 shareMessage: "Capturez vos moments spéciaux avec cette offre photographique exclusive !",
@@ -88,6 +89,7 @@ const languageConfig = {
                 emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
             },
             {
+                // Offer 2
                 title: "Forfait Photographie Familiale",
                 subtitle: "Offre familiale limitée dans le temps",
                 details: [
@@ -103,6 +105,7 @@ const languageConfig = {
                 emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
             },
             {
+                // Offer 3
                 title: "Forfait Photographie d'Événement",
                 subtitle: "Offre événementielle limitée dans le temps",
                 details: [
