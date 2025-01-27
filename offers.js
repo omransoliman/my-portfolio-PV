@@ -228,3 +228,5 @@ function handleBookNow() {
 
 // Initialize the offers section when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeOffers);
+
+

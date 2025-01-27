@@ -36,6 +36,7 @@ function toggleLanguage() {
     console.log('Language saved to localStorage:', newLanguage);
 
     // Update the UI based on the selected language
+    loadScript('offers.js');
     updateUI(newLanguage);
 
     // Update the language switch button text
