@@ -1,13 +1,13 @@
 // offers.js
 
 // Set this variable to true or false to control the visibility of offers
-const showOffers = false; // Change to `true` to show offers, `false` to hide them
+const showOffers = true; // Change to `true` to show offers, `false` to hide them
 
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
     offer1: true,  // Set to `true` to show Offer 1, `false` to hide it
     offer2: false, // Set to `true` to show Offer 2, `false` to hide it
-    offer3: true   // Set to `true` to show Offer 3, `false` to hide it
+    offer3: false   // Set to `true` to show Offer 3, `false` to hide it
 };
 
 // Function to initialize the offers section
