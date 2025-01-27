@@ -10,107 +10,6 @@
     <!-- Phosphor Icons for the Share Button -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
-        /* General Styles */
-:root {
-    --primary-color: #333;
-    --background-color: #fff;
-    --text-color: #333;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #fff;
-        --background-color: #1a1a1a;
-        --text-color: #fff;
-    }
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Audiowide', cursive;
-    line-height: 1.6;
-    color: var(--text-color);
-    background: var(--background-color);
-}
-
-/* Navigation Bar */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--background-color);
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    color: var(--text-color);
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    opacity: 0.8;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-}
-
-.menu-toggle:focus {
-    outline: none;
-}
-
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        background: var(--background-color);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-}
 
 /* Exclusive Offers Section */
 .exclusive-offer {
@@ -260,15 +159,28 @@ nav {
 </head>
 <body>
     <!-- Navigation Bar -->
+
     <nav>
-        <a href="#" class="logo">Your Photography Brand</a>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Portfolio</a>
-            <a href="#">About</a>
-            <a href="#" class="active">Exclusive Offers</a>
+        <a href="/" class="logo">Omran Soliman</a>
+        <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="nav-links menu">
+            <a href="/" data-fr="Accueil" data-en="Home">Accueil</a>
+            
+            <div class="dropdown">
+                <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+                <div class="dropdown-content">
+                    <a href="wedding.html">Wedding</a>
+                    <a href="engagement.html">Engagement</a>
+                    <a href="portrait.html">Portrait</a>
+                </div>
+            </div>
+            <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+            <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
+            <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
+            <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
+            <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <button class="language-switch" >EN</button>
         </div>
-        <button class="menu-toggle">&#9776;</button>
     </nav>
 
     <!-- Exclusive Offers Section -->
@@ -337,20 +249,11 @@ nav {
         </article>
     </main>
 
-    <!-- Footer (Optional) -->
-    <footer>
-        <p>&copy; 2023 Your Photography Brand. All rights reserved.</p>
-    </footer>
-
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
     <!-- JavaScript for Mobile Menu Toggle, Share Button, and Book Now -->
     <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        
 
         // Share Offer Functionality
         function shareOffer() {
