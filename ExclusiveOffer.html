@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive Offers</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
     <!-- Phosphor Icons for the Share Button -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
@@ -163,10 +162,33 @@ nav {
     );
 }
 
+.offer-image {
+    width: 100%;
+    max-width: 250px; /* Smaller image size */
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
 .offer-image img {
     width: 100%;
+    height: auto;
     border-radius: 12px;
-    margin-bottom: 1.5rem;
+    filter: brightness(0.8) contrast(1.2); /* Glassy effect */
+    transition: transform 0.3s ease;
+}
+
+.offer-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); /* Glassy overlay */
+    backdrop-filter: blur(5px); /* Blur effect */
+    border-radius: 12px;
 }
 
 .offer-title {
@@ -275,7 +297,7 @@ nav {
         <!-- Offer 2 -->
         <article class="offer-card">
             <div class="offer-image">
-                <img src="https://via.placeholder.com/300x200" alt="Exclusive Photography Offer 2" />
+                <img src="https://picflow.media/images/resized/720x1080q85/3ffc1d44-a641-45a6-bce1-36435c17411d.jpg" alt="Exclusive Photography Offer 2" />
             </div>
             <h2 class="offer-title">Family Photography Package</h2>
             <small class="offer-subtitle">Limited-Time Family Offer</small>
@@ -296,7 +318,7 @@ nav {
         <!-- Offer 3 -->
         <article class="offer-card">
             <div class="offer-image">
-                <img src="https://via.placeholder.com/300x200" alt="Exclusive Photography Offer 3" />
+                <img src="https://picflow.media/images/resized/720x1080q85/3ffc1d44-a641-45a6-bce1-36435c17411d.jpg" alt="Exclusive Photography Offer 3" />
             </div>
             <h2 class="offer-title">Event Photography Package</h2>
             <small class="offer-subtitle">Limited-Time Event Offer</small>
