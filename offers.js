@@ -4,7 +4,7 @@ const showOffers = true; // Change to `true` to show offers, `false` to hide the
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
     offer1: true,  // Set to `true` to show Offer 1, `false` to hide it
-    offer2: false, // Set to `true` to show Offer 2, `false` to hide it
+    offer2: true, // Set to `true` to show Offer 2, `false` to hide it
     offer3: true   // Set to `true` to show Offer 3, `false` to hide it
 };
 
@@ -25,7 +25,11 @@ const languageConfig = {
                     "Customized photography packages tailored to your needs.",
                     "High-resolution digital images delivered within 7 days."
                 ],
-                bookNow: "Book Now"
+                bookNow: "Book Now",
+                shareMessage: "Capture your special moments with this exclusive photography offer!",
+                whatsappMessage: "Limited-Time Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
+                emailSubject: "Limited-Time Photography Offer",
+                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
             },
             {
                 title: "Family Photography Package",
@@ -36,7 +40,11 @@ const languageConfig = {
                     "Customized family portraits for your home.",
                     "Delivery within 5 business days."
                 ],
-                bookNow: "Book Now"
+                bookNow: "Book Now",
+                shareMessage: "Capture your family memories with this exclusive photography offer!",
+                whatsappMessage: "Limited-Time Family Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
+                emailSubject: "Limited-Time Family Photography Offer",
+                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
             },
             {
                 title: "Event Photography Package",
@@ -47,7 +55,11 @@ const languageConfig = {
                     "Customized photo album design.",
                     "Delivery within 10 business days."
                 ],
-                bookNow: "Book Now"
+                bookNow: "Book Now",
+                shareMessage: "Capture your event memories with this exclusive photography offer!",
+                whatsappMessage: "Limited-Time Event Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
+                emailSubject: "Limited-Time Event Photography Offer",
+                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
             }
         ]
     },
@@ -66,7 +78,11 @@ const languageConfig = {
                     "Forfaits photographiques personnalisés adaptés à vos besoins.",
                     "Images numériques haute résolution livrées dans les 7 jours."
                 ],
-                bookNow: "Réserver maintenant"
+                bookNow: "Réserver maintenant",
+                shareMessage: "Capturez vos moments spéciaux avec cette offre photographique exclusive !",
+                whatsappMessage: "Offre photographique limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
+                emailSubject: "Offre photographique limitée dans le temps",
+                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
             },
             {
                 title: "Forfait Photographie Familiale",
@@ -77,7 +93,11 @@ const languageConfig = {
                     "Portraits familiaux personnalisés pour votre maison.",
                     "Livraison dans les 5 jours ouvrables."
                 ],
-                bookNow: "Réserver maintenant"
+                bookNow: "Réserver maintenant",
+                shareMessage: "Capturez vos souvenirs familiaux avec cette offre photographique exclusive !",
+                whatsappMessage: "Offre photographique familiale limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
+                emailSubject: "Offre photographique familiale limitée dans le temps",
+                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
             },
             {
                 title: "Forfait Photographie d'Événement",
@@ -88,7 +108,11 @@ const languageConfig = {
                     "Conception d'album photo personnalisé.",
                     "Livraison dans les 10 jours ouvrables."
                 ],
-                bookNow: "Réserver maintenant"
+                bookNow: "Réserver maintenant",
+                shareMessage: "Capturez vos souvenirs d'événement avec cette offre photographique exclusive !",
+                whatsappMessage: "Offre photographique événementielle limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
+                emailSubject: "Offre photographique événementielle limitée dans le temps",
+                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
             }
         ]
     }
@@ -153,6 +177,47 @@ function initializeOffers() {
 
     // Set default language to English
     updateContent('en');
+}
+
+// Share Offer Functionality
+function shareOffer() {
+    const currentLanguage = document.documentElement.lang; // Get the current language
+    const shareData = {
+        title: languageConfig[currentLanguage].offers[0].title, // Use the title of the first offer
+        text: languageConfig[currentLanguage].offers[0].shareMessage, // Use the share message
+        url: window.location.href,
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => console.log('Offer shared successfully!'))
+            .catch((error) => console.error('Error sharing:', error));
+    } else {
+        alert(currentLanguage === 'en' 
+            ? 'Your browser does not support sharing. Copy the link manually.' 
+            : 'Votre navigateur ne prend pas en charge le partage. Copiez le lien manuellement.');
+    }
+}
+
+// Book Now Functionality
+function handleBookNow() {
+    const currentLanguage = document.documentElement.lang; // Get the current language
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const phoneNumber = "+33625965257"; // Your WhatsApp number
+    const email = "omransoliman.pv@gmail.com"; // Your email address
+
+    if (isMobile) {
+        // Open WhatsApp on mobile
+        const message = languageConfig[currentLanguage].offers[0].whatsappMessage; // Use the WhatsApp message
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+    } else {
+        // Send email on desktop
+        const subject = languageConfig[currentLanguage].offers[0].emailSubject; // Use the email subject
+        const body = languageConfig[currentLanguage].offers[0].emailBody; // Use the email body
+        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+    }
 }
 
 // Initialize the offers section when the DOM is fully loaded

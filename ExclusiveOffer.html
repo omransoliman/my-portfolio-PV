@@ -287,40 +287,44 @@
     <script>
         // Share Offer Functionality
         function shareOffer() {
-            const shareData = {
-                title: 'Limited-Time Photography Offer',
-                text: 'Capture your special moments with this exclusive photography offer!',
-                url: window.location.href,
-            };
+    const currentLanguage = document.documentElement.lang; // Get the current language
+    const shareData = {
+        title: languageConfig[currentLanguage].offers[0].title, // Use the title of the first offer
+        text: languageConfig[currentLanguage].offers[0].shareMessage, // Use the share message
+        url: window.location.href,
+    };
 
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .then(() => console.log('Offer shared successfully!'))
-                    .catch((error) => console.error('Error sharing:', error));
-            } else {
-                alert('Your browser does not support sharing. Copy the link manually.');
-            }
-        }
+    if (navigator.share) {
+        navigator.share(shareData)
+            .then(() => console.log('Offer shared successfully!'))
+            .catch((error) => console.error('Error sharing:', error));
+    } else {
+        alert(currentLanguage === 'en' 
+            ? 'Your browser does not support sharing. Copy the link manually.' 
+            : 'Votre navigateur ne prend pas en charge le partage. Copiez le lien manuellement.');
+    }
+}
 
         // Book Now Functionality
         function handleBookNow() {
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const phoneNumber = "+33625965257"; // Your WhatsApp number
-            const email = "omransoliman.pv@gmail.com"; // Your email address
+    const currentLanguage = document.documentElement.lang; // Get the current language
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const phoneNumber = "+33625965257"; // Your WhatsApp number
+    const email = "omransoliman.pv@gmail.com"; // Your email address
 
-            if (isMobile) {
-                // Open WhatsApp on mobile
-                const message = "Limited-Time Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.";
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, "_blank");
-            } else {
-                // Send email on desktop
-                const subject = "Limited-Time Photography Offer";
-                const body = "Hello! I am pleased to accept this offer. Thank you for this opportunity.";
-                const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                window.location.href = mailtoUrl;
-            }
-        }
+    if (isMobile) {
+        // Open WhatsApp on mobile
+        const message = languageConfig[currentLanguage].offers[0].whatsappMessage; // Use the WhatsApp message
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, "_blank");
+    } else {
+        // Send email on desktop
+        const subject = languageConfig[currentLanguage].offers[0].emailSubject; // Use the email subject
+        const body = languageConfig[currentLanguage].offers[0].emailBody; // Use the email body
+        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoUrl;
+    }
+}
     </script>
 </body>
 </html>
