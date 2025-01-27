@@ -51,17 +51,16 @@
 
   <!-- Main Content -->
   <main>
-    <div class="gallery-container">
-      <h1 data-fr="Portfolio - Fiançailles" data-en="Portfolio - Engagements">Portfolio - Engagements</h1>
-      <!-- Embed Picflow Engagement Gallery -->
-      <picflow-gallery id="0000" 
-        data-gallery-id="engagement"
-        lightbox="#000000E6" 
-        no-padding="true" 
-        no-background="true" 
-        show-cover="true">
-      </picflow-gallery>
-    </div>
+    <script>
+      if(!window.picflow){window.picflow=!0;var s=document.createElement("script");
+      s.src="https://picflow.com/embed/main.js"; 
+      s.type='module';s.defer=true;document.head.appendChild(s);}
+      </script><picflow-gallery id="gal_OH9DLiMDm9lOzTY0" 
+      lightbox="#000000E6" 
+      no-padding="true" 
+      no-background="true" 
+      show-cover="true">
+    </picflow-gallery>
   </main>
   <script src="config.js" defer></script>
   <script src="script.js" defer></script>
