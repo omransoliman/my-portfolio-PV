@@ -13,12 +13,12 @@
 
 /* Exclusive Offers Section */
 .exclusive-offer {
-    padding: 6rem 2rem 2rem 2rem; /* Adjusted for fixed nav */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 6rem 2rem 2rem 2rem;
+    display: flex; /* Change grid to flex */
+    flex-wrap: wrap; /* Allow wrapping of cards */
     gap: 2rem;
-    justify-content: center;
-    align-items: center;
+    justify-content: center; /* Center the cards horizontally */
+    align-items: center; /* Center the cards vertically */
     min-height: 100vh;
 }
 
@@ -41,6 +41,9 @@
         #1b2028 20%,
         #1b2028 100%
     );
+    width: auto; /* Let the card take the width it needs */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+    margin: 0 auto; /* Center the card if it doesn't take full width */
 }
 
 .offer-card::after {
