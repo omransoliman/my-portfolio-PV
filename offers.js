@@ -13,9 +13,9 @@ function initializeOffers() {
         <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">Follow us on Instagram</a>
     `;
 
-    // Insert the message after the offers section
-    const offersSection = document.querySelector('.exclusive-offer');
-    offersSection.parentNode.insertBefore(noOffersMessage, offersSection.nextSibling);
+    // Insert the message at the top of the <main> container (right below the nav)
+    const mainContainer = document.querySelector('main.exclusive-offer');
+    mainContainer.insertBefore(noOffersMessage, mainContainer.firstChild);
 
     // Show or hide offers based on the `showOffers` variable
     if (showOffers) {
