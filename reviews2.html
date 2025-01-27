@@ -21,11 +21,9 @@
         /* Reviews Section Styles */
         .outerdiv {
             width: 100%;
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6rem 0 2rem 0; /* Added padding-top to account for the fixed nav bar */
         }
 
         .innerdiv {
@@ -34,8 +32,7 @@
             margin: 1rem;
             display: grid;
             grid-gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-auto-rows: minmax(auto, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
 
         .eachdiv {
@@ -44,10 +41,8 @@
             background-color: #1b2028;
             border: 3px solid transparent;
             background-clip: padding-box;
-            text-align: center;
-            color: var(--text-color);
             position: relative;
-            overflow: hidden;
+            color: #f1f3f3;
             background-image: linear-gradient(
                 135deg,
                 rgba(117, 46, 124, 0.35),
@@ -79,16 +74,16 @@
         .userdetails {
             display: flex;
             align-items: center;
-            flex-direction: column;
+            gap: 1rem;
             margin-bottom: 1.5rem;
         }
 
         .imgbox {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
             border-radius: 50%;
             overflow: hidden;
-            margin-bottom: 1rem;
         }
 
         .imgbox img {
@@ -98,29 +93,33 @@
         }
 
         .detbox {
-            text-align: center;
+            flex-grow: 1;
+            text-align: left;
         }
 
         .detbox .name {
             font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            margin: 0 0 0.25rem 0;
+            color: #f1f3f3;
         }
 
         .detbox .designation {
             color: #7d8396;
             font-size: 0.9rem;
+            margin: 0;
         }
 
         .review {
-            margin-top: 1.5rem;
+            text-align: left;
         }
 
         .review h4 {
             font-size: 1rem;
             font-weight: 500;
             line-height: 1.5;
-            margin-bottom: 0.8rem;
+            margin: 0;
+            color: #7d8396;
         }
 
         .review p {
