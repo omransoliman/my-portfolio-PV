@@ -10,197 +10,194 @@
     <!-- Phosphor Icons for the Share Button -->
     <script src="https://unpkg.com/phosphor-icons"></script>
     <style>
+        /* Exclusive Offers Section */
+        .exclusive-offer .offer-card {
+            display: none; /* Hide all offer cards by default */
+        }
 
-/* Exclusive Offers Section */
+        .exclusive-offer {
+            padding: 6rem 2rem 2rem 2rem;
+            display: flex; /* Change grid to flex */
+            flex-wrap: wrap; /* Allow wrapping of cards */
+            gap: 2rem;
+            justify-content: center; /* Center the cards horizontally */
+            align-items: center; /* Center the cards vertically */
+            min-height: 100vh;
+        }
 
-.exclusive-offer .offer-card {
-    display: none; /* Hide all offer cards by default */
-}
+        .offer-card {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 2rem;
+            background-color: #1b2028;
+            border-radius: 16px;
+            position: relative;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            text-align: center;
+            color: #f1f3f3;
+            background-image: linear-gradient(
+                135deg,
+                rgba(117, 46, 124, 0.35),
+                rgba(115, 74, 88, 0.1) 15%,
+                #1b2028 20%,
+                #1b2028 100%
+            );
+            width: auto; /* Let the card take the width it needs */
+            max-width: 100%; /* Ensure it doesn't exceed the container width */
+            margin: 0 auto; /* Center the card if it doesn't take full width */
+        }
 
-.exclusive-offer {
-    padding: 6rem 2rem 2rem 2rem;
-    display: flex; /* Change grid to flex */
-    flex-wrap: wrap; /* Allow wrapping of cards */
-    gap: 2rem;
-    justify-content: center; /* Center the cards horizontally */
-    align-items: center; /* Center the cards vertically */
-    min-height: 100vh;
-}
+        .offer-card::after {
+            content: "";
+            display: block;
+            top: -3px;
+            left: -3px;
+            bottom: -3px;
+            right: -3px;
+            z-index: -1;
+            position: absolute;
+            border-radius: 16px;
+            background-image: linear-gradient(
+                135deg,
+                #752e7c,
+                #734a58 20%,
+                #1b2028 30%,
+                #2c333e 100%
+            );
+        }
 
-.offer-card {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 2rem;
-    background-color: #1b2028;
-    border-radius: 16px;
-    position: relative;
-    border: 3px solid transparent;
-    background-clip: padding-box;
-    text-align: center;
-    color: #f1f3f3;
-    background-image: linear-gradient(
-        135deg,
-        rgba(117, 46, 124, 0.35),
-        rgba(115, 74, 88, 0.1) 15%,
-        #1b2028 20%,
-        #1b2028 100%
-    );
-    width: auto; /* Let the card take the width it needs */
-    max-width: 100%; /* Ensure it doesn't exceed the container width */
-    margin: 0 auto; /* Center the card if it doesn't take full width */
-}
+        .offer-image {
+            width: 100%;
+            max-width: 300px; /* Smaller image size */
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
 
-.offer-card::after {
-    content: "";
-    display: block;
-    top: -3px;
-    left: -3px;
-    bottom: -3px;
-    right: -3px;
-    z-index: -1;
-    position: absolute;
-    border-radius: 16px;
-    background-image: linear-gradient(
-        135deg,
-        #752e7c,
-        #734a58 20%,
-        #1b2028 30%,
-        #2c333e 100%
-    );
-}
+        .offer-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            filter: brightness(0.8) contrast(1.2); /* Glassy effect */
+            transition: transform 0.3s ease;
+        }
 
-.offer-image {
-    width: 100%;
-    max-width: 300px; /* Smaller image size */
-    margin-bottom: 1.5rem;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-}
+        .offer-image::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.1); /* Glassy overlay */
+            border-radius: 12px;
+        }
 
-.offer-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 12px;
-    filter: brightness(0.8) contrast(1.2); /* Glassy effect */
-    transition: transform 0.3s ease;
-}
+        .offer-title {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: #f1f3f3;
+        }
 
-.offer-image::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1); /* Glassy overlay */
-    border-radius: 12px;
-}
+        .offer-subtitle {
+            color: #7d8396;
+            margin-bottom: 1.5rem;
+        }
 
-.offer-title {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
-    color: #f1f3f3;
-}
+        .offer-details {
+            margin-bottom: 1.5rem;
+            color: #f1f3f3;
+        }
 
-.offer-subtitle {
-    color: #7d8396;
-    margin-bottom: 1.5rem;
-}
+        .offer-details p {
+            margin: 0.5rem 0;
+        }
 
-.offer-details {
-    margin-bottom: 1.5rem;
-    color: #f1f3f3;
-}
+        .offer-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
 
-.offer-details p {
-    margin: 0.5rem 0;
-}
+        .btn {
+            border: 0;
+            background-color: transparent;
+            padding: 0;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            line-height: 1;
+            transition: 0.15s ease;
+        }
 
-.offer-actions {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-}
+        .btn--primary {
+            border-radius: 99em;
+            background-color: #3772ff;
+            background-image: linear-gradient(135deg, #5587ff, #3772ff);
+            color: #fff;
+            padding: 0 1.375em;
+        }
 
-.btn {
-    border: 0;
-    background-color: transparent;
-    padding: 0;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    line-height: 1;
-    transition: 0.15s ease;
-}
+        .btn--primary:hover,
+        .btn--primary:focus {
+            background-size: 150%;
+        }
 
-.btn--primary {
-    border-radius: 99em;
-    background-color: #3772ff;
-    background-image: linear-gradient(135deg, #5587ff, #3772ff);
-    color: #fff;
-    padding: 0 1.375em;
-}
+        .btn--icon {
+            height: 46px;
+            width: 46px;
+            border-radius: 50%;
+            border: 3px solid #343945;
+            color: #7d8396;
+        }
 
-.btn--primary:hover,
-.btn--primary:focus {
-    background-size: 150%;
-}
+        .btn--icon:hover,
+        .btn--icon:focus {
+            border-color: #7d8396;
+        }
 
-.btn--icon {
-    height: 46px;
-    width: 46px;
-    border-radius: 50%;
-    border: 3px solid #343945;
-    color: #7d8396;
-}
+        #no-offers-message {
+            text-align: center;
+            padding: 2rem;
+            background-color: #1b2028;
+            border-radius: 16px;
+            color: #f1f3f3;
+            margin: 2rem auto; /* Center the message and add spacing */
+            max-width: 800px; /* Limit the width for better readability */
+            display: none; /* Initially hidden */
+        }
 
-.btn--icon:hover,
-.btn--icon:focus {
-    border-color: #7d8396;
-}
-#no-offers-message {
-    text-align: center;
-    padding: 2rem;
-    background-color: #1b2028;
-    border-radius: 16px;
-    color: #f1f3f3;
-    margin: 2rem auto; /* Center the message and add spacing */
-    max-width: 800px; /* Limit the width for better readability */
-    display: none; /* Initially hidden */
-}
+        #no-offers-message a.btn {
+            margin-top: 1rem;
+            display: inline-block; /* Ensure the button is properly styled */
+            text-decoration: none; /* Remove underline from the link */
+            border-radius: 99em; /* Rounded corners */
+            background-color: #3772ff; /* Primary button color */
+            background-image: linear-gradient(135deg, #5587ff, #3772ff); /* Gradient effect */
+            color: #fff; /* White text */
+            padding: 0.75rem 1.5rem; /* Padding for the button */
+            font-size: 1rem; /* Font size */
+            transition: background-size 0.15s ease; /* Smooth transition for hover effect */
+        }
 
-#no-offers-message a.btn {
-    margin-top: 1rem;
-    display: inline-block; /* Ensure the button is properly styled */
-    text-decoration: none; /* Remove underline from the link */
-    border-radius: 99em; /* Rounded corners */
-    background-color: #3772ff; /* Primary button color */
-    background-image: linear-gradient(135deg, #5587ff, #3772ff); /* Gradient effect */
-    color: #fff; /* White text */
-    padding: 0.75rem 1.5rem; /* Padding for the button */
-    font-size: 1rem; /* Font size */
-    transition: background-size 0.15s ease; /* Smooth transition for hover effect */
-}
-
-#no-offers-message a.btn:hover {
-    background-size: 150%; /* Enlarge gradient on hover */
-}
+        #no-offers-message a.btn:hover {
+            background-size: 150%; /* Enlarge gradient on hover */
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
-
     <nav>
         <a href="/" class="logo">Omran Soliman</a>
         <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
         <div class="nav-links menu">
             <a href="/" data-fr="Accueil" data-en="Home">Accueil</a>
-            
             <div class="dropdown">
                 <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
                 <div class="dropdown-content">
@@ -214,7 +211,7 @@
             <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
             <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
             <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <button class="language-switch" >EN</button>
+            <button class="language-switch">EN</button>
         </div>
     </nav>
 
@@ -287,10 +284,7 @@
     <script src="config.js" defer></script>
     <script src="script.js" defer></script>
     <script src="offers.js" defer></script>
-    <!-- JavaScript for Mobile Menu Toggle, Share Button, and Book Now -->
     <script>
-        
-
         // Share Offer Functionality
         function shareOffer() {
             const shareData = {

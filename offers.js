@@ -1,7 +1,5 @@
-// offers.js
-
 // Set this variable to true or false to control the visibility of offers
-const showOffers = false; // Change to `true` to show offers, `false` to hide them
+const showOffers = true; // Change to `true` to show offers, `false` to hide them
 
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
@@ -10,14 +8,123 @@ const offerVisibility = {
     offer3: true   // Set to `true` to show Offer 3, `false` to hide it
 };
 
+// Language configuration object
+const languageConfig = {
+    en: {
+        noOffersMessage: {
+            text: "Thank you for your interest in our services! We're always looking for ways to provide exceptional value to our customers. While we don't have any special offers available at this time, we encourage you to follow us on Instagram to be the first to know about future promotions and exclusive deals.",
+            button: "Follow us on Instagram"
+        },
+        offers: [
+            {
+                title: "Capture Your Special Moments!",
+                subtitle: "Limited-Time Photography Offer",
+                details: [
+                    "Free consultation session (1 hour to 1 hour and a half max).",
+                    "Complimentary photo editing for your selected images.",
+                    "Customized photography packages tailored to your needs.",
+                    "High-resolution digital images delivered within 7 days."
+                ],
+                bookNow: "Book Now"
+            },
+            {
+                title: "Family Photography Package",
+                subtitle: "Limited-Time Family Offer",
+                details: [
+                    "1-hour family photoshoot session.",
+                    "10 professionally edited high-resolution images.",
+                    "Customized family portraits for your home.",
+                    "Delivery within 5 business days."
+                ],
+                bookNow: "Book Now"
+            },
+            {
+                title: "Event Photography Package",
+                subtitle: "Limited-Time Event Offer",
+                details: [
+                    "Full-day event coverage.",
+                    "50+ professionally edited high-resolution images.",
+                    "Customized photo album design.",
+                    "Delivery within 10 business days."
+                ],
+                bookNow: "Book Now"
+            }
+        ]
+    },
+    fr: {
+        noOffersMessage: {
+            text: "Merci de votre intérêt pour nos services ! Nous cherchons toujours des moyens de fournir une valeur exceptionnelle à nos clients. Bien que nous n'ayons aucune offre spéciale disponible pour le moment, nous vous encourageons à nous suivre sur Instagram pour être informé en premier des promotions futures et des offres exclusives.",
+            button: "Suivez-nous sur Instagram"
+        },
+        offers: [
+            {
+                title: "Capturez vos moments spéciaux !",
+                subtitle: "Offre photographique limitée dans le temps",
+                details: [
+                    "Session de consultation gratuite (1 heure à 1 heure et demie maximum).",
+                    "Retouche photo gratuite pour vos images sélectionnées.",
+                    "Forfaits photographiques personnalisés adaptés à vos besoins.",
+                    "Images numériques haute résolution livrées dans les 7 jours."
+                ],
+                bookNow: "Réserver maintenant"
+            },
+            {
+                title: "Forfait Photographie Familiale",
+                subtitle: "Offre familiale limitée dans le temps",
+                details: [
+                    "Séance photo familiale d'une heure.",
+                    "10 images haute résolution éditées professionnellement.",
+                    "Portraits familiaux personnalisés pour votre maison.",
+                    "Livraison dans les 5 jours ouvrables."
+                ],
+                bookNow: "Réserver maintenant"
+            },
+            {
+                title: "Forfait Photographie d'Événement",
+                subtitle: "Offre événementielle limitée dans le temps",
+                details: [
+                    "Couverture d'événement toute la journée.",
+                    "50+ images haute résolution éditées professionnellement.",
+                    "Conception d'album photo personnalisé.",
+                    "Livraison dans les 10 jours ouvrables."
+                ],
+                bookNow: "Réserver maintenant"
+            }
+        ]
+    }
+};
+
+// Function to update the content based on the selected language
+function updateContent(language) {
+    const noOffersMessage = document.getElementById('no-offers-message');
+    const offerCards = document.querySelectorAll('.offer-card');
+
+    // Update the "No Offers" message
+    if (noOffersMessage) {
+        noOffersMessage.querySelector('p').textContent = languageConfig[language].noOffersMessage.text;
+        noOffersMessage.querySelector('a.btn').textContent = languageConfig[language].noOffersMessage.button;
+    }
+
+    // Update the offer cards
+    offerCards.forEach((card, index) => {
+        const offer = languageConfig[language].offers[index];
+        if (offer) {
+            card.querySelector('.offer-title').textContent = offer.title;
+            card.querySelector('.offer-subtitle').textContent = offer.subtitle;
+            card.querySelector('.offer-details').innerHTML = offer.details.map(detail => `<p>${detail}</p>`).join('');
+            card.querySelector('.btn--primary').textContent = offer.bookNow;
+        }
+    });
+}
+
 // Function to initialize the offers section
 function initializeOffers() {
     const offerCards = document.querySelectorAll('.offer-card');
     const noOffersMessage = document.createElement('div');
     noOffersMessage.id = 'no-offers-message';
     noOffersMessage.innerHTML = `
-        <p>Thank you for your interest in our services! We're always looking for ways to provide exceptional value to our customers. While we don't have any special offers available at this time, we encourage you to follow us on Instagram to be the first to know about future promotions and exclusive deals.</p>
-        <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">Follow us on Instagram</a>
+        <p>${languageConfig.en.noOffersMessage.text}</p>
+        <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">${languageConfig.en.noOffersMessage.button}</a>
     `;
 
     // Insert the message at the top of the <main> container (right below the nav)
@@ -43,7 +150,18 @@ function initializeOffers() {
         });
         noOffersMessage.style.display = 'block'; // Show the message
     }
+
+    // Set default language to English
+    updateContent('en');
 }
 
 // Initialize the offers section when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeOffers);
+
+// Add event listener to the language switch button
+document.querySelector('.language-switch')?.addEventListener('click', () => {
+    const currentLanguage = document.documentElement.lang;
+    const newLanguage = currentLanguage === 'en' ? 'fr' : 'en';
+    document.documentElement.lang = newLanguage;
+    updateContent(newLanguage);
+});
