@@ -4,161 +4,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exclusive Offer</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
 
 
-    <style></style>
-    <!-- Custom CSS -->
-    <style>
+<style>
 
-        /* Exclusive Offer Section */
+    /* General Styles */
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    font-family: "Be Vietnam Pro", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #060606;
+    margin: 0;
+    padding: 0;
+}
+
+/* Exclusive Offer Card */
 .exclusive-offer {
-    padding: 5rem 2rem;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
 }
 
-.exclusive-offer h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: var(--text-color);
-}
-
-.offer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+.offer-card {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    background-color: #1b2028;
+    border-radius: 16px;
+    position: relative;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    text-align: center;
+    color: #f1f3f3;
+    background-image: linear-gradient(
+        135deg,
+        rgba(117, 46, 124, 0.35),
+        rgba(115, 74, 88, 0.1) 15%,
+        #1b2028 20%,
+        #1b2028 100%
+    );
 }
 
-.offer-overview,
-.offer-terms,
-.offer-cta,
-.social-proof {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.offer-card::after {
+    content: "";
+    display: block;
+    top: -3px;
+    left: -3px;
+    bottom: -3px;
+    right: -3px;
+    z-index: -1;
+    position: absolute;
+    border-radius: 16px;
+    background-image: linear-gradient(
+        135deg,
+        #752e7c,
+        #734a58 20%,
+        #1b2028 30%,
+        #2c333e 100%
+    );
 }
 
-.offer-overview h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+.offer-image {
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
 }
 
-.offer-overview p,
-.offer-terms ul,
-.social-proof p {
-    font-size: 1.1rem;
-    line-height: 1.6;
+.offer-image img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.offer-terms h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.offer-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.offer-subtitle {
+    color: #7d8396;
+    margin-bottom: 1.5rem;
+}
+
+.offer-details {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: #f1f3f3;
+}
+
+.offer-details p {
+    margin: 0.5rem 0;
+}
+
+.offer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+    transition: 0.15s ease;
+}
+
+.btn--primary {
+    border-radius: 99em;
+    background-color: #3772ff;
+    background-image: linear-gradient(135deg, #5587ff, #3772ff);
+    color: #fff;
+    padding: 0 1.375em;
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+    background-size: 150%;
+}
+
+.btn--icon {
+    height: 46px;
+    width: 46px;
+    border-radius: 50%;
+    border: 3px solid #343945;
+    color: #7d8396;
+}
+
+.btn--icon:hover,
+.btn--icon:focus {
+    border-color: #7d8396;
+}
+
+.offer-terms {
+    font-size: 0.875rem;
+    color: #7d8396;
+    margin-bottom: 1.5rem;
 }
 
 .offer-terms ul {
     list-style-type: disc;
     padding-left: 1.5rem;
+    text-align: left;
 }
 
-.offer-cta .cta-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: var(--button-bg-color);
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 4px;
+.offer-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.link {
     text-decoration: none;
-    transition: background 0.3s;
+    color: #7d8396;
 }
 
-.offer-cta .cta-button:hover {
-    background: var(--button-hover-bg-color);
-}
-
-.offer-visuals img,
-.offer-visuals video {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 8px;
-    margin: 1rem 0;
-}
-
-.social-proof {
-    font-style: italic;
-    color: var(--text-color);
+.link--icon i {
+    font-size: 1.25em;
 }
 
 
 
-    </style>
+</style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#" class="logo">Your Brand</a>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a href="#" class="active">Exclusive Offer</a>
-        </div>
-        <button class="menu-toggle">&#9776;</button>
-    </nav>
-
     <!-- Exclusive Offer Section -->
-    <main>
-        <section class="exclusive-offer">
-            <h1>Unlock Exclusive Savings Today!</h1>
-            <div class="offer-content">
-                <!-- Offer Overview -->
-                <div class="offer-overview">
-                    <h2>Get 20% Off Your First Order!</h2>
-                    <p>Save money and experience the best value with our limited-time offer.</p>
-                    <ul>
-                        <li>Free shipping on all orders over $50</li>
-                        <li>Buy One, Get One 50% Off</li>
-                        <li>Try our products risk-free</li>
-                    </ul>
-                </div>
-
-                <!-- Visual Appeal -->
-                <div class="offer-visuals">
-                    <img src="https://via.placeholder.com/600x400" alt="Exclusive Offer Product">
-                    <video controls>
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-
-                <!-- Eligibility & Restrictions -->
-                <div class="offer-terms">
-                    <h3>Terms & Conditions</h3>
-                    <ul>
-                        <li>Valid for new customers only</li>
-                        <li>Offer expires on December 31, 2023</li>
-                        <li>Discount cannot be combined with other offers</li>
-                    </ul>
-                </div>
-
-                <!-- Call to Action -->
-                <div class="offer-cta">
-                    <a href="#" class="cta-button">Shop Now</a>
-                    <p>Use code <strong>EXCLUSIVE20</strong> at checkout</p>
-                </div>
-
-                <!-- Social Proof (Optional) -->
-                <div class="social-proof">
-                    <p>"Loved by thousands! Join our happy customers."</p>
-                    <p>Hurry, offer ends soon!</p>
-                </div>
+    <main class="exclusive-offer">
+        <article class="offer-card">
+            <div class="offer-image">
+                <img src="https://via.placeholder.com/300x200" alt="Exclusive Offer" />
             </div>
-        </section>
+            <h2 class="offer-title">Unlock Exclusive Savings Today!</h2>
+            <small class="offer-subtitle">Limited-Time Offer</small>
+            <div class="offer-details">
+                <p>Get <strong>20% off</strong> your first order!</p>
+                <p>Free shipping on all orders over $50.</p>
+                <p>Buy One, Get One 50% Off.</p>
+            </div>
+            <div class="offer-actions">
+                <button class="btn btn--primary">Shop Now</button>
+                <button class="btn btn--icon">
+                    <i class="ph-heart"></i>
+                </button>
+                <button class="btn btn--icon">
+                    <i class="ph-share"></i>
+                </button>
+            </div>
+            <div class="offer-terms">
+                <p><strong>Terms & Conditions:</strong></p>
+                <ul>
+                    <li>Valid for new customers only.</li>
+                    <li>Offer expires on December 31, 2023.</li>
+                    <li>Discount cannot be combined with other offers.</li>
+                </ul>
+            </div>
+            <div class="offer-social">
+                <a href="#" class="link link--icon">
+                    <i class="ph-twitter-logo"></i>
+                </a>
+                <a href="#" class="link link--icon">
+                    <i class="ph-facebook-logo"></i>
+                </a>
+                <a href="#" class="link link--icon">
+                    <i class="ph-instagram-logo"></i>
+                </a>
+            </div>
+        </article>
     </main>
-
-    <script src="config.js" defer></script>
-    <script src="script.js" defer></script>
 </body>
 </html>
