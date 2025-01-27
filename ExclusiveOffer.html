@@ -7,14 +7,16 @@
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">
 
-<style>
+    <style>
 
-
-    /* General Styles */
+        /* General Styles */
 :root {
     --primary-color: #333;
     --background-color: #fff;
     --text-color: #333;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,6 +24,9 @@
         --primary-color: #fff;
         --background-color: #1a1a1a;
         --text-color: #fff;
+        --glass-bg: rgba(27, 32, 40, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 }
 
@@ -122,14 +127,15 @@ nav {
 }
 
 .offer-card {
-    background-color: var(--background-color);
+    background: var(--glass-bg);
     border-radius: 16px;
     padding: 2rem;
     text-align: center;
     max-width: 400px;
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
 }
 
 .offer-image img {
@@ -232,7 +238,7 @@ nav {
 }
 
 
-</style>
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
