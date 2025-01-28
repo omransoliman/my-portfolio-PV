@@ -162,6 +162,36 @@ function loadPicFlowScript() {
     document.head.appendChild(script);
 }
 
+// Function to create the slideshow
+function createSlideshow(images, interval, transitionEffect) {
+    const slideshowContainer = document.querySelector('.slideshow-container');
+
+    // Clear any existing content in the slideshow container
+    slideshowContainer.innerHTML = '';
+
+    // Load images into the slideshow container
+    images.forEach((imageUrl, index) => {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = `Slide ${index + 1}`;
+        if (index === 0) img.classList.add('active'); // Set the first image as active
+        slideshowContainer.appendChild(img);
+    });
+
+    let currentIndex = 0;
+
+    // Function to change the slide
+    function changeSlide() {
+        const images = slideshowContainer.querySelectorAll('img');
+        images[currentIndex].classList.remove('active'); // Hide the current image
+        currentIndex = (currentIndex + 1) % images.length; // Move to the next image
+        images[currentIndex].classList.add('active'); // Show the next image
+    }
+
+    // Start the slideshow
+    setInterval(changeSlide, interval);
+}
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     // Get the saved language preference from localStorage
