@@ -254,6 +254,9 @@
 function createSlideshow(images, interval, transitionEffect) {
     const slideshowContainer = document.querySelector('.slideshow-container');
 
+    // Clear any existing content in the slideshow container
+    slideshowContainer.innerHTML = '';
+
     // Load images into the slideshow container
     images.forEach((imageUrl, index) => {
         const img = document.createElement('img');
