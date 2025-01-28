@@ -73,7 +73,7 @@ const config = {
                 title: "About Me",
                 description: "I'm Omran Soliman, a passionate photographer and videographer dedicated to capturing life's most beautiful moments. With years of experience, I specialize in weddings, engagements, and portraits. My goal is to create unforgettable memories through my lens. Let's work together to bring your vision to life!",
                 contactButton: "Get in Touch",
-                image: "https://picflow.media/images/resized/1280x853q85/0b3d84e2-2733-4df8-9c3b-55d96e98d04e.jpg"
+                image: "https://picflow.media/images/resized/720x1280q85/a5870fb9-af8b-42df-ae6d-6e7e7761d323.jpg"
             },
             engagement: {
                 pageTitle: "Portfolio - Engagements",
