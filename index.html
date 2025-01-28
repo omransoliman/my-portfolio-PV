@@ -89,6 +89,28 @@
             color: black;
             text-decoration: none;
         }
+
+        .slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden;
+}
+
+.slideshow-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slideshow-container img.active {
+    opacity: 1;
+}
     </style>
     <script>
         fetch('seo.html')
@@ -131,6 +153,9 @@
       <!-- Main Content -->
 
     <section id="home">
+        <div class="slideshow-container">
+            <!-- Slideshow images will be dynamically inserted here -->
+        </div>
         <div class="home-content">
             <h1 class="home-title" id="homeTitle" data-fr="capture la vie. la beauté. l'amour." data-en="capture life. beauty. love.">capture la vie. la beauté. l'amour.</h1>
             <p class="home-subtitle" id="homeSubtitle" data-fr="Photos et vidéos des meilleurs moments de la vie" data-en="Photos and videos of life's best moments">Photos et vidéos des meilleurs moments de la vie</p>
@@ -221,6 +246,45 @@
     <script src="bestreviewsHome.js" defer></script>
 
     <script>
+
+
+
+// Function to create the slideshow
+function createSlideshow(images, interval, transitionEffect) {
+    const slideshowContainer = document.querySelector('.slideshow-container');
+
+    // Load images into the slideshow container
+    images.forEach((imageUrl, index) => {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = `Slide ${index + 1}`;
+        if (index === 0) img.classList.add('active'); // Set the first image as active
+        slideshowContainer.appendChild(img);
+    });
+
+    let currentIndex = 0;
+
+    // Function to change the slide
+    function changeSlide() {
+        const images = slideshowContainer.querySelectorAll('img');
+        images[currentIndex].classList.remove('active'); // Hide the current image
+        currentIndex = (currentIndex + 1) % images.length; // Move to the next image
+        images[currentIndex].classList.add('active'); // Show the next image
+    }
+
+    // Start the slideshow
+    setInterval(changeSlide, interval);
+}
+
+// Initialize the slideshow using the config
+document.addEventListener('DOMContentLoaded', () => {
+    const { images, interval, transitionEffect } = config.homeSlideshow;
+    createSlideshow(images, interval, transitionEffect);
+});
+
+
+
+
 
 
 // Get the modal
