@@ -132,7 +132,7 @@ function updateUI(language) {
     updatePortfolioSection(isEnglish);
 
     // Update Offers section
-    updateContent(language);
+    // updateContent(language);
 
     // Toggle language switch text
     const languageSwitch = document.querySelector('.language-switch');
@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Language retrieved from localStorage:', savedLanguage);
 
     // Update the UI based on the saved language
-    // updateUI(savedLanguage);
+     updateUI(savedLanguage);
 
     // Set the language switch button text
     const languageSwitch = document.querySelector('.language-switch');
