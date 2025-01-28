@@ -90,26 +90,27 @@
             text-decoration: none;
         }
 
-        .slideshow-container {
+        #home {
     position: relative;
     width: 100%;
     height: 100vh; /* Full viewport height */
     overflow: hidden;
 }
 
-.slideshow-container img {
+.slideshow-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    z-index: -1; /* Ensure it stays behind the content */
 }
 
-.slideshow-container img.active {
-    opacity: 1;
+.home-content {
+    position: relative;
+    z-index: 1; /* Ensure the content stays above the slideshow */
+    text-align: center;
+    color: white; /* Adjust text color for visibility */
 }
     </style>
     <script>
