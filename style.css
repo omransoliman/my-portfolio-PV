@@ -152,7 +152,6 @@ background-position: center;
 transition: transform 0.3s ease;
 }
 #home {
-background-image: url('https://picflow.media/images/resized/1280x720q85/67b4666d-4151-4e5f-8f4d-0a0e6af21850.jpg'); /* Replace with the actual image path */
 background-size: cover; /* Ensures the image covers the entire section */
 background-position: center; /* Centers the image */
 background-repeat: no-repeat; /* Prevents the image from repeating */
