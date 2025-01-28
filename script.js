@@ -3,7 +3,6 @@ const LANGUAGES = {
     en: 'EN',
     fr: 'FR',
 };
-import { updateContent } from './offers.js';
 // Toggle menu function
 function toggleMenu() {
     const menu = document.querySelector('.menu');
@@ -12,6 +11,29 @@ function toggleMenu() {
     } else {
         console.error('Menu element not found.');
     }
+}
+
+// Function to update the content based on the selected language
+function updateContent(language) {
+    const noOffersMessage = document.getElementById('no-offers-message');
+    const offerCards = document.querySelectorAll('.offer-card');
+
+    // Update the "No Offers" message
+    if (noOffersMessage) {
+        noOffersMessage.querySelector('p').textContent = languageConfig[language].noOffersMessage.text;
+        noOffersMessage.querySelector('a.btn').textContent = languageConfig[language].noOffersMessage.button;
+    }
+
+    // Update the offer cards
+    offerCards.forEach((card, index) => {
+        const offer = languageConfig[language].offers[index];
+        if (offer) {
+            card.querySelector('.offer-title').textContent = offer.title;
+            card.querySelector('.offer-subtitle').textContent = offer.subtitle;
+            card.querySelector('.offer-details').innerHTML = offer.details.map(detail => `<p>${detail}</p>`).join('');
+            card.querySelector('.btn--primary').textContent = offer.bookNow;
+        }
+    });
 }
 
 // Language toggle function
