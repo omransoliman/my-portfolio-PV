@@ -41,7 +41,7 @@ const config = {
                 title: "À propos de moi",
                 description: "Je suis Omran Soliman, un photographe et vidéaste passionné dédié à capturer les plus beaux moments de la vie. Avec des années d'expérience, je me spécialise dans les mariages, les fiançailles et les portraits. Mon objectif est de créer des souvenirs inoubliables à travers mon objectif. Travaillons ensemble pour donner vie à votre vision !",
                 contactButton: "Contactez-moi",
-                image: "https://picflow.media/images/resized/1280x853q85/0b3d84e2-2733-4df8-9c3b-55d96e98d04e.jpg"
+                image: "https://picflow.media/images/resized/720x1280q85/a5870fb9-af8b-42df-ae6d-6e7e7761d323.jpg"
             },
             engagement: {
                 pageTitle: "Portfolio - Fiançailles",
