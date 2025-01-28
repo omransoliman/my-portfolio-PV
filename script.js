@@ -3,7 +3,7 @@ const LANGUAGES = {
     en: 'EN',
     fr: 'FR',
 };
-import { updateContent } from 'script.js';
+import { updateContent } from 'offers.js';
 // Toggle menu function
 function toggleMenu() {
     const menu = document.querySelector('.menu');
