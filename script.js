@@ -208,25 +208,27 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPicFlowScript();
 
     // Initialize Home Page Slideshow
-    const homeSection = document.getElementById('home');
-    if (homeSection && Array.isArray(config.homeSlideshow?.images) && config.homeSlideshow.images.length > 0) {
-        const images = config.homeSlideshow.images;
-        const interval = config.homeSlideshow.interval || 5000;
-        let currentIndex = 0;
+    // const homeSection = document.getElementById('home');
+    // if (homeSection && Array.isArray(config.homeSlideshow?.images) && config.homeSlideshow.images.length > 0) {
+    //     const images = config.homeSlideshow.images;
+    //     const interval = config.homeSlideshow.interval || 5000;
+    //     let currentIndex = 0;
 
-        function changeSlide() {
-            homeSection.classList.add('fade-out');
+    //     function changeSlide() {
+    //         homeSection.classList.add('fade-out');
             
-            setTimeout(() => {
-                homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
-                homeSection.classList.remove('fade-out');
-                currentIndex = (currentIndex + 1) % images.length;
-            }, 1000); // Match the transition time
-        }
+    //         setTimeout(() => {
+    //             homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
+    //             homeSection.classList.remove('fade-out');
+    //             currentIndex = (currentIndex + 1) % images.length;
+    //         }, 1000); // Match the transition time
+    //     }
 
-        changeSlide(); // Initial image
-        setInterval(changeSlide, interval + 1000);
-    }
+    //     changeSlide(); // Initial image
+    //     setInterval(changeSlide, interval + 1000);
+    // }
+    const { images, interval, transitionEffect } = config.homeSlideshow;
+    createSlideshow(images, interval, transitionEffect);
 
     // Initialize EmailJS
     (function(){
