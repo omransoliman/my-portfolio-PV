@@ -125,7 +125,7 @@ const languageConfig = {
 };
 
 // Function to update the content based on the selected language
-function updateContent(language) {
+export function updateContent(language) {
     const noOffersMessage = document.getElementById('no-offers-message');
     const offerCards = document.querySelectorAll('.offer-card');
 
