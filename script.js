@@ -3,7 +3,7 @@ const LANGUAGES = {
     en: 'EN',
     fr: 'FR',
 };
-
+import { updateContent } from 'script.js';
 // Toggle menu function
 function toggleMenu() {
     const menu = document.querySelector('.menu');
@@ -132,7 +132,7 @@ function updateUI(language) {
     updatePortfolioSection(isEnglish);
 
     // Update Offers section
-    // updateContent(language);
+     updateContent(language);
 
     // Toggle language switch text
     const languageSwitch = document.querySelector('.language-switch');
