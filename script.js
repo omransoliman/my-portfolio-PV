@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Language retrieved from localStorage:', savedLanguage);
 
     // Update the UI based on the saved language
-    updateUI(savedLanguage);
+    // updateUI(savedLanguage);
 
     // Set the language switch button text
     const languageSwitch = document.querySelector('.language-switch');
