@@ -84,12 +84,6 @@
             right: 15px;
         }
 
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-        }
-
         #home {
     position: relative;
     width: 100%;
@@ -104,6 +98,21 @@
     width: 100%;
     height: 100%;
     z-index: -1; /* Ensure it stays behind the content */
+}
+
+.slideshow-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slideshow-container img.active {
+    opacity: 1;
 }
 
 .home-content {
