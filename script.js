@@ -343,7 +343,7 @@ const languageConfig = {
             {
                 // Offer 1
                 title: "📸 Capture Your Special Moments! or 💖 Valentine's Day 💖",
-                subtitle: "Limited-Time Photography Offer",
+                subtitle: "Limited-Time Photography Offer in Lyon",
                 details: [
                     "📸 Enjoy a personalized session lasting 1 hour to 1.5 hours",
                     "✨ A maximum of 40 expertly captured photos, Photos will be received online, and Receive your stunning images within 10 days",
@@ -399,7 +399,7 @@ const languageConfig = {
             {
                 // Offer 1
                 title: "📸 Capturez Vos Moments Spéciaux ! or 💖 Saint-Valentin 💖",
-                subtitle: "Offre photographique limitée dans le temps",
+                subtitle: "Offre photographique limitée dans le temps à Lyon",
                 details: [
                     "📸 Profitez d'une session personnalisée d'une durée de 1 à 1,5 heure",
                     "✨ Un maximum de 40 photos capturées avec expertise, les photos seront reçues en ligne, et vous recevrez vos images époustouflantes dans les 10 jours",
