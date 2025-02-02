@@ -277,9 +277,13 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
 
             // Basic validation
-            const name = contactForm.querySelector('[name="name"]').value.trim();
+            const firstName = contactForm.querySelector('[id="firstName"]').value.trim();
+            const lastName = contactForm.querySelector('[id="lastName"]').value.trim();
             const email = contactForm.querySelector('[name="email"]').value.trim();
             const message = contactForm.querySelector('[name="message"]').value.trim();
+
+            // Combine first and last name
+            const name = `${firstName} ${lastName}`.trim();
 
             if (!name || !email || !message) {
                 alert('Please fill out all fields.');
