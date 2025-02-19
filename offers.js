@@ -3,7 +3,7 @@ const showOffers = false; // Change to `true` to show offers, `false` to hide th
 
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
-    offer1: true,  // Set to `true` to show Offer 1, `false` to hide it
+    offer1: false,  // Set to `true` to show Offer 1, `false` to hide it
     offer2: false, // Set to `true` to show Offer 2, `false` to hide it
     offer3: false   // Set to `true` to show Offer 3, `false` to hide it
 };
