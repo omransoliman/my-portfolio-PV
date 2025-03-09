@@ -11,7 +11,7 @@
         /* Main container for the albums */
         .albums-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default layout */
             gap: 20px;
             padding: 2rem;
         }
@@ -30,7 +30,7 @@
 
         .album-item img {
             width: 100%;
-            height: 200px; /* Fixed height for consistency */
+            height: 300px; /* Increased height for larger albums */
             object-fit: cover; /* Ensures the image covers the area */
         }
 
@@ -67,7 +67,7 @@
             position: relative; /* For the cool design effect */
             display: flex; /* Use flexbox for centering */
             justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
+            align-items: center;
         }
 
         /* Cool design effect for the title */
@@ -93,6 +93,28 @@
         /* Optional: Add a subtle shadow for depth */
         main h1 {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        }
+
+        /* Media query for larger screens */
+        @media (min-width: 768px) {
+            .albums-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+            }
+
+            .album-item img {
+                height: 400px; /* Even larger height for bigger screens */
+            }
+        }
+
+        /* Optional: Adjust the grid layout for even larger screens */
+        @media (min-width: 1200px) {
+            .albums-grid {
+                grid-template-columns: repeat(2, 1fr); /* Still two columns on very large screens */
+            }
+
+            .album-item img {
+                height: 500px; /* Maximum height for very large screens */
+            }
         }
     </style>
 </head>
@@ -149,8 +171,8 @@
             </a>
 
             <!-- Album 4 -->
-            <a href="wedding-album3.html" class="album-item">
-                <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 3">
+            <a href="wedding-album4.html" class="album-item">
+                <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 4">
                 <div class="overlay">
                     <span>Wedding Album 4</span>
                 </div>
