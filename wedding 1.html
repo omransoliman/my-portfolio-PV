@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Photography - Omran Soliman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 2rem;
+        }
+
+        .album-item {
+            position: relative;
+            border-radius: 15px; /* Rounded corners */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .album-item:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .album-item img {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Ensures the image covers the area */
+        }
+
+        .album-item .overlay {
+            position: absolute;
+            bottom: 10px; /* Position at the bottom */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for better readability */
+            width: fit-content; /* Ensure the overlay only takes up the width of the text */
+            white-space: nowrap; /* Ensure the title stays in one line */
+            padding: 5px 10px; /* Add some padding for better readability */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better contrast */
+            border-radius: 5px; /* Slightly rounded corners for the background */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/" class="logo">Omran Soliman</a>
+        <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="nav-links menu">
+            <a href="/" data-fr="Accueil" data-en="Home">Accueil</a>
+            <div class="dropdown">
+                <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+                <div class="dropdown-content">
+                    <a href="wedding.html">Wedding</a>
+                    <a href="engagement.html">Engagement</a>
+                    <a href="portrait.html">Portrait</a>
+                </div>
+            </div>
+            <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+            <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
+            <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
+            <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
+            <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <button class="language-switch">EN</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h1>Wedding Photography</h1>
+        <div class="albums-grid">
+            <!-- Album 1 -->
+            <a href="wedding-album1.html" class="album-item">
+                <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 1">
+                <div class="overlay">
+                    <span>Wedding Album 1</span>
+                </div>
+            </a>
+
+            <!-- Album 2 -->
+            <a href="wedding-album2.html" class="album-item">
+                <img src="https://example.com/wedding-album2.jpg" alt="Wedding Album 2">
+                <div class="overlay">
+                    <span>Wedding Album 2</span>
+                </div>
+            </a>
+
+            <!-- Album 3 -->
+            <a href="wedding-album3.html" class="album-item">
+                <img src="https://example.com/wedding-album3.jpg" alt="Wedding Album 3">
+                <div class="overlay">
+                    <span>Wedding Album 3</span>
+                </div>
+            </a>
+
+            <!-- Add more albums as needed -->
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
