@@ -35,18 +35,17 @@
             object-fit: cover; /* Ensures the image covers the area */
         }
 
-        /* Overlay for the album title */
+        /* Overlay for the album title and year */
         .album-item .overlay {
             position: absolute;
             bottom: 0; /* Position at the very bottom */
             width: 100%; /* Span the full width of the album */
             height: 100%; /* Span the full height of the album */
             display: flex; /* Use flexbox for centering */
-            justify-content: center; /* Center horizontally */
-            align-items: flex-end; /* Align text at the bottom */
+            flex-direction: column; /* Stack title and year vertically */
+            justify-content: flex-end; /* Align content at the bottom */
+            align-items: center; /* Center horizontally */
             color: white;
-            font-size: 24px;
-            font-weight: bold;
             padding: 20px; /* Add padding for better spacing */
             background: linear-gradient(
                 to top, /* Fade from bottom to top */
@@ -56,6 +55,17 @@
             );
             text-align: center; /* Center the text horizontally */
             box-sizing: border-box; /* Ensure padding is included in the height */
+        }
+
+        .album-item .overlay .album-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px; /* Space between title and year */
+        }
+
+        .album-item .overlay .album-year {
+            font-size: 18px;
+            font-weight: normal;
         }
 
         /* Main title styling */
@@ -69,6 +79,24 @@
             display: flex; /* Use flexbox for centering */
             justify-content: center; /* Center horizontally */
             align-items: center;
+            gap: 20px; /* Space between text and icons */
+        }
+
+        /* Wedding icons */
+        main h1 .icon {
+            font-size: 2rem; /* Icon size */
+            color: #ffd700; /* Gold color for wedding rings */
+            animation: float 3s ease-in-out infinite; /* Floating animation */
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Move icons up */
+            }
         }
 
         /* Cool design effect for the title */
@@ -137,13 +165,18 @@
 
     <!-- Main Content -->
     <main>
-        <h1>Wedding</h1> <!-- Updated title -->
+        <h1>
+            <i class="fas fa-ring icon"></i> <!-- Wedding ring icon -->
+            Wedding
+            <i class="fas fa-heart icon"></i> <!-- Heart icon -->
+        </h1>
         <div class="albums-grid">
             <!-- Album 1 -->
             <a href="wedding-album1.html" class="album-item">
                 <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 1">
                 <div class="overlay">
-                    <span>Wedding Album 1</span>
+                    <span class="album-title">Wedding Album 1</span>
+                    <span class="album-year">2023</span>
                 </div>
             </a>
 
@@ -151,7 +184,8 @@
             <a href="wedding-album2.html" class="album-item">
                 <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 2">
                 <div class="overlay">
-                    <span>Wedding Album 2</span>
+                    <span class="album-title">Wedding Album 2</span>
+                    <span class="album-year">2022</span>
                 </div>
             </a>
 
@@ -159,7 +193,8 @@
             <a href="wedding-album3.html" class="album-item">
                 <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 3">
                 <div class="overlay">
-                    <span>Wedding Album 3</span>
+                    <span class="album-title">Wedding Album 3</span>
+                    <span class="album-year">2021</span>
                 </div>
             </a>
 
@@ -167,7 +202,8 @@
             <a href="wedding-album4.html" class="album-item">
                 <img src="https://picflow.media/images/resized/720x1280q85/a4f8e827-08e4-4115-8c11-f42088b3feba.jpg" alt="Wedding Album 4">
                 <div class="overlay">
-                    <span>Wedding Album 4</span>
+                    <span class="album-title">Wedding Album 4</span>
+                    <span class="album-year">2020</span>
                 </div>
             </a>
         </div>
