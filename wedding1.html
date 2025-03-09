@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Photography - Omran Soliman</title>
+    <title>Wedding - Omran Soliman</title>
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -50,6 +50,43 @@
                 rgba(0, 0, 0, 0) 100% /* Fully transparent at the top */
             );
         }
+
+        /* Main title styling */
+        main h1 {
+            text-align: center; /* Center the title */
+            font-size: 3rem; /* Larger font size */
+            font-weight: bold; /* Bold text */
+            color: white; /* White text color */
+            margin-bottom: 2rem; /* Space below the title */
+            position: relative; /* For the cool design effect */
+            display: inline-block; /* To contain the pseudo-elements */
+            padding: 0 20px; /* Add padding for the design */
+        }
+
+        /* Cool design effect for the title */
+        main h1::before,
+        main h1::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 50px; /* Length of the decorative lines */
+            height: 2px; /* Thickness of the decorative lines */
+            background: white; /* Color of the decorative lines */
+            transform: translateY(-50%); /* Center vertically */
+        }
+
+        main h1::before {
+            left: -60px; /* Position the left line */
+        }
+
+        main h1::after {
+            right: -60px; /* Position the right line */
+        }
+
+        /* Optional: Add a subtle shadow for depth */
+        main h1 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        }
     </style>
 </head>
 <body>
@@ -78,7 +115,7 @@
 
     <!-- Main Content -->
     <main>
-        <h1>Wedding Photography</h1>
+        <h1>Wedding</h1> <!-- Updated title -->
         <div class="albums-grid">
             <!-- Album 1 -->
             <a href="wedding-album1.html" class="album-item">
