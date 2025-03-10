@@ -478,7 +478,6 @@ const languageConfig = {
 // Function to initialize the offers section
 function initializeOffers() {
     console.log('showOffers:', showOffers.textContent);
-    console.log('showOffers:', shareOffers);
     const offerCards = document.querySelectorAll('.offer-card');
     const noOffersMessage = document.createElement('div');
     noOffersMessage.id = 'no-offers-message';
