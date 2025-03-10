@@ -477,6 +477,7 @@ const languageConfig = {
 
 // Function to initialize the offers section
 function initializeOffers() {
+    showOffers = true ; // Change to `true` to show offers, `false` to hide them
     console.log('showOffers:', showOffers.textContent);
     const offerCards = document.querySelectorAll('.offer-card');
     const noOffersMessage = document.createElement('div');
