@@ -13,7 +13,6 @@ const config = {
             'https://images.pexels.com/photos/2253842/pexels-photo-2253842.jpeg',
             'https://picflow.media/images/resized/1920x1080q85/0e6daebb-cf96-4e13-a6c3-00bc0d8bf2a2.jpg',
             'https://picflow.media/images/resized/1920x1080q85/d44b2f06-c68a-4980-8c01-170732411164.webp',
-            'https://picflow.media/images/resized/1280x720q85/08566703-c8bc-47e8-84f6-56bd2b239a1b.jpg',
             'https://picflow.media/images/resized/1920x1080q85/67b4666d-4151-4e5f-8f4d-0a0e6af21850.jpg',
             'https://picflow.media/images/resized/1280x853q85/ffa24446-4e64-40e0-be63-0b6ac62efad6.jpg',
             'https://images.pexels.com/photos/3585806/pexels-photo-3585806.jpeg'
