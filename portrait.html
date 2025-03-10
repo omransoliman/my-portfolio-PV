@@ -1,80 +1,390 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L8PZL85SK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portrait - Omran Soliman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Main container for the albums */
+        .albums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Default layout */
+            gap: 20px;
+            padding: 2rem;
+        }
 
-  gtag('config', 'G-4L8PZL85SK');
-</script>
+        /* Album item styling */
+        .album-item {
+            position: relative;
+            border-radius: 15px; /* Rounded corners */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            aspect-ratio: 16 / 9; /* Horizontal aspect ratio */
+        }
 
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Omran Soliman Photography">
-    <meta property="og:description" content="capture life. beauty. love.">
-    <meta property="og:image" content="https://picflow.media/images/resized/1920x1080q85/67b4666d-4151-4e5f-8f4d-0a0e6af21850.jpg">
-    <meta property="og:url" content="www.omransoliman.com">
-    
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portrait</title>
-  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"> 
-  <style>
-  </style>
+        .album-item:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+
+        .album-item img {
+            width: 100%;
+            height: 100%; /* Fill the entire album item */
+            object-fit: cover; /* Ensures the image covers the area */
+        }
+
+        /* Overlay for the album title and year */
+        .album-item .overlay {
+            position: absolute;
+            bottom: 0; /* Position at the very bottom */
+            width: 100%; /* Span the full width of the album */
+            height: 100%; /* Span the full height of the album */
+            display: flex; /* Use flexbox for centering */
+            flex-direction: column; /* Stack title and year vertically */
+            justify-content: flex-end; /* Align content at the bottom */
+            align-items: center; /* Center horizontally */
+            color: white;
+            padding: 20px; /* Add padding for better spacing */
+            background: linear-gradient(
+                to top, /* Fade from bottom to top */
+                rgba(0, 0, 0, 0.7) 0%, /* Darker at the bottom */
+                rgba(0, 0, 0, 0.4) 20%, /* Midway fade */
+                rgba(0, 0, 0, 0) 50% /* Fully transparent at the top */
+            );
+            text-align: center; /* Center the text horizontally */
+            box-sizing: border-box; /* Ensure padding is included in the height */
+        }
+
+        .album-item .overlay .album-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px; /* Space between title and year */
+        }
+
+        .album-item .overlay .album-year {
+            font-size: 18px;
+            font-weight: normal;
+        }
+
+        /* Main title styling */
+        main h1 {
+            text-align: center; /* Center the title */
+            font-size: 3rem; /* Larger font size */
+            font-weight: bold; /* Bold text */
+            color: white; /* White text color */
+            margin: 2rem 0; /* Space above and below the title */
+            position: relative; /* For the cool design effect */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center;
+            gap: 20px; /* Space between text and icons */
+        }
+
+        /* Portrait icons */
+        main h1 .icon {
+            font-size: 2rem; /* Icon size */
+            color: #ffd700; /* Gold color for icons */
+            animation: float 3s ease-in-out infinite; /* Floating animation */
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Move icons up */
+            }
+        }
+
+        /* Cool design effect for the title */
+        main h1::before,
+        main h1::after {
+            content: '';
+            position: absolute;
+            top: 50%; /* Center vertically */
+            width: 50px; /* Length of the decorative lines */
+            height: 2px; /* Thickness of the decorative lines */
+            background: white; /* Color of the decorative lines */
+            transform: translateY(-50%); /* Center vertically */
+        }
+
+        main h1::before {
+            left: -60px; /* Position the left line */
+        }
+
+        main h1::after {
+            right: -60px; /* Position the right line */
+        }
+
+        /* Optional: Add a subtle shadow for depth */
+        main h1 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        }
+
+        /* Media query for larger screens */
+        @media (min-width: 768px) {
+            .albums-grid {
+                grid-template-columns: repeat(2, 1fr); /* Two columns on larger screens */
+            }
+        }
+
+        /* Optional: Adjust the grid layout for even larger screens */
+        @media (min-width: 1200px) {
+            .albums-grid {
+                grid-template-columns: repeat(3, 1fr); /* Three columns on very large screens */
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
 
-
-
-  
-  <!-- Navigation Bar -->
-
-  <nav>
-    <a href="index.html" class="logo">Omran Soliman</a>
-    <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-    <div class="nav-links menu">
-        <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-        
-        <div class="dropdown">
-            <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
-            <div class="dropdown-content">
-                <a href="wedding.html">Wedding</a>
-                <a href="engagement.html">Engagement</a>
-                <a href="portrait.html">Portrait</a>
+    <nav>
+        <a href="/" class="logo">Omran Soliman</a>
+        <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+        <div class="nav-links menu">
+            <a href="/" data-fr="Accueil" data-en="Home">Accueil</a>
+            
+            <div class="dropdown">
+                <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
+                <div class="dropdown-content">
+                    <a href="wedding.html">Wedding</a>
+                    <a href="engagement.html">Engagement</a>
+                    <a href="portrait.html">Portrait</a>
+                </div>
             </div>
+            <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
+            <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
+            <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
+            <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
+            <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            <button class="language-switch">EN</button>
         </div>
-        <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
-        <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
-        <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
-        <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
-        <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-        <button class="language-switch" >EN</button>
-    </div>
-</nav>
+    </nav>
 
-  <!-- Main Content -->
-  <main>
-    
-    <script>
-      if(!window.picflow){window.picflow=!0;var s=document.createElement("script");
-      s.src="https://picflow.com/embed/main.js"; 
-      s.type='module';s.defer=true;document.head.appendChild(s);}
-      </script><picflow-gallery id="gal_cBCgnwN8J3xVUCf7" 
-      lightbox="#000000E6" 
-      no-padding="true" 
-      no-background="true" 
-      show-cover="true">
-    </picflow-gallery>
-  </main>
+    <!-- Main Content -->
+    <main>
+        <h1>
+            <i class="fas fa-camera icon"></i> <!-- Camera icon -->
+            Portrait
+            <i class="fas fa-user icon"></i> <!-- User icon -->
+        </h1>
+        <div class="albums-grid">
+            <!-- Album 1 -->
+            <a href="Portraits/sekvan&nesrin.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/x2h9b6cigzxhiilxksmft/IMG_3989.jpg?rlkey=bv9i7gmec9d411cuj617gy6ob&st=mf9tzihv&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Sekvan & Nesrin</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 2 -->
+            <a href="Portraits/marine3.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/dh7qo09i23q7pd0n5j7dn/IMG_3734.jpg?rlkey=bjz078krorew9thpgluirmts6&st=9e4k8gk6&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Marine 3</span>
+                    <span class="album-year">2022</span>
+                </div>
+            </a>
+            <!-- Album 3 -->
+            <a href="Portraits/somatine.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/slnl8612vwytcuxj97qr8/IMG_2163.jpg?rlkey=ctkqldcfrfw4rka095ia8y2oc&st=0cly8i6n&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Somatine</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 4 -->
+            <a href="Portraits/mehrana.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/oqi7b09fir7ew9ubmf36f/IMG_8832.jpg?rlkey=g4ekdbtlg9ufvwv5u400938d1&st=adymxf8m&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Mehrana</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 5 -->
+            <a href="Portraits/friends1.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/lg28sdimi6med9hb8w7mk/IMG_1227.jpg?rlkey=ell49gt504a7ppqdllfcw3ldz&st=2ar0igjf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Friends 1</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 6 -->
+            <a href="Portraits/moona.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/y9klkof4gb3ymfcghbues/IMG_7513.png?rlkey=riblgzucqly2lyad8va9zewt0&st=20idema2&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Moona</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 7 -->
+            <a href="Portraits/harry_cover.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/uqjxhjg4in15iryz9wldp/IMG_0670.jpg?rlkey=qg86b72slivurpvlo2jt6sy3v&st=9e651poe&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Harry Cover</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 8 -->
+            <a href="Portraits/ariane1.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/78jq8kzdxx51zxmvpk946/IMG_1355.jpg?rlkey=lkf792ufdv8ddod6hf9vy8six&st=0r7jqlpd&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Ariane</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 9 -->
+            <a href="Portraits/masa.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/qqd0m6azbr9i3aeb6251d/IMG_4100.png?rlkey=q57o0mqu2c60mxbhtn0m6q6lv&st=ht5o0jpc&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Masa</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 10 -->
+            <a href="Portraits/mero.html" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/jycztlbtlag1ggerlnn08/IMG_4267.jpg?rlkey=fojcmygue450xjfc1fvp2l5yl&st=gy298zjl&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Mero</span>
+                    <span class="album-year">2024</span>
+                </div>
+            </a>
+            <!-- Album 11 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 12 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 13 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 14 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 15 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 16 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 17 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 18 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 19 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title"></span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 20 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 21 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 22 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 23 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 24 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 25 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+            <!-- Album 26 -->
+            <a href="" class="album-item">
+                <img src="https://dl.dropboxusercontent.com/scl/fi/f71i1qgkod46zwvplhnb0/coming-soon.jpg?rlkey=ojifb2t95t8p1wccdea1zy9p7&st=bkqj28pf&raw=1" >
+                <div class="overlay">
+                    <span class="album-title">Coming Soon</span>
+                    <span class="album-year">2023</span>
+                </div>
+            </a>
+        </div>
+    </main>
 
-  
-  
-  
-<script src="config.js" defer></script>
-<script src="script.js" defer></script>
+    <script src="config.js" defer></script>
+    <script src="script.js"></script>
 </body>
 </html>
