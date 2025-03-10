@@ -331,7 +331,7 @@ const showOffers = true; // Change to `true` to show offers, `false` to hide the
 
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
-    offer1: true,  // Set to `true` to show Offer 1, `false` to hide it
+    offer1: false,  // Set to `true` to show Offer 1, `false` to hide it
     offer2: true, // Set to `true` to show Offer 2, `false` to hide it
     offer3: false   // Set to `true` to show Offer 3, `false` to hide it
 };
@@ -490,6 +490,7 @@ function initializeOffers() {
     mainContainer.insertBefore(noOffersMessage, mainContainer.firstChild);
 
     // Show or hide offers based on the `showOffers` variable and the offerVisibility configuration
+    console.log('showOffers:', showOffers.textContent);
     if (showOffers) {
         // Show or hide each offer based on the offerVisibility configuration
         offerCards.forEach((card, index) => {
