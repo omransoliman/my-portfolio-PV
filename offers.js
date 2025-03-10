@@ -1,5 +1,5 @@
 // Set this variable to true or false to control the visibility of offers
-const showOffers = false; // Change to `true` to show offers, `false` to hide them
+const showOffers = true; // Change to `true` to show offers, `false` to hide them
 
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
