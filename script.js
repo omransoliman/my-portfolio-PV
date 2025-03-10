@@ -491,6 +491,7 @@ function initializeOffers() {
 
     // Show or hide offers based on the `showOffers` variable and the offerVisibility configuration
     console.log('showOffers:', showOffers.textContent);
+    console.log('showOffers:', shareOffers);
     if (showOffers) {
         // Show or hide each offer based on the offerVisibility configuration
         offerCards.forEach((card, index) => {
