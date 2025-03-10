@@ -327,12 +327,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Set this variable to true or false to control the visibility of offers
-const showOffers = false; // Change to `true` to show offers, `false` to hide them
+const showOffers = true; // Change to `true` to show offers, `false` to hide them
 
 // Configuration object to control the visibility of each offer
 const offerVisibility = {
-    offer1: true,  // Set to `true` to show Offer 1, `false` to hide it
-    offer2: false, // Set to `true` to show Offer 2, `false` to hide it
+    offer1: false,  // Set to `true` to show Offer 1, `false` to hide it
+    offer2: true, // Set to `true` to show Offer 2, `false` to hide it
     offer3: false   // Set to `true` to show Offer 3, `false` to hide it
 };
 
@@ -362,18 +362,18 @@ const languageConfig = {
             },
             {
                 // offer 2
-                title: "Family Photography Package",
-                subtitle: "Limited-Time Family Offer",
+                title: "🌙 Special Eid al-Fitr Offer.",
+                subtitle: "Limited-Time Offer only for the 3 days of Eid. in Lyon", 
                 details: [
-                    "1-hour family photoshoot session.",
-                    "10 professionally edited high-resolution images.",
-                    "Customized family portraits for your home.",
-                    "Delivery within 5 business days."
+                    "📷 45 minutes with a professional photographer.",
+                    "📸 35 professionally edited high-resolution images.",
+                    "✨ Perfect for families, couples & individuals.",
+                    "🕧 Delivery within 24 hours."
                 ],
                 bookNow: "Book Now",
-                shareMessage: "Capture your family memories with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Family Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Family Photography Offer",
+                shareMessage: "Capture your Eid al-Fitr memories with this exclusive photography offer!",
+                whatsappMessage: "Limited-Time Eid al-Fitr Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
+                emailSubject: "Limited-Time Eid al-Fitr Photography Offer",
                 emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
             },
             {
@@ -418,19 +418,19 @@ const languageConfig = {
             },
             {
                 // Offer 2
-                title: "Forfait Photographie Familiale",
-                subtitle: "Offre familiale limitée dans le temps",
+                title: "🌙 Offre spéciale Aïd el-Fitr.",
+                subtitle: "Offre à durée limitée uniquement pour les 3 jours de l'Aïd. à Lyon",
                 details: [
-                    "Séance photo familiale d'une heure.",
-                    "10 images haute résolution éditées professionnellement.",
-                    "Portraits familiaux personnalisés pour votre maison.",
-                    "Livraison dans les 5 jours ouvrables."
+                    "📷 45 minutes avec un photographe professionnel",
+                    "📸 35 images haute résolution éditées par des professionnels.",
+                    "✨ Parfait pour les familles, les couples et les particuliers",
+                    "🕧 Livraison sous 24 heures."
                 ],
                 bookNow: "Réserver maintenant",
-                shareMessage: "Capturez vos souvenirs familiaux avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique familiale limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique familiale limitée dans le temps",
-                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
+                shareMessage: "Immortalisez vos souvenirs de l'Aïd el-Fitr avec cette offre photographique exclusive !",
+                whatsappMessage: "Offre photographique Aïd el-Fitr à durée limitée ! J'ai le plaisir d'accepter cette offre. Merci pour cette opportunité.",
+                emailSubject: "Offre photographique Aïd el-Fitr à durée limitée",
+                emailBody: "Bonjour ! J'ai le plaisir d'accepter cette offre. Merci pour cette opportunité."
             },
             {
                 // Offer 3
