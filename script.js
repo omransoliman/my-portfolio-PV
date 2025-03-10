@@ -477,6 +477,8 @@ const languageConfig = {
 
 // Function to initialize the offers section
 function initializeOffers() {
+    console.log('showOffers:', showOffers.textContent);
+    console.log('showOffers:', shareOffers);
     const offerCards = document.querySelectorAll('.offer-card');
     const noOffersMessage = document.createElement('div');
     noOffersMessage.id = 'no-offers-message';
@@ -490,8 +492,6 @@ function initializeOffers() {
     mainContainer.insertBefore(noOffersMessage, mainContainer.firstChild);
 
     // Show or hide offers based on the `showOffers` variable and the offerVisibility configuration
-    console.log('showOffers:', showOffers.textContent);
-    console.log('showOffers:', shareOffers);
     if (showOffers) {
         // Show or hide each offer based on the offerVisibility configuration
         offerCards.forEach((card, index) => {
