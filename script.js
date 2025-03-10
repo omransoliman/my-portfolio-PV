@@ -366,9 +366,9 @@ const languageConfig = {
                 subtitle: "Limited-Time Offer only for the 3 days of Eid. in Lyon", 
                 details: [
                     "📷 45 minutes with a professional photographer.",
-                    "📸 35 professionally edited high-resolution images.",
+                    "📸 35 professionally edited high-resolution images. 🕧 Delivery within 24 hours.",
                     "✨ Perfect for families, couples & individuals.",
-                    "🕧 Delivery within 24 hours."
+                    "💶 All of this for just 50 euros"
                 ],
                 bookNow: "Book Now",
                 shareMessage: "Capture your Eid al-Fitr memories with this exclusive photography offer!",
@@ -422,9 +422,9 @@ const languageConfig = {
                 subtitle: "Offre à durée limitée uniquement pour les 3 jours de l'Aïd. à Lyon",
                 details: [
                     "📷 45 minutes avec un photographe professionnel",
-                    "📸 35 images haute résolution éditées par des professionnels.",
+                    "📸 35 images haute résolution éditées par des professionnels. 🕧 Livraison sous 24 heures.",
                     "✨ Parfait pour les familles, les couples et les particuliers",
-                    "🕧 Livraison sous 24 heures."
+                    "💶 Tout cela pour seulement 50 euros"
                 ],
                 bookNow: "Réserver maintenant",
                 shareMessage: "Immortalisez vos souvenirs de l'Aïd el-Fitr avec cette offre photographique exclusive !",
