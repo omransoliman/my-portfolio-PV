@@ -1,236 +1,261 @@
-// Set this variable to true or false to control the visibility of offers
-const showOffers = true; // Change to `true` to show offers, `false` to hide them
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('Offers page loaded');
 
-// Configuration object to control the visibility of each offer
-const offerVisibility = {
-    offer1: false,  // Set to `true` to show Offer 1, `false` to hide it
-    offer2: false, // Set to `true` to show Offer 2, `false` to hide it
-    offer3: false   // Set to `true` to show Offer 3, `false` to hide it
-};
+    const offersGrid = document.getElementById('offers-grid');
+    const OFFERS_API_URL = 'https://script.google.com/macros/s/AKfycbw0Tbcw-MOGB_y1aIERZoerh7mY3NBeOA8xcJIpHagGEOmkJVpzpI2oDsbvuiuadxDhfw/exec';
 
-// Language configuration object
-const languageConfig = {
-    en: {
-        noOffersMessage: {
-            text: "Thank you for your interest in our services! We're always looking for ways to provide exceptional value to our customers. While we don't have any special offers available at this time, we encourage you to follow us on Instagram to be the first to know about future promotions and exclusive deals.",
-            button: "Follow us on Instagram"
-        },
-        offers: [
-            {
-                // Offer 1
-                title: "📸 Capture Your Special Moments! or 💖 Valentine's Day 💖",
-                subtitle: "Limited-Time Photography Offer in Lyon",
-                details: [
-                    "📸 Enjoy a personalized session lasting 1 hour to 1.5 hours",
-                    "✨ A maximum of 40 expertly captured photos, Photos will be received online, and Receive your stunning images within 10 days",
-                    "📅 Don't miss out, this offer is available until 15/02/2025",
-                    "💶 All of this for just 50 euros"
-                ],
-                bookNow: "Book Now",
-                shareMessage: "Capture your special moments with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Photography Offer",
-                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
-            },
-            {
-                // offer 2
-                title: "Family Photography Package",
-                subtitle: "Limited-Time Family Offer",
-                details: [
-                    "1-hour family photoshoot session.",
-                    "10 professionally edited high-resolution images.",
-                    "Customized family portraits for your home.",
-                    "Delivery within 5 business days."
-                ],
-                bookNow: "Book Now",
-                shareMessage: "Capture your family memories with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Family Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Family Photography Offer",
-                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
-            },
-            {
-                // Offer 3
-                title: "Event Photography Package",
-                subtitle: "Limited-Time Event Offer",
-                details: [
-                    "Full-day event coverage.",
-                    "50+ professionally edited high-resolution images.",
-                    "Customized photo album design.",
-                    "Delivery within 10 business days."
-                ],
-                bookNow: "Book Now",
-                shareMessage: "Capture your event memories with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Event Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Event Photography Offer",
-                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
-            }
-        ]
-    },
-    fr: {
-        noOffersMessage: {
-            text: "Merci de votre intérêt pour nos services ! Nous cherchons toujours des moyens de fournir une valeur exceptionnelle à nos clients. Bien que nous n'ayons aucune offre spéciale disponible pour le moment, nous vous encourageons à nous suivre sur Instagram pour être informé en premier des promotions futures et des offres exclusives.",
-            button: "Suivez-nous sur Instagram"
-        },
-        offers: [
-            {
-                // Offer 1
-                title: "📸 Capturez Vos Moments Spéciaux ! or 💖 Saint-Valentin 💖",
-                subtitle: "Offre photographique limitée dans le temps à Lyon",
-                details: [
-                    "📸 Profitez d'une session personnalisée d'une durée de 1 à 1,5 heure",
-                    "✨ Un maximum de 40 photos capturées avec expertise, les photos seront reçues en ligne, et vous recevrez vos images époustouflantes dans les 10 jours",
-                    "📅 Ne manquez pas cette offre, valable jusqu'au 15/02/2025",
-                    "💶 Tout cela pour seulement 50 euros"
-                ],
-                bookNow: "Réserver maintenant",
-                shareMessage: "Capturez vos moments spéciaux avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique limitée dans le temps",
-                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
-            },
-            {
-                // Offer 2
-                title: "Forfait Photographie Familiale",
-                subtitle: "Offre familiale limitée dans le temps",
-                details: [
-                    "Séance photo familiale d'une heure.",
-                    "10 images haute résolution éditées professionnellement.",
-                    "Portraits familiaux personnalisés pour votre maison.",
-                    "Livraison dans les 5 jours ouvrables."
-                ],
-                bookNow: "Réserver maintenant",
-                shareMessage: "Capturez vos souvenirs familiaux avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique familiale limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique familiale limitée dans le temps",
-                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
-            },
-            {
-                // Offer 3
-                title: "Forfait Photographie d'Événement",
-                subtitle: "Offre événementielle limitée dans le temps",
-                details: [
-                    "Couverture d'événement toute la journée.",
-                    "50+ images haute résolution éditées professionnellement.",
-                    "Conception d'album photo personnalisé.",
-                    "Livraison dans les 10 jours ouvrables."
-                ],
-                bookNow: "Réserver maintenant",
-                shareMessage: "Capturez vos souvenirs d'événement avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique événementielle limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique événementielle limitée dans le temps",
-                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
-            }
-        ]
-    }
-};
+    // No IndexedDB usage
 
-// Function to update the content based on the selected language
-  function updateContent(language) {
-    const noOffersMessage = document.getElementById('no-offers-message');
-    const offerCards = document.querySelectorAll('.offer-card');
-
-    // Update the "No Offers" message
-    if (noOffersMessage) {
-        noOffersMessage.querySelector('p').textContent = languageConfig[language].noOffersMessage.text;
-        noOffersMessage.querySelector('a.btn').textContent = languageConfig[language].noOffersMessage.button;
+    // Language helper
+    function getLang() {
+        try {
+            const v = localStorage.getItem('ospv_language');
+            return (v === 'EN' || v === 'FR') ? v : 'FR';
+        } catch(_) { return 'FR'; }
     }
 
-    // Update the offer cards
-    offerCards.forEach((card, index) => {
-        const offer = languageConfig[language].offers[index];
-        if (offer) {
-            card.querySelector('.offer-title').textContent = offer.title;
-            card.querySelector('.offer-subtitle').textContent = offer.subtitle;
-            card.querySelector('.offer-details').innerHTML = offer.details.map(detail => `<p>${detail}</p>`).join('');
-            card.querySelector('.btn--primary').textContent = offer.bookNow;
+    // Keep last offers for live re-render on language change
+    let lastOffers = [];
+
+    // Removed old IndexedDB helpers (open/get/put)
+
+    function showLoading() {
+        const lang = getLang();
+        const text = (lang === 'EN') ? 'Loading offers...' : 'Chargement des offres...';
+        offersGrid.innerHTML = `
+            <div class="offers-loading">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">${text}</p>
+            </div>
+        `;
+    }
+
+    function showError() {
+        const lang = getLang();
+        const title = (lang === 'EN') ? 'Unable to load offers' : 'Impossible de charger les offres';
+        const desc = (lang === 'EN')
+            ? 'Please try refreshing the page or contact us if the problem persists.'
+            : 'Veuillez essayer d’actualiser la page ou nous contacter si le problème persiste.';
+        offersGrid.innerHTML = `
+            <div class="offers-error">
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    function showEmpty() {
+        const lang = getLang();
+        const title = (lang === 'EN') ? 'No offers available' : 'Aucune offre disponible';
+        const desc = (lang === 'EN')
+            ? 'Check back soon for exciting photography offers and exclusive deals!'
+            : 'Revenez bientôt pour découvrir de nouvelles offres et promotions !';
+        offersGrid.innerHTML = `
+            <div class="offers-empty">
+                <div class="empty-message">
+                    <i class="fas fa-camera"></i>
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                </div>
+            </div>
+        `;
+    }
+
+    function createOfferCard(offer) {
+        const lang = getLang();
+        const pick = (fr, en) => (lang === 'EN' ? (en || fr) : (fr || en));
+        const details = [
+            pick(offer.Line1_FR, offer.Line1_EN),
+            pick(offer.Line2_FR, offer.Line2_EN),
+            pick(offer.Line3_FR, offer.Line3_EN),
+            pick(offer.Line4_FR, offer.Line4_EN),
+            pick(offer.Line5_FR, offer.Line5_EN),
+            pick(offer.Line6_FR, offer.Line6_EN)
+        ].filter(line => line && String(line).trim() !== '');
+
+        const detailsHTML = details.map(detail =>
+            `<div class="offer-detail">${detail}</div>`
+        ).join('');
+
+        const title = pick(offer.Title_FR, offer.Title_EN) || '';
+        const desc  = pick(offer.Description_FR, offer.Description_EN) || '';
+        const waMsg = pick(offer['Whatsapp Message_FR'], offer['Whatsapp Message_EN']) || '';
+        const emailSubject = pick(offer['Email Subject_FR'], offer['Email Subject_EN']) || '';
+        const emailBody = pick(offer['Email Body_FR'], offer['Email Body_EN']) || '';
+        const shareMsg = pick(offer['Share Message_FR'], offer['Share Message_EN']) || '';
+
+        const tooltipWhatsApp = lang === 'EN' ? 'WhatsApp' : 'WhatsApp';
+        const tooltipEmail    = lang === 'EN' ? 'Email' : 'Email';
+        const tooltipShare    = lang === 'EN' ? 'Share' : 'Partager';
+
+        return `
+            <div class="offer-card" data-offer-id="${offer.id}">
+                <div class="offer-image-container">
+                    <img src="${offer.Photo}" alt="${title}" class="offer-image" loading="lazy">
+                    <div class="offer-title-overlay">
+                        <h3 class="offer-title">${title}</h3>
+                    </div>
+                </div>
+                <div class="offer-content">
+                    <p class="offer-description">${desc}</p>
+                    <div class="offer-details">${detailsHTML}</div>
+                    <div class="offer-footer">
+                        <div class="offer-price">${offer.Price}</div>
+                        <div class="offer-actions">
+                            <a href="#" class="offer-btn whatsapp" data-tooltip="${tooltipWhatsApp}" data-whatsapp="${waMsg}" title="${tooltipWhatsApp}">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="offer-btn email" data-tooltip="${tooltipEmail}" data-email-subject="${emailSubject}" data-email-body="${emailBody}" title="${tooltipEmail}">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="#" class="offer-btn share" data-tooltip="${tooltipShare}" data-share="${shareMsg}" title="${tooltipShare}">
+                                <i class="fas fa-share-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function groupOffersByLocation(offers) {
+        const grouped = {};
+        offers.forEach(offer => {
+            const location = offer.Location || 'Other Locations';
+            if (!grouped[location]) grouped[location] = [];
+            grouped[location].push(offer);
+        });
+        return grouped;
+    }
+
+    function createLocationSection(location, offers) {
+        const offersHTML = offers.map(createOfferCard).join('');
+        return `
+            <div class="location-section">
+                <h2 class="location-title">📍 ${location}</h2>
+                <div class="offers-grid">${offersHTML}</div>
+            </div>
+        `;
+    }
+
+    function renderOffers(offers) {
+        console.log('Rendering offers:', offers);
+
+        if (!offers || offers.length === 0) return showEmpty();
+
+        const activeOffers = offers.filter(offer => {
+            const val = String(offer.action || '').toLowerCase();
+            return val === 'true';
+        });
+
+        if (activeOffers.length === 0) return showEmpty();
+
+        const groupedOffers = groupOffersByLocation(activeOffers);
+        const sectionsHTML = Object.entries(groupedOffers)
+            .map(([location, group]) => createLocationSection(location, group))
+            .join('');
+
+        offersGrid.innerHTML = sectionsHTML;
+        addOfferEventListeners();
+    }
+
+    function addOfferEventListeners() {
+        document.querySelectorAll('.offer-btn.whatsapp').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const message = encodeURIComponent(this.dataset.whatsapp);
+                window.open(`https://wa.me/33625965257?text=${message}`, '_blank');
+            });
+        });
+
+        document.querySelectorAll('.offer-btn.email').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const subject = encodeURIComponent(this.dataset.emailSubject);
+                const body = encodeURIComponent(this.dataset.emailBody);
+                window.location.href = `mailto:?subject=${subject}&body=${body}`;
+            });
+        });
+
+        document.querySelectorAll('.offer-btn.share').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const shareData = {
+                    title: 'Photography Offer',
+                    text: this.dataset.share,
+                    url: window.location.href
+                };
+                if (navigator.share) {
+                    navigator.share(shareData).catch(console.error);
+                } else {
+                    const shareText = `${shareData.text} ${shareData.url}`;
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(shareText).then(() => {
+                            const original = this.innerHTML;
+                            this.innerHTML = '<i class="fas fa-check"></i>';
+                            setTimeout(() => this.innerHTML = original, 2000);
+                        });
+                    } else {
+                        alert('Share link copied: ' + shareText);
+                    }
+                }
+            });
+        });
+    }
+
+    async function fetchOffersAndHydrate() {
+        try {
+            try { console.debug('[Offers][Fetch] starting', { url: OFFERS_API_URL }); } catch(_) {}
+            const res = await fetch(OFFERS_API_URL, { cache: 'no-store', keepalive: true });
+            if (!res.ok) throw new Error('Failed to fetch offers: ' + res.status);
+            const data = await res.json();
+            const list = Array.isArray(data) ? data : [];
+            // No longer storing offers in IndexedDB per requirement
+            return list;
+        } catch (err) {
+            console.error('[Offers] network fetch failed:', err);
+            throw err;
+        }
+    }
+
+    async function loadOffers() {
+        showLoading();
+        try {
+            const list = await fetchOffersAndHydrate();
+            lastOffers = list;
+            renderOffers(list);
+        } catch (err) {
+            showError();
+        }
+    }
+
+    // Start
+    loadOffers();
+
+    // Re-render on language change
+    window.addEventListener('ospv:languageChanged', function() {
+        if (lastOffers && lastOffers.length) {
+            renderOffers(lastOffers);
         }
     });
-}
 
-// Function to initialize the offers section
-function initializeOffers() {
-    const offerCards = document.querySelectorAll('.offer-card');
-    const noOffersMessage = document.createElement('div');
-    noOffersMessage.id = 'no-offers-message';
-    noOffersMessage.innerHTML = `
-        <p>${languageConfig.en.noOffersMessage.text}</p>
-        <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">${languageConfig.en.noOffersMessage.button}</a>
-    `;
+    window.addEventListener('load', function () {
+        document.body.style.opacity = '1';
+    });
 
-    // Insert the message at the top of the <main> container (right below the nav)
-    const mainContainer = document.querySelector('main.exclusive-offer');
-    mainContainer.insertBefore(noOffersMessage, mainContainer.firstChild);
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease-in-out';
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 100);
 
-    // Show or hide offers based on the `showOffers` variable and the offerVisibility configuration
-    if (showOffers) {
-        // Show or hide each offer based on the offerVisibility configuration
-        offerCards.forEach((card, index) => {
-            const offerKey = `offer${index + 1}`; // offer1, offer2, offer3
-            if (offerVisibility[offerKey]) {
-                card.style.display = 'flex'; // Show the offer
-            } else {
-                card.style.display = 'none'; // Hide the offer
-            }
-        });
-        noOffersMessage.style.display = 'none'; // Hide the message if any offer is visible
-    } else {
-        // Hide all offers if showOffers is false
-        offerCards.forEach(card => {
-            card.style.display = 'none';
-        });
-        noOffersMessage.style.display = 'block'; // Show the message
-    }
-
-    // Get the saved language from localStorage
-    const savedLanguage = localStorage.getItem('language') || 'en'; // Default to English if no preference is saved
-    console.log('Initializing offers with language:', savedLanguage);
-
-    // Update the offers content based on the saved language
-    updateContent(savedLanguage);
-}
-
-// Share Offer Functionality
-function shareOffer() {
-    const currentLanguage = document.documentElement.lang; // Get the current language
-    const shareData = {
-        title: languageConfig[currentLanguage].offers[0].title, // Use the title of the first offer
-        text: languageConfig[currentLanguage].offers[0].shareMessage, // Use the share message
-        url: window.location.href,
-    };
-
-    if (navigator.share) {
-        navigator.share(shareData)
-            .then(() => console.log('Offer shared successfully!'))
-            .catch((error) => console.error('Error sharing:', error));
-    } else {
-        alert(currentLanguage === 'en' 
-            ? 'Your browser does not support sharing. Copy the link manually.' 
-            : 'Votre navigateur ne prend pas en charge le partage. Copiez le lien manuellement.');
-    }
-}
-
-// Book Now Functionality
-function handleBookNow() {
-    const currentLanguage = document.documentElement.lang; // Get the current language
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const phoneNumber = "+33625965257"; // Your WhatsApp number
-    const email = "omransoliman.pv@gmail.com"; // Your email address
-
-    if (isMobile) {
-        // Open WhatsApp on mobile
-        const message = languageConfig[currentLanguage].offers[0].whatsappMessage; // Use the WhatsApp message
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, "_blank");
-    } else {
-        // Send email on desktop
-        const subject = languageConfig[currentLanguage].offers[0].emailSubject; // Use the email subject
-        const body = languageConfig[currentLanguage].offers[0].emailBody; // Use the email body
-        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoUrl;
-    }
-}
-
-// Initialize the offers section when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initializeOffers);
-
-
+    document.addEventListener('error', function (e) {
+        if (e.target.tagName === 'IMG' && e.target.classList.contains('offer-image')) {
+            e.target.src = 'https://via.placeholder.com/400x250/333333/ffffff?text=Image+Not+Available';
+            e.target.alt = 'Image not available';
+        }
+    }, true);
+});

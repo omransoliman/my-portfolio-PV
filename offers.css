@@ -1,0 +1,587 @@
+/* Offers Page Styles */
+
+/* Main Offers Section */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+}
+
+.offers {
+    padding: 8rem 2rem 4rem 2rem;
+    min-height: 100vh;
+    position: relative;
+}
+
+.offers-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.offers-title {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Audiowide', cursive;
+}
+
+.offers-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Main offers container */
+.offers-container {
+    display: block; /* Ensure container stacks location sections vertically */
+}
+
+/* Main offers grid - only used for loading/error/empty states */
+#offers-grid {
+    display: block; /* This will contain location sections stacked vertically */
+}
+
+/* Location Section - each location is a separate block */
+.location-section {
+    margin-bottom: 4rem;
+    width: 100%;
+}
+
+.location-title {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    font-family: 'Audiowide', cursive;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+}
+
+/* Offers Grid within each location - THIS is where the 3-column grid applies */
+.location-section .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Force maximum 3 columns on large screens for offers within locations */
+@media (min-width: 1200px) {
+    .location-section .offers-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+    }
+}
+
+/* For very large screens, ensure we don't exceed 3 columns */
+@media (min-width: 1600px) {
+    .location-section .offers-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1500px;
+    }
+}
+
+/* Offer Card */
+.offer-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    max-width: 100%; /* Remove fixed max-width to allow grid to control sizing */
+    margin: 0 auto;
+}
+
+.offer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Offer Image Container with Title Overlay */
+.offer-image-container {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.offer-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.offer-card:hover .offer-image {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.offer-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.8) 100%);
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    color: white;
+    text-align: center;
+}
+
+.offer-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    font-family: 'Audiowide', cursive;
+    line-height: 1.3;
+}
+
+/* Offer Content */
+.offer-content {
+    padding: 1.5rem;
+    color: white;
+}
+
+.offer-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.offer-details {
+    margin-bottom: 2rem;
+}
+
+.offer-detail {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    /* Remove these two lines */
+    /* white-space: nowrap; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    /* Add these for better text wrapping */
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.offer-detail:last-child {
+    margin-bottom: 0;
+}
+
+.offer-detail:empty {
+    display: none;
+}
+
+/* Offer Footer */
+.offer-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.offer-price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Audiowide', cursive;
+    letter-spacing: 1px;
+}
+
+/* Offer Actions - Icon Only with Hover Text */
+.offer-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.offer-btn {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    overflow: visible;
+}
+
+.offer-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Tooltip for button text on hover */
+.offer-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-family: 'Audiowide', cursive;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.offer-btn:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+.offer-btn.whatsapp {
+    background: rgba(37, 211, 102, 0.2);
+    border-color: rgba(37, 211, 102, 0.4);
+}
+
+.offer-btn.whatsapp:hover {
+    background: rgba(37, 211, 102, 0.3);
+    border-color: rgba(37, 211, 102, 0.6);
+}
+
+.offer-btn.email {
+    background: rgba(234, 67, 53, 0.2);
+    border-color: rgba(234, 67, 53, 0.4);
+}
+
+.offer-btn.email:hover {
+    background: rgba(234, 67, 53, 0.3);
+    border-color: rgba(234, 67, 53, 0.6);
+}
+
+.offer-btn.share {
+    background: rgba(29, 161, 242, 0.2);
+    border-color: rgba(29, 161, 242, 0.4);
+}
+
+.offer-btn.share:hover {
+    background: rgba(29, 161, 242, 0.3);
+    border-color: rgba(29, 161, 242, 0.6);
+}
+
+/* Loading, Error, and Empty states - these should span full width when no grid */
+.offers-loading,
+.offers-error,
+.offers-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 2rem;
+    min-height: 400px;
+    width: 100%;
+}
+
+.offers-loading {
+    flex-direction: column;
+    text-align: center;
+}
+
+.offers-loading .loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.5rem;
+}
+
+.offers-loading .loading-text {
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Audiowide', cursive;
+    letter-spacing: 1px;
+}
+
+.offers-error .error-message,
+.offers-empty .empty-message {
+    text-align: center;
+    color: #fff;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+}
+
+.offers-error .error-message i {
+    font-size: 3.5rem;
+    color: #ff6b6b;
+    margin-bottom: 1.5rem;
+}
+
+.offers-empty .empty-message i {
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+}
+
+.offers-error .error-message h3,
+.offers-empty .empty-message h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Audiowide', cursive;
+}
+
+.offers-error .error-message p,
+.offers-empty .empty-message p {
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .location-section .offers-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        max-width: 1200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .offers {
+        padding: 6rem 1rem 3rem 1rem;
+    }
+    
+    .offers-title {
+        font-size: 2rem;
+        padding: 0.8rem 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .location-title {
+        font-size: 1.1rem;
+        padding: 0.6rem 1.2rem;
+        margin-left: 1rem;
+    }
+    
+    .location-section .offers-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .offer-card {
+        max-width: 100%;
+    }
+    
+    .offer-image-container {
+        height: 220px;
+    }
+    
+    .offer-title-overlay {
+        padding: 1.5rem 1rem 0.8rem 1rem;
+    }
+    
+    .offer-title {
+        font-size: 1.1rem;
+    }
+    
+    .offer-content {
+        padding: 1.2rem;
+    }
+    
+    .offer-description {
+        font-size: 0.95rem;
+    }
+    
+    .offer-detail {
+        font-size: 0.85rem;
+        white-space: normal;
+    }
+    
+    .offer-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .offer-actions {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .offer-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .offer-btn::after {
+        bottom: -40px;
+        font-size: 0.7rem;
+    }
+    
+    .offer-price {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .offers {
+        padding: 5rem 0.5rem 2rem 0.5rem;
+    }
+    
+    .offers-title {
+        font-size: 1.6rem;
+        padding: 0.6rem 1rem;
+    }
+    
+    .location-title {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        margin-left: 0.5rem;
+    }
+    
+    .offer-image-container {
+        height: 200px;
+    }
+    
+    .offer-title-overlay {
+        padding: 1rem 0.8rem 0.6rem 0.8rem;
+    }
+    
+    .offer-title {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
+    
+    .offer-content {
+        padding: 1rem;
+    }
+    
+    .offer-description {
+        font-size: 0.9rem;
+    }
+    
+    .offer-detail {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .offer-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 0.9rem;
+    }
+    
+    .offer-btn::after {
+        bottom: -38px;
+        font-size: 0.65rem;
+        padding: 0.4rem 0.6rem;
+    }
+    
+    .offer-price {
+        font-size: 1.3rem;
+    }
+    
+    .offers-loading,
+    .offers-error,
+    .offers-empty {
+        padding: 3rem 1rem;
+        min-height: 300px;
+    }
+}
+
+/* Keyframe Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.offer-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.offer-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.offer-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.offer-card:nth-child(4) {
+    animation-delay: 0.3s;
+}

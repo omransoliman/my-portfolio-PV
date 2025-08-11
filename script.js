@@ -1,566 +1,407 @@
-// Constants
-const LANGUAGES = {
-    en: 'EN',
-    fr: 'FR',
-};
-// Toggle menu function
-function toggleMenu() {
-    const menu = document.querySelector('.menu');
-    if (menu) {
-        menu.classList.toggle('active');
-    } else {
-        console.error('Menu element not found.');
-    }
-}
+// Main page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    
+ // Home Portfolio Section
+ const homePortfolioGrid = document.getElementById('home-portfolio-grid');
+ const portfolioLoading = document.getElementById('portfolio-loading');
 
 
-// Language toggle function
-function toggleLanguage() {
-    const languageSwitch = document.querySelector('.language-switch');
-    if (!languageSwitch) {
-        console.error('Language switch button not found.');
-        return;
-    }
+    // Home Reviews Section - always fetch fresh
+    const REVIEWS_API_URL = 'https://script.google.com/macros/s/AKfycbxS84YQrgPQHzJ5Nu7u2wKdMPddIONrTuAtQp0EEEfamgPwSUmvSYSXpWnKcPAuXXg/exec';
 
-    // Get the current language from the button text
-    const currentLang = languageSwitch.textContent.trim();
-    console.log('Current language switch text:', currentLang);
-
-    // Determine the new language
-    const isEnglish = currentLang === LANGUAGES.en; // Check if the current language is English
-    const newLanguage = isEnglish ? 'fr' : 'en'; // Toggle the language
-    console.log('New language:', newLanguage);
-
-    // Save the selected language to localStorage
-    localStorage.setItem('language', newLanguage);
-    console.log('Language saved to localStorage:', newLanguage);
-
-    // Update the UI based on the selected language
-    updateUI(newLanguage);
-
-    // Update the language switch button text
-    languageSwitch.textContent = newLanguage === 'en' ? LANGUAGES.en : LANGUAGES.fr; // Fixed logic
-    console.log('Language switch button text updated to:', languageSwitch.textContent);
-}
-
-// Update the About section
-function updateAboutSection(isEnglish) {
-    const aboutTitle = document.getElementById('about-title');
-    const aboutDescription = document.getElementById('about-description');
-    const contactButton = document.getElementById('contact-btn-text');
-    const aboutImage = document.getElementById('about-image');
-
-    if (aboutTitle && aboutDescription && contactButton && aboutImage) {
-        aboutTitle.textContent = isEnglish 
-            ? config.translations.en.about.title 
-            : config.translations.fr.about.title;
-        aboutDescription.textContent = isEnglish 
-            ? config.translations.en.about.description 
-            : config.translations.fr.about.description;
-        contactButton.textContent = isEnglish 
-            ? config.translations.en.about.contactButton 
-            : config.translations.fr.about.contactButton;
-        aboutImage.src = isEnglish 
-            ? config.translations.en.about.image 
-            : config.translations.fr.about.image;
-    } else {
-        console.error("One or more About section elements not found in the DOM.");
-    }
-}
-
-// Update the Portfolio section
-function updatePortfolioSection(isEnglish) {
-    const portfolioTitle = document.querySelector('#portfolio h2');
-    if (portfolioTitle) {
-        portfolioTitle.textContent = isEnglish 
-            ? config.translations.en.menu.portfolio 
-            : config.translations.fr.menu.portfolio;
-    } else {
-        console.log('Portfolio section not found on this page.');
-    }
-
-    const portfolioItems = document.querySelectorAll('.portfolio-item .portfolio-title');
-    if (portfolioItems.length > 0) {
-        portfolioItems.forEach((item, index) => {
-            const titles = isEnglish 
-                ? [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait]
-                : [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait];
-
-            item.textContent = titles[index];
-        });
-    } else {
-        console.log('Portfolio items not found on this page.');
-    }
-}
-
-// Update the UI based on the selected language
-function updateUI(language) {
-    const isEnglish = language === 'en';
-    console.log('Updating UI for language:', isEnglish ? 'English' : 'French');
-
-    // Translate menu and other elements
-    const elements = document.querySelectorAll('[data-fr][data-en]');
-    console.log('Found translatable elements:', elements.length);
-    elements.forEach(el => {
-        el.textContent = isEnglish ? el.getAttribute('data-en') : el.getAttribute('data-fr');
-    });
-
-    // Translate dropdown menu
-    const dropdownTrigger = document.querySelector('.dropdown > a');
-    if (dropdownTrigger) {
-        dropdownTrigger.textContent = isEnglish 
-            ? config.translations.en.menu.portfolio 
-            : config.translations.fr.menu.portfolio;
-    } else {
-        console.error('Dropdown trigger element not found in the DOM.');
-    }
-
-    // Translate portfolio dropdown items
-    const dropdownItems = document.querySelectorAll('.dropdown-content a');
-    dropdownItems.forEach((item, index) => {
-        const categories = isEnglish 
-            ? [config.translations.en.menu.wedding, config.translations.en.menu.engagement, config.translations.en.menu.portrait]
-            : [config.translations.fr.menu.wedding, config.translations.fr.menu.engagement, config.translations.fr.menu.portrait];
-
-        item.textContent = categories[index];
-    });
-
-    // Update About section
-    updateAboutSection(isEnglish);
-
-    // Update Portfolio section
-    updatePortfolioSection(isEnglish);
-
-    // Update Offers section
-     updateContent(language);
-
-    // Toggle language switch text
-    const languageSwitch = document.querySelector('.language-switch');
-    if (languageSwitch) {
-        languageSwitch.textContent = isEnglish ? LANGUAGES.fr : LANGUAGES.en;
-    } else {
-        console.error('Language switch element not found in the DOM.');
-    }
-}
-
-// Function to load the PicFlow script
-function loadPicFlowScript() {
-    const picflowGalleryElement = document.querySelector('picflow-gallery');
-    if (!picflowGalleryElement || document.querySelector('script[src="https://picflow.com/embed/main.js"]')) {
-        console.log('PicFlow gallery element not found or script already loaded.');
-        return;
-    }
-
-    const script = document.createElement('script');
-    script.src = 'https://picflow.com/embed/main.js';
-    script.type = 'module';
-    script.defer = true;
-
-    script.onload = () => console.log('PicFlow script loaded successfully.');
-    script.onerror = () => console.error('Failed to load PicFlow script.');
-
-    document.head.appendChild(script);
-}
-
-// Function to create the slideshow
-function createSlideshow(images, interval, transitionEffect) {
-    const slideshowContainer = document.querySelector('.slideshow-container');
-
-    // Clear any existing content in the slideshow container
-    slideshowContainer.innerHTML = '';
-
-    // Load images into the slideshow container
-    images.forEach((imageUrl, index) => {
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        img.alt = `Slide ${index + 1}`;
-        if (index === 0) img.classList.add('active'); // Set the first image as active
-        slideshowContainer.appendChild(img);
-    });
-
-    let currentIndex = 0;
-
-    // Function to change the slide
-    function changeSlide() {
-        const images = slideshowContainer.querySelectorAll('img');
-        images[currentIndex].classList.remove('active'); // Hide the current image
-        currentIndex = (currentIndex + 1) % images.length; // Move to the next image
-        images[currentIndex].classList.add('active'); // Show the next image
-    }
-
-    // Start the slideshow
-    setInterval(changeSlide, interval);
-}
-
-// Initialize the page
-document.addEventListener('DOMContentLoaded', () => {
-    // Get the saved language preference from localStorage
-    const savedLanguage = localStorage.getItem('language') || 'en'; // Default to English if no preference is saved
-    console.log('Language retrieved from localStorage:', savedLanguage);
-
-    // Update the UI based on the saved language
-     updateUI(savedLanguage);
-
-    // Set the language switch button text
-    const languageSwitch = document.querySelector('.language-switch');
-    if (languageSwitch) {
-        console.log('Language switch button found.');
-        languageSwitch.textContent = savedLanguage === 'en' ? LANGUAGES.en : LANGUAGES.fr;
-        console.log('Initial language switch button text:', languageSwitch.textContent);
-
-        // Add event listener to the language switch button
-        languageSwitch.addEventListener('click', function() {
-            console.log('Language switch button clicked.');
-            toggleLanguage();
-        });
-    } else {
-        console.error('Language switch button not found.');
-    }
-
-    // Initialize Picflow Gallery
-    const picflowGalleryElement = document.querySelector('picflow-gallery');
-    if (picflowGalleryElement) {
-        const galleryIdKey = picflowGalleryElement.getAttribute('data-gallery-id');
-        const galleryId = config.picflowGalleryIds[galleryIdKey];
-
-        console.log('Gallery ID:', galleryId); 
-        if (galleryId) {
-            picflowGalleryElement.setAttribute('id', galleryId);
-            console.log('Gallery ID set successfully:', galleryId);
-        } else {
-            console.error(`Gallery ID not found for key: ${galleryIdKey}`);
-        }
-    } else {
-        console.error('PicFlow gallery element not found in the DOM.');
-    }
-
-    // Load the PicFlow script (only if the gallery element exists)
-    loadPicFlowScript();
-
-    // Initialize Home Page Slideshow
-    // const homeSection = document.getElementById('home');
-    // if (homeSection && Array.isArray(config.homeSlideshow?.images) && config.homeSlideshow.images.length > 0) {
-    //     const images = config.homeSlideshow.images;
-    //     const interval = config.homeSlideshow.interval || 5000;
-    //     let currentIndex = 0;
-
-    //     function changeSlide() {
-    //         homeSection.classList.add('fade-out');
-            
-    //         setTimeout(() => {
-    //             homeSection.style.backgroundImage = `url('${images[currentIndex]}')`;
-    //             homeSection.classList.remove('fade-out');
-    //             currentIndex = (currentIndex + 1) % images.length;
-    //         }, 1000); // Match the transition time
-    //     }
-
-    //     changeSlide(); // Initial image
-    //     setInterval(changeSlide, interval + 1000);
-    // }
-    const { images, interval, transitionEffect } = config.homeSlideshow;
-    createSlideshow(images, interval, transitionEffect);
-
-    // Initialize EmailJS
-    (function(){
+    async function fetchHomeReviews() {
         try {
-            emailjs.init("E-RvIRcSZ7GCz-Yz_");
-            console.log('EmailJS initialized successfully.');
-        } catch (error) {
-            console.error('Failed to initialize EmailJS:', error);
+            const resp = await fetch(REVIEWS_API_URL, { cache: 'no-store', keepalive: true });
+            if (!resp.ok) throw new Error('Home reviews fetch failed: ' + resp.status);
+            const data = await resp.json();
+            if (data && Array.isArray(data.reviews)) {
+                return data.reviews;
+            }
+            throw new Error('Invalid reviews payload');
+        } catch (e) {
+            console.error('[Home] Network fetch for reviews failed:', e);
+            throw e;
         }
-    })();
+    }
 
-    // Handle Contact Form Submission
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+    async function loadHomeReviews() {
+        const loadingEl = document.getElementById('reviewsLoading');
+        const reviewsGrid = document.getElementById('homeReviewsGrid');
+        const errorEl = document.getElementById('reviewsError');
 
-            // Basic validation
-            const firstName = contactForm.querySelector('[id="firstName"]').value.trim();
-            const lastName = contactForm.querySelector('[id="lastName"]').value.trim();
-            const email = contactForm.querySelector('[name="email"]').value.trim();
-            const message = contactForm.querySelector('[name="message"]').value.trim();
+        try {
+            if (loadingEl) loadingEl.style.display = 'flex'; // Show "Chargement des avis..."
+            if (reviewsGrid) reviewsGrid.innerHTML = '';
+            if (errorEl) errorEl.style.display = 'none';
 
-            // Combine first and last name
-            const name = `${firstName} ${lastName}`.trim();
+            const list = await fetchHomeReviews();
 
-            if (!name || !email || !message) {
-                alert('Please fill out all fields.');
-                return;
+            // Sort by date descending when possible
+            const sorted = [...list].sort((a, b) => {
+                const da = new Date(a.date);
+                const db_ = new Date(b.date);
+                if (!isNaN(db_) && !isNaN(da)) return db_ - da;
+                return 0;
+            });
+
+            const top3 = sorted.slice(0, 3);
+            if (loadingEl) loadingEl.style.display = 'none';
+            renderHomeReviews(top3);
+        } catch (error) {
+            console.error('[Home] Error loading reviews from IDB:', error);
+            if (loadingEl) loadingEl.style.display = 'none';
+            if (errorEl) errorEl.style.display = 'flex';
+            // Keep error visible; no mock fallback
+        }
+    }
+    
+    // Function to render home reviews (top 3 only)
+    function renderHomeReviews(reviews) {
+        const reviewsGrid = document.getElementById('homeReviewsGrid');
+        
+        if (!reviews || reviews.length === 0) {
+            reviewsGrid.innerHTML = '<div class="no-reviews"><p>Aucun avis disponible pour le moment.</p></div>';
+            return;
+        }
+        
+        // Sort reviews by date (most recent first) if possible
+        const sortedReviews = reviews.sort((a, b) => {
+            // Try to parse dates for sorting
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            
+            // If dates are valid, sort by date; otherwise maintain original order
+            if (!isNaN(dateA) && !isNaN(dateB)) {
+                return dateB - dateA;
             }
-
-            emailjs.sendForm('service_kt9zzgp', 'template_xychznp', this)
-                .then(function(response) {
-                    alert('Message sent successfully!');
-                    contactForm.reset(); // Clear the form
-                }, function(error) {
-                    alert('Failed to send message: ' + JSON.stringify(error));
-                });
+            return 0;
         });
+        
+        reviewsGrid.innerHTML = sortedReviews.map((review, index) => createHomeReviewCard(review, index)).join('');
     }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Set this variable to true or false to control the visibility of offers
- const showOffers = false ; // Change to `true` to show offers, `false` to hide them
-
-// Configuration object to control the visibility of each offer
-const offerVisibility = {
-    offer1: false,  // Set to `true` to show Offer 1, `false` to hide it
-    offer2: false, // Set to `true` to show Offer 2, `false` to hide it
-    offer3: false   // Set to `true` to show Offer 3, `false` to hide it
-};
-
-// Language configuration object
-const languageConfig = {
-    en: {
-        noOffersMessage: {
-            text: "Thank you for your interest in our services! We're always looking for ways to provide exceptional value to our customers. While we don't have any special offers available at this time, we encourage you to follow us on Instagram to be the first to know about future promotions and exclusive deals.",
-            button: "Follow us on Instagram"
-        },
-        offers: [
-            {
-                // Offer 1
-                title: "📸 Capture Your Special Moments! or 💖 Valentine's Day 💖",
-                subtitle: "Limited-Time Photography Offer in Lyon",
-                details: [
-                    "📸 Enjoy a personalized session lasting 1 hour to 1.5 hours",
-                    "✨ A maximum of 40 expertly captured photos, Photos will be received online, and Receive your stunning images within 10 days",
-                    "📅 Don't miss out, this offer is available until 15/02/2025",
-                    "💶 All of this for just 50 euros"
-                ],
-                bookNow: "Book Now",
-                shareMessage: "Capture your special moments with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Photography Offer",
-                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
-            },
-            {
-                // offer 2
-                title: "🌙 Special Eid al-Fitr Offer.",
-                subtitle: "Limited-Time Offer only for the 3 days of Eid. in Lyon", 
-                details: [
-                    "📷 45 minutes with a professional photographer.",
-                    "📸 35 professionally edited high-resolution images. 🕧 Delivery within 24 hours.",
-                    "✨ Perfect for families, couples & individuals.",
-                    "💶 All of this for just 50 euros"
-                ],
-                bookNow: "Book Now",
-                shareMessage: "Capture your Eid al-Fitr memories with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Eid al-Fitr Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Eid al-Fitr Photography Offer",
-                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
-            },
-            {
-                // Offer 3
-                title: "Event Photography Package",
-                subtitle: "Limited-Time Event Offer",
-                details: [
-                    "Full-day event coverage.",
-                    "50+ professionally edited high-resolution images.",
-                    "Customized photo album design.",
-                    "Delivery within 10 business days."
-                ],
-                bookNow: "Book Now",
-                shareMessage: "Capture your event memories with this exclusive photography offer!",
-                whatsappMessage: "Limited-Time Event Photography Offer! I am pleased to accept this offer. Thank you for this opportunity.",
-                emailSubject: "Limited-Time Event Photography Offer",
-                emailBody: "Hello! I am pleased to accept this offer. Thank you for this opportunity."
+    
+    // Function to create a home review card HTML
+    function createHomeReviewCard(review, index) {
+        // Ensure we have valid data
+        const name = review.name || 'Anonyme';
+        const date = review.date || '';
+        const rating = parseInt(review.rating) || 5;
+        const comment = review.comment || '';
+        
+        const stars = generateStars(rating);
+        
+        // Handle avatar image
+        let avatarSrc = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80';
+        
+        if (review.avatar && review.avatar.trim() !== '') {
+            const avatarData = review.avatar.trim();
+            
+            if (avatarData.startsWith('data:image/')) {
+                avatarSrc = avatarData;
             }
-        ]
-    },
-    fr: {
-        noOffersMessage: {
-            text: "Merci de votre intérêt pour nos services ! Nous cherchons toujours des moyens de fournir une valeur exceptionnelle à nos clients. Bien que nous n'ayons aucune offre spéciale disponible pour le moment, nous vous encourageons à nous suivre sur Instagram pour être informé en premier des promotions futures et des offres exclusives.",
-            button: "Suivez-nous sur Instagram"
-        },
-        offers: [
-            {
-                // Offer 1
-                title: "📸 Capturez Vos Moments Spéciaux ! or 💖 Saint-Valentin 💖",
-                subtitle: "Offre photographique limitée dans le temps à Lyon",
-                details: [
-                    "📸 Profitez d'une session personnalisée d'une durée de 1 à 1,5 heure",
-                    "✨ Un maximum de 40 photos capturées avec expertise, les photos seront reçues en ligne, et vous recevrez vos images époustouflantes dans les 10 jours",
-                    "📅 Ne manquez pas cette offre, valable jusqu'au 15/02/2025",
-                    "💶 Tout cela pour seulement 50 euros"
-                ],
-                bookNow: "Réserver maintenant",
-                shareMessage: "Capturez vos moments spéciaux avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique limitée dans le temps",
-                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
-            },
-            {
-                // Offer 2
-                title: "🌙 Offre spéciale Aïd el-Fitr.",
-                subtitle: "Offre à durée limitée uniquement pour les 3 jours de l'Aïd. à Lyon",
-                details: [
-                    "📷 45 minutes avec un photographe professionnel",
-                    "📸 35 images haute résolution éditées par des professionnels. 🕧 Livraison sous 24 heures.",
-                    "✨ Parfait pour les familles, les couples et les particuliers",
-                    "💶 Tout cela pour seulement 50 euros"
-                ],
-                bookNow: "Réserver maintenant",
-                shareMessage: "Immortalisez vos souvenirs de l'Aïd el-Fitr avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique Aïd el-Fitr à durée limitée ! J'ai le plaisir d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique Aïd el-Fitr à durée limitée",
-                emailBody: "Bonjour ! J'ai le plaisir d'accepter cette offre. Merci pour cette opportunité."
-            },
-            {
-                // Offer 3
-                title: "Forfait Photographie d'Événement",
-                subtitle: "Offre événementielle limitée dans le temps",
-                details: [
-                    "Couverture d'événement toute la journée.",
-                    "50+ images haute résolution éditées professionnellement.",
-                    "Conception d'album photo personnalisé.",
-                    "Livraison dans les 10 jours ouvrables."
-                ],
-                bookNow: "Réserver maintenant",
-                shareMessage: "Capturez vos souvenirs d'événement avec cette offre photographique exclusive !",
-                whatsappMessage: "Offre photographique événementielle limitée dans le temps ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité.",
-                emailSubject: "Offre photographique événementielle limitée dans le temps",
-                emailBody: "Bonjour ! Je suis ravi d'accepter cette offre. Merci pour cette opportunité."
+            else if (avatarData.startsWith('http')) {
+                avatarSrc = avatarData;
             }
-        ]
+            else if (avatarData.match(/^[A-Za-z0-9+/]+=*$/)) {
+                avatarSrc = `data:image/jpeg;base64,${avatarData}`;
+            }
+        }
+        
+        return `
+            <div class="review-card" style="animation-delay: ${index * 0.2}s;">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <img src="${avatarSrc}" 
+                             alt="${name}" 
+                             class="reviewer-avatar" 
+                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80'">
+                        <div class="reviewer-details">
+                            <h3 class="reviewer-name">${escapeHtml(name)}</h3>
+                            <p class="review-date">${escapeHtml(date)}</p>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        ${stars}
+                    </div>
+                </div>
+                <div class="review-content">
+                    <p>${escapeHtml(comment)}</p>
+                </div>
+            </div>
+        `;
     }
-};
+    
+    // Function to generate stars HTML
+    function generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 !== 0;
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        
+        let starsHTML = '';
+        
+        // Full stars
+        for (let i = 0; i < fullStars; i++) {
+            starsHTML += '<i class="fas fa-star"></i>';
+        }
+        
+        // Half star
+        if (hasHalfStar) {
+            starsHTML += '<i class="fas fa-star-half-alt"></i>';
+        }
+        
+        // Empty stars
+        for (let i = 0; i < emptyStars; i++) {
+            starsHTML += '<i class="far fa-star"></i>';
+        }
+        
+        return starsHTML;
+    }
+    
+    // Function to escape HTML
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    // Removed mock home reviews fallback per request
+    
+    // Load home reviews when page loads
+    loadHomeReviews();
+    
 
-// Function to update the content based on the selected language
-  function updateContent(language) {
-    const noOffersMessage = document.getElementById('no-offers-message');
-    const offerCards = document.querySelectorAll('.offer-card');
-
-    // Update the "No Offers" message
-    if (noOffersMessage) {
-        noOffersMessage.querySelector('p').textContent = languageConfig[language].noOffersMessage.text;
-        noOffersMessage.querySelector('a.btn').textContent = languageConfig[language].noOffersMessage.button;
+    
+    // Simple loading functions for home page
+    function showPortfolioLoading() {
+        if (portfolioLoading) portfolioLoading.style.display = 'flex';
+        if (homePortfolioGrid) homePortfolioGrid.style.display = 'none';
+    }
+    
+    function hidePortfolioLoading() {
+        if (portfolioLoading) portfolioLoading.style.display = 'none';
+        if (homePortfolioGrid) homePortfolioGrid.style.display = 'grid';
+    }
+    
+    // Import portfolio functions from portfolio.js
+    function slugify(text) {
+        return text.toString().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+    }
+    
+    function getRandomItems(array, count) {
+        const shuffled = [...array].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+    
+    // Home Portfolio: always fetch fresh
+    const PORTFOLIO_FILTERS_API_URL = 'https://script.google.com/macros/s/AKfycbziQdfgsCewHNR_hSBu23W0Js7YH5JL7rOPrZERx5kwqCMeS3HUrMsZ74-gGK6hAaS3/exec';
+    const PORTFOLIO_GRID_API_URL    = 'https://script.google.com/macros/s/AKfycbw0qIf4g5AfkBuDsywygYQJWYWo3BxVvCpRHGdGDjK0NaMa2A3TkAusCvnYoFeYbESvLg/exec';
+    // Cache last payload to support live re-render on language toggle
+    let lastHomePortfolioPayload = null;
+    async function fetchHomePortfolio() {
+        try {
+            const [filtersResp, gridResp] = await Promise.all([
+                fetch(PORTFOLIO_FILTERS_API_URL, { cache: 'no-store', keepalive: true }),
+                fetch(PORTFOLIO_GRID_API_URL, { cache: 'no-store', keepalive: true })
+            ]);
+            if (!filtersResp.ok) throw new Error('Home portfolio filters fetch failed: ' + filtersResp.status);
+            if (!gridResp.ok) throw new Error('Home portfolio grid fetch failed: ' + gridResp.status);
+            const [filtersData, gridData] = await Promise.all([filtersResp.json(), gridResp.json()]);
+            const payload = {
+                categories: (filtersData && Array.isArray(filtersData.categories)) ? filtersData.categories : [],
+                projects: (gridData && Array.isArray(gridData.projects)) ? gridData.projects : []
+            };
+            return payload;
+        } catch (e) {
+            console.error('[Home] Portfolio network hydrate failed:', e);
+            throw e;
+        }
     }
 
-    // Update the offer cards
-    offerCards.forEach((card, index) => {
-        const offer = languageConfig[language].offers[index];
-        if (offer) {
-            card.querySelector('.offer-title').textContent = offer.title;
-            card.querySelector('.offer-subtitle').textContent = offer.subtitle;
-            card.querySelector('.offer-details').innerHTML = offer.details.map(detail => `<p>${detail}</p>`).join('');
-            card.querySelector('.btn--primary').textContent = offer.bookNow;
+    async function loadHomePortfolioFresh() {
+        showPortfolioLoading();
+        try {
+            const payload = await fetchHomePortfolio();
+            lastHomePortfolioPayload = payload;
+            renderHomePortfolioGrid(payload.projects, payload.categories);
+        } catch (e) {
+            console.error('[Home] Failed to load portfolio for home:', e);
+            // Do nothing else; section will remain empty rather than show fallback content
+        } finally {
+            hidePortfolioLoading();
+        }
+    }
+    
+    function renderHomePortfolioGrid(items, categories) {
+        if (!homePortfolioGrid) return;
+        
+        const randomItems = getRandomItems(items, 3);
+        
+        // Build category map
+        const catMap = {};
+        if (categories) {
+            // Language-aware category title
+            const lang = (function(){
+                try { const v = localStorage.getItem('ospv_language'); return (v === 'EN' || v === 'FR') ? v : 'FR'; } catch(_) { return 'FR'; }
+            })();
+            categories.forEach(cat => { catMap[cat.id] = (lang === 'EN' ? (cat.titleEN || cat.titleFR) : (cat.titleFR || cat.titleEN)); });
+        }
+        
+        homePortfolioGrid.innerHTML = '';
+        
+        randomItems.forEach(item => {
+            const lang = (function(){
+                try { const v = localStorage.getItem('ospv_language'); return (v === 'EN' || v === 'FR') ? v : 'FR'; } catch(_) { return 'FR'; }
+            })();
+            const catName = catMap[item.id_category] || (lang === 'EN' ? 'Unknown' : 'Inconnu');
+            const catSlug = slugify(catName);
+            
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'portfolio-item-page';
+            itemDiv.setAttribute('data-category', catSlug);
+            itemDiv.setAttribute('data-id_script', item.id_script);
+            
+            itemDiv.innerHTML = `
+                <div class="portfolio-image-page">
+                    <img src="${item.url_image}" alt="${(lang === 'EN' ? (item.nameEN || item.name) : (item.name || item.nameEN))}">
+                    <span class="portfolio-tag">${catName}</span>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-info-page">
+                            <h3 class="portfolio-title-page">${(lang === 'EN' ? (item.nameEN || item.name) : (item.name || item.nameEN))}</h3>
+                            <p class="portfolio-year-page">${item.date}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            homePortfolioGrid.appendChild(itemDiv);
+        });
+        
+        attachHomePortfolioItemHandlers();
+    }
+
+    // Live language re-render for home portfolio
+    window.addEventListener('ospv:languageChanged', function() {
+        if (lastHomePortfolioPayload && Array.isArray(lastHomePortfolioPayload.projects)) {
+            renderHomePortfolioGrid(lastHomePortfolioPayload.projects, lastHomePortfolioPayload.categories || []);
         }
     });
-}
-
-// Function to initialize the offers section
-function initializeOffers() {
-    const showOffers = true ; // Change to `true` to show offers, `false` to hide them
-    console.log('showOffers:', showOffers.textContent);
-    const offerCards = document.querySelectorAll('.offer-card');
-    const noOffersMessage = document.createElement('div');
-    noOffersMessage.id = 'no-offers-message';
-    noOffersMessage.innerHTML = `
-        <p>${languageConfig.en.noOffersMessage.text}</p>
-        <a href="https://www.instagram.com/soliman.omran" target="_blank" class="btn btn--primary">${languageConfig.en.noOffersMessage.button}</a>
-    `;
-
-    // Insert the message at the top of the <main> container (right below the nav)
-    const mainContainer = document.querySelector('main.exclusive-offer');
-    mainContainer.insertBefore(noOffersMessage, mainContainer.firstChild);
-
-    // Show or hide offers based on the `showOffers` variable and the offerVisibility configuration
-    if (showOffers) {
-        // Show or hide each offer based on the offerVisibility configuration
-        offerCards.forEach((card, index) => {
-            const offerKey = `offer${index + 1}`; // offer1, offer2, offer3
-            if (offerVisibility[offerKey]) {
-                card.style.display = 'flex'; // Show the offer
+    
+    function attachHomePortfolioItemHandlers() {
+        const portfolioItems = document.querySelectorAll('#home-portfolio-grid .portfolio-item-page');
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('.portfolio-title-page').textContent;
+                const year = this.querySelector('.portfolio-year-page').textContent;
+                const idScript = this.getAttribute('data-id_script');
+                
+                localStorage.setItem('photoshoot_id_script', idScript);
+                localStorage.setItem('photoshoot_name', title);
+                localStorage.setItem('photoshoot_year', year);
+                
+                window.location.href = 'photoshoot.html';
+            });
+        });
+    }
+    
+    // Start loading home portfolio (fresh)
+    loadHomePortfolioFresh();
+    
+    // Contact form handling moved to contact.js
+    
+   
+    
+    // Navigation scroll effect
+    const navbar = document.querySelector('.navbar');
+    
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.25)';
+                navbar.style.backdropFilter = 'blur(15px)';
             } else {
-                card.style.display = 'none'; // Hide the offer
+                navbar.style.background = 'rgba(255, 255, 255, 0.15)';
+                navbar.style.backdropFilter = 'blur(10px)';
             }
         });
-        noOffersMessage.style.display = 'none'; // Hide the message if any offer is visible
-    } else {
-        // Hide all offers if showOffers is false
-        offerCards.forEach(card => {
-            card.style.display = 'none';
+    }
+    heroBackground = document.querySelector('.hero-background');
+    
+    // Add parallax effect to hero background
+    if (heroBackground) {
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.5;
+            
+            if (scrolled < window.innerHeight) {
+                heroBackground.style.transform = `translateY(${rate}px)`;
+            }
         });
-        noOffersMessage.style.display = 'block'; // Show the message
     }
-
-    // Get the saved language from localStorage
-    const savedLanguage = localStorage.getItem('language') || 'en'; // Default to English if no preference is saved
-    console.log('Initializing offers with language:', savedLanguage);
-
-    // Update the offers content based on the saved language
-    updateContent(savedLanguage);
-}
-
-// Share Offer Functionality
-function shareOffer() {
-    const currentLanguage = document.documentElement.lang; // Get the current language
-    const shareData = {
-        title: languageConfig[currentLanguage].offers[0].title, // Use the title of the first offer
-        text: languageConfig[currentLanguage].offers[0].shareMessage, // Use the share message
-        url: window.location.href,
+    
+    // Add loading animation
+    window.addEventListener('load', function() {
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            heroContent.style.opacity = '0';
+            heroContent.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                heroContent.style.transition = 'all 1s ease-out';
+                heroContent.style.opacity = '1';
+                heroContent.style.transform = 'translateY(0)';
+            }, 100);
+        }
+    });
+    
+    // Add hover effects for better interactivity
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('active')) {
+                this.style.transform = 'translateY(-2px)';
+            }
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+    
+    // Add form field focus effects
+    const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+    });
+    
+    // Add intersection observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
-
-    if (navigator.share) {
-        navigator.share(shareData)
-            .then(() => console.log('Offer shared successfully!'))
-            .catch((error) => console.error('Error sharing:', error));
-    } else {
-        alert(currentLanguage === 'en' 
-            ? 'Your browser does not support sharing. Copy the link manually.' 
-            : 'Votre navigateur ne prend pas en charge le partage. Copiez le lien manuellement.');
-    }
-}
-
-// Book Now Functionality
-function handleBookNow() {
-    const currentLanguage = document.documentElement.lang; // Get the current language
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const phoneNumber = "+33625965257"; // Your WhatsApp number
-    const email = "omransoliman.pv@gmail.com"; // Your email address
-
-    if (isMobile) {
-        // Open WhatsApp on mobile
-        const message = languageConfig[currentLanguage].offers[0].whatsappMessage; // Use the WhatsApp message
-        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, "_blank");
-    } else {
-        // Send email on desktop
-        const subject = languageConfig[currentLanguage].offers[0].emailSubject; // Use the email subject
-        const body = languageConfig[currentLanguage].offers[0].emailBody; // Use the email body
-        const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoUrl;
-    }
-}
-
-// Initialize the offers section when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initializeOffers);
-
-
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Observe offre items for animations
+    const offreItems = document.querySelectorAll('.offre-card');
+    offreItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(30px)';
+        item.style.transition = 'all 0.6s ease-out';
+        observer.observe(item);
+    });
+}); 

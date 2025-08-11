@@ -1,513 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4L8PZL85SK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4L8PZL85SK');
-</script>
-
-
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="Omran Soliman Photography">
-    <meta property="og:description" content="capture life. beauty. love.">
-    <meta property="og:image" content="https://picflow.media/images/resized/1920x1080q85/67b4666d-4151-4e5f-8f4d-0a0e6af21850.jpg">
-    <meta property="og:url" content="www.omransoliman.com">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reviews Page</title>
-    <!-- Font Awesome for Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        
-
-        /* Reviews Section Styles */
-        .outerdiv {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px 40px; /* Top padding for nav bar */
-        }
-
-        .innerdiv {
-            width: 90%;
-            max-width: 1200px;
-            margin: 1rem;
-            display: grid;
-            grid-gap: 1.5rem;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .eachdiv {
-            padding: 2rem;
-            border-radius: 16px;
-            background-color: #1b2028;
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            color: #f1f3f3;
-            background-image: linear-gradient(
-                135deg,
-                rgba(117, 46, 124, 0.35),
-                rgba(115, 74, 88, 0.1) 15%,
-                #1b2028 20%,
-                #1b2028 100%
-            );
-        }
-
-        .eachdiv::after {
-            content: "";
-            display: block;
-            top: -3px;
-            left: -3px;
-            bottom: -3px;
-            right: -3px;
-            z-index: -1;
-            position: absolute;
-            border-radius: 16px;
-            background-image: linear-gradient(
-                135deg,
-                #752e7c,
-                #734a58 20%,
-                #1b2028 30%,
-                #2c333e 100%
-            );
-        }
-
-        .userdetails {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .imgbox {
-            width: 80px;
-            height: 80px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            overflow: hidden;
-        }
-
-        .imgbox img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .detbox {
-            flex-grow: 1;
-            text-align: left;
-        }
-
-        .detbox .name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin: 0 0 0.25rem 0;
-            color: #f1f3f3;
-        }
-
-        .detbox .designation {
-            color: #7d8396;
-            font-size: 0.9rem;
-            margin: 0;
-        }
-
-        .review {
-            text-align: left;
-        }
-
-        .review h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            line-height: 1.5;
-            margin: 0;
-            color: #7d8396;
-        }
-
-        .review p {
-            font-size: 0.9rem;
-            color: #7d8396;
-            line-height: 1.5;
-        }
-
-        .stars {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            margin-bottom: 1rem;
-        }
-
-        .stars .star {
-            color: #FFD700;
-            font-size: 1.2rem;
-        }
-
-        .stars .star.empty {
-            color: #343945;
-        }
-
-        /* Button Styles */
-        #reviewButton {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #5587ff, #3772ff);
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-            z-index: 1001;
-        }
-
-        #reviewButton:hover {
-            transform: translateX(-50%) scale(1.05);
-        }
-
-        /* Modal Styles */
-        #reviewModal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #1b2028;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            z-index: 1002;
-            width: 90%;
-            max-width: 500px;
-            color: var(--text-color);
-        }
-
-        #reviewModal .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--text-color);
-        }
-
-        #reviewModal .close:hover {
-            color: #e74c3c;
-        }
-
-        #reviewModal h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        #reviewModal .form-group {
-            margin-bottom: 20px;
-        }
-
-        #reviewModal .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-
-        #reviewModal .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background-color: #2c333e;
-            color: var(--text-color);
-            transition: all 0.3s ease;
-        }
-
-        #reviewModal .form-control:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(55, 114, 255, 0.2);
-        }
-
-        #reviewModal .submit-btn {
-            background: linear-gradient(135deg, #5587ff, #3772ff);
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 100%;
-        }
-
-        #reviewModal .submit-btn:hover {
-            transform: scale(1.05);
-        }
-
-        /* Overlay Styles */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        @media only screen and (max-width: 600px) {
-            .innerdiv {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Reviews | Omran Soliman</title>
+    <script>
+        window.currentPage = 'Reviews'; // Change this for each page
+      </script>
+      <script src="analytics.js" defer></script>
+      <script src="navigation.js" defer></script>
+      <script src="popads.js" defer></script>
+      <script src="notifications.js" defer></script>
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="popads.css">
+    <link rel="stylesheet" href="reviews.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-
-    
-
     <!-- Navigation Bar -->
-    <nav>
-        <a href="index.html" class="logo">Omran Soliman</a>
-        <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-        <div class="nav-links menu">
-            <a href="index.html" data-fr="Accueil" data-en="Home">Accueil</a>
-            <div class="dropdown">
-                <a href="#portfolio" data-fr="Portfolio" data-en="Portfolio">Portfolio ▼</a>
-                <div class="dropdown-content">
-                    <a href="wedding.html">Wedding</a>
-                    <a href="engagement.html">Engagement</a>
-                    <a href="portrait.html">Portrait</a>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" onclick="return ospvRefreshAndGo(this)">OSPV</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active" data-i18n="home">ACCUEIL</a></li>
+                <li><a href="portfolio.html" class="nav-link" data-i18n="portfolio">PORTFOLIO</a></li>
+                <li><a href="offers.html" class="nav-link" data-i18n="offers">OFFRES</a></li>
+                <li><a href="about.html" class="nav-link" data-i18n="about">PROPOS</a></li>
+                <li><a href="contact.html" class="nav-link" data-i18n="contact">CONTACT</a></li>
+                <li><a href="reviews.html" class="nav-link" data-i18n="reviews">AVIS</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="nav-social">
+                    <a href="http://instagram.com/soliman.omran" target="_blank" class="social-link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="nav-language" onclick="return ospvToggleLanguage()">
+                    <span>FR</span>
                 </div>
             </div>
-            <a href="about.html" data-fr="À propos" data-en="About">À propos</a>
-            <a href="index.html#contact" data-fr="Contact" data-en="Contact">Contact</a>
-            <a href="reviews.html" data-fr="avis" data-en="Reviews">Reviews</a>
-            <a href="games/PhotoQuiz.html" data-fr="PhotoQuiz" data-en="PhotoQuiz">PhotoQuiz</a>
-            <a href="https://www.instagram.com/soliman.omran" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <button class="language-switch">EN</button>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <!-- Button to Open Modal -->
-    <button id="reviewButton">Add Review</button>
+    <!-- Main Content -->
+    <main class="reviews-main">
+        <div class="reviews-container">
+            <h1 class="reviews-title">AVIS CLIENTS</h1>
+            
+            <!-- Loading State -->
+            <div class="loading-container">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Chargement des avis...</p>
+            </div>
+            
+            <!-- Reviews Grid -->
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- Reviews will be dynamically loaded here -->
+            </div>
+            
+            <!-- Error State -->
+            <div class="error-container" id="errorContainer" style="display: none;">
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Erreur de chargement</h3>
+                    <p>Impossible de charger les avis pour le moment. Veuillez réessayer plus tard.</p>
+                    <button class="retry-btn" onclick="loadReviews()">Réessayer</button>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <!-- Modal for Review Form -->
-    <div id="overlay"></div>
-    <div id="reviewModal">
-        <span class="close">&times;</span>
-        <h2>Submit a Review</h2>
-        <div id="error-message"></div>
-        <form id="reviewForm" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" class="form-control" required maxlength="50">
-            </div>
-            <div class="form-group">
-                <label for="rating">Rating</label>
-                <select id="rating" class="form-control" required>
-                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-                    <option value="4">⭐⭐⭐⭐ Great</option>
-                    <option value="3">⭐⭐⭐ Good</option>
-                    <option value="2">⭐⭐ Fair</option>
-                    <option value="1">⭐ Poor</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="image">Profile Image (Max 5MB)</label>
-                <input type="file" id="image" class="form-control" accept="image/*" required>
-            </div>
-            <div class="form-group">
-                <label for="comment">Your Review</label>
-                <textarea id="comment" class="form-control" required maxlength="500" rows="4"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Submit Review</button>
-        </form>
-    </div>
+    <!-- Floating Add Review Button -->
+    <button id="add-review-btn" class="add-review-btn" title="Ajouter un avis">
+        <i class="fas fa-plus"></i>
+        <span class="add-review-tooltip">Ajouter un avis</span>
+    </button>
 
-    <!-- Reviews Container -->
-    <div class="outerdiv">
-        <div class="innerdiv" id="reviews">
-            <!-- Reviews will be dynamically added here -->
+    <!-- Add Review Popup -->
+    <div id="add-review-popup" class="add-review-popup">
+        <div class="add-review-modal">
+            <div class="add-review-header">
+                <h2>Ajouter un avis</h2>
+                <button id="close-popup-btn" class="close-popup-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="add-review-form" class="add-review-form">
+                <div class="form-group">
+                    <label for="review-name">Nom complet *</label>
+                    <input type="text" id="review-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="review-email">Email</label>
+                    <input type="email" id="review-email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="review-rating">Note *</label>
+                    <div class="rating-input">
+                        <div class="stars">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                        <input type="hidden" id="review-rating" name="rating" value="5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="review-comment">Commentaire *</label>
+                    <textarea id="review-comment" name="comment" rows="4" maxlength="300" required></textarea>
+                    <div class="char-counter" id="comment-counter">0 / 300</div>
+                </div>
+                <div class="form-group">
+                    <label for="review-image">Photo *</label>
+                    <input type="file" id="review-image" name="image" accept="image/*" required>
+                    <small class="input-hint">Formats image seulement. La photo sera compressée automatiquement (≈40KB, max 500px).</small>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-review-btn" class="cancel-btn">Annuler</button>
+                    <button type="submit" class="submit-btn">Envoyer</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="config.js" defer></script>
-    <script src="script.js" defer></script>
-    <script>
-        // Toggle Menu Function
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
-        }
-
-        // Modal and Review Submission Logic
-        const scriptUrl = 'https://script.google.com/macros/s/AKfycbyLSkh-4eEUyf5O7iPzgAABDjZ4cqW0CEHc0LpsQ17xgmX5X0S8Z8_9736MrtNtwDKs/exec';
-        const sheetId = '1iVf5w-zkfOs7QA5NOugbzlOivtWkrXddtpj7pN0sNgo';
-
-        const errorMessageEl = document.getElementById('error-message');
-        const reviewButton = document.getElementById('reviewButton');
-        const reviewModal = document.getElementById('reviewModal');
-        const overlay = document.getElementById('overlay');
-        const closeModal = document.querySelector('.close');
-
-        // Open Modal
-        reviewButton.addEventListener('click', () => {
-            reviewModal.style.display = 'block';
-            overlay.style.display = 'block';
-        });
-
-        // Close Modal
-        closeModal.addEventListener('click', () => {
-            reviewModal.style.display = 'none';
-            overlay.style.display = 'none';
-        });
-
-        overlay.addEventListener('click', () => {
-            reviewModal.style.display = 'none';
-            overlay.style.display = 'none';
-        });
-
-        // Handle Form Submission
-        document.getElementById('reviewForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            errorMessageEl.textContent = '';
-
-            const name = document.getElementById('name').value.trim();
-            const rating = document.getElementById('rating').value;
-            const comment = document.getElementById('comment').value.trim();
-            const imageFile = document.getElementById('image').files[0];
-
-            if (!name || !comment) {
-                errorMessageEl.textContent = 'Please fill in all fields.';
-                return;
-            }
-
-            if (imageFile.size > 5 * 1024 * 1024) {
-                errorMessageEl.textContent = 'Image must be less than 5MB.';
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imageUrl = e.target.result;
-                const date = new Date().toLocaleDateString();
-
-                const data = {
-                    date: date,
-                    name: name,
-                    rating: rating,
-                    comment: comment,
-                    imageUrl: imageUrl
-                };
-
-                fetch(scriptUrl, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    body: JSON.stringify(data)
-                })
-                .then(() => {
-                    displayReview(date, name, rating, comment, imageUrl);
-                    document.getElementById('reviewForm').reset();
-                    reviewModal.style.display = 'none';
-                    overlay.style.display = 'none';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    errorMessageEl.textContent = 'Failed to submit review. Please try again.';
-                });
-            }
-            reader.readAsDataURL(imageFile);
-        });
-
-        // Function to display a review
-        function displayReview(date, name, rating, comment, imageUrl) {
-            const reviewsContainer = document.getElementById('reviews');
-
-            // Create a new review div
-            const reviewElement = document.createElement('div');
-            reviewElement.classList.add('eachdiv');
-
-            // Assign a class based on the review index (to mimic the design layout)
-            const reviewCount = reviewsContainer.children.length;
-            switch (reviewCount % 5) {
-                case 0:
-                    reviewElement.classList.add('div1');
-                    break;
-                case 1:
-                    reviewElement.classList.add('div1');
-                    break;
-                case 2:
-                    reviewElement.classList.add('div1');
-                    break;
-                case 3:
-                    reviewElement.classList.add('div1');
-                    break;
-                case 4:
-                    reviewElement.classList.add('div1');
-                    break;
-            }
-
-            // Add the review content with styled rating stars
-            reviewElement.innerHTML = `
-                <div class="userdetails">
-                    <div class="imgbox">
-                        <img src="${imageUrl}" alt="${name}">
-                    </div>
-                    <div class="detbox">
-                        <p class="name">${name}</p>
-                        <p class="designation">${date}</p>
-                    </div>
-                </div>
-                <div class="review">
-                    <div class="stars">
-                        ${Array.from({ length: 5 }, (_, i) => `
-                            <span class="star ${i < rating ? '' : 'empty'}">★</span>
-                        `).join('')}
-                    </div>
-                    <h4>${comment}</h4>
-                </div>
-            `;
-
-            // Append the review to the container
-            reviewsContainer.appendChild(reviewElement);
-        }
-
-        // Fetch reviews from Google Sheets
-        function fetchReviews() {
-            fetch(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1?key=AIzaSyBw44PAIqR2k7WVdZsAA2v1GU8ZrDpTGPQ`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const reviews = data.values ? data.values.slice(1) : [];
-                    reviews.reverse().forEach(review => {
-                        const [date, name, rating, comment, imageUrl] = review;
-                        displayReview(date, name, rating, comment, imageUrl);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching reviews:', error);
-                });
-        }
-
-        // Fetch reviews on page load
-        fetchReviews();
-    </script>
+    <script src="reviews.js"></script>
 </body>
 </html>

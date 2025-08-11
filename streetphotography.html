@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street Photography | Omran Soliman</title>
+    <script>
+        window.currentPage = 'StreetPhotography'; // Change this for each page
+      </script>
+      <script src="analytics.js" defer></script>
+      <script src="navigation.js" defer></script>
+      <script src="popads.js" defer></script>
+      <script src="notifications.js" defer></script>
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="popads.css">
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="streetphotography.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" onclick="return ospvRefreshAndGo(this)">OSPV</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active" data-i18n="home">ACCUEIL</a></li>
+                <li><a href="portfolio.html" class="nav-link" data-i18n="portfolio">PORTFOLIO</a></li>
+                <li><a href="offers.html" class="nav-link" data-i18n="offers">OFFRES</a></li>
+                <li><a href="about.html" class="nav-link" data-i18n="about">PROPOS</a></li>
+                <li><a href="contact.html" class="nav-link" data-i18n="contact">CONTACT</a></li>
+                <li><a href="reviews.html" class="nav-link" data-i18n="reviews">AVIS</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="nav-social">
+                    <a href="http://instagram.com/soliman.omran" target="_blank" class="social-link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="nav-language" onclick="return ospvToggleLanguage()">
+                    <span>FR</span>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Street Photography Section -->
+    <section class="street-photography">
+        <div class="photography-card">
+            <h1 class="page-title">STREET PHOTOGRAPHY</h1>
+            
+            <!-- Photo Gallery -->
+            <div class="photo-gallery">
+                <!-- Photos will be loaded dynamically from Google Sheets -->
+                <div style="width: 100%; text-align: center; padding: 40px; color: rgba(255,255,255,0.7);">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 2em; margin-bottom: 10px;"></i>
+                    <p>Loading photos...</p>
+                </div>
+            </div>
+
+            <!-- Messages Section -->
+            <div class="messages-section">
+                <div class="message-boxes">
+                    <div class="message-box english-box">
+                        <div class="language-flag">EN</div>
+                        <p class="message english">
+                            📸 Spotted yourself in our street photography adventure? 🕵️ <span class="highlight">Drop your email</span> 
+                            and we'll ping you when your candid moments are ready for download! 📩 
+                            It's our gift to you - <span class="highlight">100% FREE</span> 🎁, because awesome memories should be shared! ✨
+                        </p>
+                    </div>
+                    <div class="message-box french-box">
+                        <div class="language-flag">FR</div>
+                        <p class="message french">
+                            📷 Vous vous êtes reconnu dans notre aventure photo de rue? 🕵️ <span class="highlight">Laissez votre email</span> 
+                            et nous vous préviendrons quand vos moments spontanés seront prêts à télécharger! 📩 
+                            C'est notre cadeau pour vous - <span class="highlight">100% GRATUIT</span> 🎁, parce que les beaux souvenirs doivent être partagés! ✨
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Input Section -->
+            <div class="email-section">
+                <form id="emailForm">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                class="form-input" 
+                                id="fullNameInput"
+                                placeholder="Full Name"
+                                required
+                            >
+                        </div>
+                        <div class="input-group">
+                            <input 
+                                type="email" 
+                                class="form-input" 
+                                id="emailInput"
+                                placeholder="Enter your email address..."
+                                required
+                            >
+                        </div>
+                        <div class="input-group">
+                            <select class="form-select" id="languageSelect" required>
+                                <option value="">Lang</option>
+                                <option value="EN">EN</option>
+                                <option value="FR">FR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-download"></i> GET MY FREE PHOTOS
+                    </button>
+                    <p class="privacy-policy">By submitting your email, you agree to our <a href="privacy-policy.html">privacy policy</a>.</p>
+                </form>
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    Amazing! Check your inbox - your download link is on its way! 🚀
+                </div>
+                <div class="error-message" id="errorMessage">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Oops! Something went wrong. Please try again. 😔
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="streetphotography.js"></script>
+</body>
+</html>

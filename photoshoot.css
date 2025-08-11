@@ -1,0 +1,102 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Audiowide', cursive;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Full Page Background */
+body {
+    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Prototype Main Content */
+.main-script {
+    position: relative;
+    min-height: 100vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* PicFlow Gallery Styling */
+picflow-gallery {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 100px);
+    min-height: 600px;
+}
+
+/* Ensure the gallery takes full available space */
+.main-script picflow-gallery {
+    width: 100%;
+    height: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-script {
+        padding-top: 80px;
+    }
+    
+    picflow-gallery {
+        height: calc(100vh - 80px);
+        min-height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-script {
+        padding-top: 70px;
+    }
+    
+    picflow-gallery {
+        height: calc(100vh - 70px);
+        min-height: 400px;
+    }
+}
+
+/* Loading Animation */
+.main-script {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ensure proper z-index for navigation */
+.navbar {
+    z-index: 1000;
+}
+
+/* Gallery container styling */
+.main-script {
+    position: relative;
+    z-index: 1;
+} 
