@@ -18,6 +18,22 @@ body {
     justify-content: center;
 }
 
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    z-index: -1;
+}
+
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
