@@ -13,12 +13,12 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
     padding: 0.8rem 2rem;
-    z-index: 1000;
+    z-index: 1001;
     transition: all 0.3s ease;
     max-width: 80%;
     min-width: 600px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    z-index: 997; /* below mobile menu (999) and overlay (998), above page content */
+    z-index: 1001; /* above overlay (1000), below mobile menu (1002) */
 }
 
 /* Tablet/Desktop safety: reduce spacing and allow wrapping so items never go off-screen */
@@ -169,7 +169,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease, visibility 0.25s ease;
-    z-index: 998; /* below .nav-menu (999) */
+    z-index: 1000; /* below .navbar (1001) and .nav-menu (1002) */
 }
 
 .nav-overlay.active {
@@ -212,7 +212,7 @@ body.nav-open {
         align-items: center;
         gap: 3rem;
         transition: all 0.3s ease;
-        z-index: 999;
+        z-index: 1002; /* above .navbar (1001) and .nav-overlay (1000) */
         opacity: 0;
         visibility: hidden;
         transform: translateY(-20px);
