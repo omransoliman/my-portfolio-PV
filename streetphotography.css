@@ -51,9 +51,8 @@ html.inapp body {
 html.inapp body::before {
     /* Disable blur and fixed positioning inside in-app browsers */
     background-attachment: scroll;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    filter: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 @keyframes gradientShift {
