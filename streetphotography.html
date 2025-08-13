@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Street Photography | Omran Soliman</title>
-    <link rel="stylesheet" href="streetphotography.css">  
     <meta property="og:title" content="Photographie de Rue - OSPV Photography | Omran Soliman">
     <meta property="og:description" content="Explorez notre galerie de photographie de rue. Omran Soliman capture l'essence urbaine et les moments spontanés de la vie quotidienne avec OSPV Photography.">
     <meta property="og:image" content="images/url_share/IMG_6280.jpg">
@@ -12,6 +11,25 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="streetphotography.css">  
+    <script>
+      // Add a class when opened inside Instagram/Facebook in-app browsers to enable CSS fallbacks
+      (function(){
+        try {
+          var ua = navigator.userAgent || '';
+          var isInApp = /(Instagram|FBAN|FBAV)/i.test(ua);
+          if (isInApp) {
+            document.documentElement.classList.add('inapp');
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', function(){
+                if (document.body) document.body.classList.add('inapp');
+              });
+            } else if (document.body) {
+              document.body.classList.add('inapp');
+            }
+          }
+        } catch (e) { /* no-op */ }
+      })();
+    </script>
     <script>
         window.currentPage = 'StreetPhotography'; // Change this for each page
       </script>
