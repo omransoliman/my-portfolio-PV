@@ -2,6 +2,7 @@
 
 /* Main Navigation Bar */
 .navbar {
+    /* Fixed at top, centered like notifications bell pattern */
     position: fixed;
     top: 20px;
     left: 50%;
@@ -17,6 +18,7 @@
     max-width: 80%;
     min-width: 600px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 997; /* below mobile menu (999) and overlay (998), above page content */
 }
 
 /* Tablet/Desktop safety: reduce spacing and allow wrapping so items never go off-screen */
@@ -184,6 +186,7 @@ body.nav-open {
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
     .navbar {
+        /* Fixed offset on mobile */
         top: 10px;
         padding: 0.6rem 1rem;
         max-width: 95%;

@@ -11,41 +11,11 @@ html, body {
 
 body {
     font-family: 'Audiowide', cursive;
-    min-height: 100vh;
-    padding: 120px 2rem 5rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-/* Move blur to a fixed overlay to avoid creating a containing block for position: fixed elements */
-body::before {
-    /* Disable old pseudo-element overlay; using .bg-layer instead */
-    content: none;
-    display: none;
-}
+/* Background handled globally in bg-layer.css */
 
-/* Dedicated background layer for robust cross-browser blur */
-.bg-layer {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* Filter-based blur works in more webviews than backdrop-filter */
-    -webkit-filter: blur(20px);
-    filter: blur(20px);
-    /* Expand slightly so blur doesn't clip at edges */
-    transform: scale(1.03);
-    will-change: transform;
-    pointer-events: none;
-    z-index: 0;
-}
+/* Background handled globally in bg-layer.css */
 
 /* In-app specific rules removed: .bg-layer works universally */
 
@@ -64,7 +34,7 @@ body::before {
 /* Main Content */
 .street-photography {
     min-height: 100vh;
-    padding: 1rem 2rem;
+    padding: 120px 2rem 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,11 +42,6 @@ body::before {
     z-index: 1; /* ensure content sits above the blur overlay */
 }
 
-/* Keep the top navigation above the blur overlay */
-.navbar {
-    position: relative;
-    z-index: 2;
-}
 
 .photography-card {
     max-width: 1400px;
@@ -356,10 +321,7 @@ body::before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    body {
-        padding: 5rem 1rem; /* Reduce body padding on tablets/phones */
-        padding-top: calc(5rem + env(safe-area-inset-top)); /* Respect notches */
-    }
+    /* Body padding handled by section now */
 
     .message-boxes {
         flex-direction: column;

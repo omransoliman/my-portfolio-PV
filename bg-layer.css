@@ -1,0 +1,19 @@
+/* Global blurred background layer */
+html, body {
+  min-height: 100vh;
+  background: transparent;
+}
+
+/* Fixed blurred background image behind all content */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(8px);
+  transform: scale(1.05);
+  pointer-events: none;
+}

@@ -19,21 +19,7 @@ body {
     overflow-x: hidden;
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    z-index: -1;
-}
+/* Background handled globally in bg-layer.css */
 
 
 
@@ -46,6 +32,7 @@ body::before {
     justify-content: center;
     overflow: hidden;
     background: #1a1a1a; /* Dark background to prevent body background interference */
+    z-index: 1; /* ensure above .bg-layer */
 }
 
 .hero-background {
@@ -112,6 +99,7 @@ body::before {
 .portfolio {
     padding: 5rem 2rem;
     position: relative;
+    z-index: 1; /* ensure above .bg-layer */
 }
 
 .portfolio-header {
@@ -148,7 +136,8 @@ body::before {
 /* Reviews Section */
 .reviews {
     padding: 4rem 2rem;
-
+    position: relative;
+    z-index: 1; /* ensure above .bg-layer */
 }
 
 .reviews-header {
@@ -365,6 +354,8 @@ body::before {
     padding: 8rem 2rem;
     min-height: 100vh;
     width: 100%;
+    position: relative;
+    z-index: 1; /* ensure above .bg-layer */
 }
 
 .contact-card {
