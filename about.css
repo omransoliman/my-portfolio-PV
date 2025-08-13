@@ -1,3 +1,42 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Audiowide', cursive;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Full Page Background */
+body {
+    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+/* Move blur to a fixed overlay to avoid creating a containing block for position: fixed elements */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+
 /* About Page Styles */
 .about {
     min-height: 100vh;
