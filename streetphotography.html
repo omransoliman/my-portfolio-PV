@@ -12,25 +12,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="streetphotography.css">  
     <script>
-      // Add a class when opened inside Instagram/Facebook in-app browsers to enable CSS fallbacks
-      (function(){
-        try {
-          var ua = navigator.userAgent || '';
-          var isInApp = /(Instagram|FBAN|FBAV)/i.test(ua);
-          if (isInApp) {
-            document.documentElement.classList.add('inapp');
-            if (document.readyState === 'loading') {
-              document.addEventListener('DOMContentLoaded', function(){
-                if (document.body) document.body.classList.add('inapp');
-              });
-            } else if (document.body) {
-              document.body.classList.add('inapp');
-            }
-          }
-        } catch (e) { /* no-op */ }
-      })();
-    </script>
-    <script>
         window.currentPage = 'StreetPhotography'; // Change this for each page
       </script>
       <script src="analytics.js" defer></script>
@@ -46,6 +27,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Background Blur Layer -->
+    <div class="bg-layer" aria-hidden="true"></div>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="nav-container">

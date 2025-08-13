@@ -21,39 +21,33 @@ body {
 
 /* Move blur to a fixed overlay to avoid creating a containing block for position: fixed elements */
 body::before {
-    background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    content: '';
+    /* Disable old pseudo-element overlay; using .bg-layer instead */
+    content: none;
+    display: none;
+}
+
+/* Dedicated background layer for robust cross-browser blur */
+.bg-layer {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    pointer-events: none;
-    z-index: -1;
-}
-
-/* In-app browser fallbacks (Instagram / Facebook webviews) */
-html.inapp body {
-    /* Use a regular, non-fixed background to avoid known IG/FB WebView issues */
     background-image: url('https://dl.dropboxusercontent.com/scl/fi/m7xbp5cgqcxevpgvqav51/IMG_6280.jpg?rlkey=ywkip7i1ax94j167n7b25aszo&raw=1');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    /* Filter-based blur works in more webviews than backdrop-filter */
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+    /* Expand slightly so blur doesn't clip at edges */
+    transform: scale(1.03);
+    will-change: transform;
+    pointer-events: none;
+    z-index: 0;
 }
 
-html.inapp body::before {
-    /* Disable blur and fixed positioning inside in-app browsers */
-    background-attachment: scroll;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
+/* In-app specific rules removed: .bg-layer works universally */
 
 @keyframes gradientShift {
     0% {
@@ -74,6 +68,14 @@ html.inapp body::before {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 1; /* ensure content sits above the blur overlay */
+}
+
+/* Keep the top navigation above the blur overlay */
+.navbar {
+    position: relative;
+    z-index: 2;
 }
 
 .photography-card {
